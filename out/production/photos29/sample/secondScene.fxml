@@ -9,7 +9,7 @@
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Users" textFill="#5569da">
+            <Label fx:id="usersLabel" text="Users" textFill="#5569da">
                <font>
                   <Font name="AppleMyungjo Regular" size="48.0" />
                </font>
