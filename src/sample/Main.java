@@ -14,8 +14,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("My Photos");
 
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
+        Scene loginScene = new Scene(root);
+
+        primaryStage.setScene(loginScene);
         primaryStage.show();
     }
 
