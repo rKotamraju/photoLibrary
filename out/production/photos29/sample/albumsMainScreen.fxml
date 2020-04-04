@@ -38,7 +38,7 @@
                   <Insets left="20.0" top="60.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="createAlbumButton" mnemonicParsing="false" text="Create">
+            <Button fx:id="createAlbumButton" mnemonicParsing="false" onAction="#createAlbumPressed" text="Create">
                <HBox.margin>
                   <Insets left="260.0" top="60.0" />
                </HBox.margin>
@@ -53,7 +53,7 @@
                   <Insets left="20.0" right="200.0" />
                </VBox.margin>
             </TextField>
-            <ListView fx:id="albumsListView" prefHeight="200.0" prefWidth="200.0">
+            <ListView fx:id="AlbumsListView" prefHeight="200.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="15.0" />
                </VBox.margin>
