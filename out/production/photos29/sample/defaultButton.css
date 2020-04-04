@@ -1,0 +1,15 @@
+.text-field{
+    -fx-text-alignment: left;
+    -fx-background-radius: 10;
+    -fx-background-color: white;
+    -fx-border-color: skyblue;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
+}
+
+.button{
+    -fx-background-color: linear-gradient(lightcoral, skyblue);
+    -fx-background-radius: 5;
+    -fx-min-width: 85;
+    -fx-min-height: 35;
+}
