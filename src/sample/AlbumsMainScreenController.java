@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -49,9 +51,38 @@ public class AlbumsMainScreenController implements Initializable{
 
         System.out.println("Intitializing");
         AlbumsListView.setItems(albumsObservableList);
+
+        AlbumsListView.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean t1) {
+                if(AlbumsListView.isFocused()){
+                    System.out.println("No Error");
+
+                }
+            }
+        });
+
     }
 
 //ONCLICK METHODS
+    @FXML
+    private void goToAlbumDetailScreen() throws IOException{
+        //ERROR: For some reason cannot click on listview with ActionEvent e as parameter
+
+        AlbumDetail selectedAlbum = AlbumsListView.getSelectionModel().getSelectedItem();
+
+        Stage stage = null;
+        Parent root = null;
+
+        stage = (Stage) AlbumsListView.getScene().getWindow();
+        root = root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
         System.out.println("Logging out from albums main screen");
@@ -72,7 +103,7 @@ public class AlbumsMainScreenController implements Initializable{
 
 
     @FXML
-    private void createAlbumPressed(ActionEvent e){
+    private void createAlbumPressed(){
 
 
 
@@ -80,13 +111,18 @@ public class AlbumsMainScreenController implements Initializable{
         td.setHeaderText("Enter an Album Name.");
         td.showAndWait();
 
+        //if the user presses cancel
         if(td.getResult() == null){
             return;
         }
 
         String albumName = td.getResult().trim();
+
+        //if User tries to add an empty album
         if(albumName.length() == 0){
-            return;
+            Alert alert = new Alert(Alert.AlertType.ERROR, "You must enter an album name!", ButtonType.OK);
+            alert.showAndWait();
+            createAlbumPressed();
         }
 
         AlbumDetail newAlbum = new AlbumDetail(albumName);

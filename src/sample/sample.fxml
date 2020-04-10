@@ -43,7 +43,7 @@
    </top>
 
    <stylesheets>
-      <URL value="@defaultButton.css" />
+      <URL value="@styles.css" />
    </stylesheets>
 
 </BorderPane>
