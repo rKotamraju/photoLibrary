@@ -21,4 +21,11 @@
          </children>
       </HBox>
    </top>
+   <bottom>
+      <Button fx:id="addPhotoButton" mnemonicParsing="false" text="Add Photo" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="20.0" left="470.0" />
+         </BorderPane.margin>
+      </Button>
+   </bottom>
 </BorderPane>

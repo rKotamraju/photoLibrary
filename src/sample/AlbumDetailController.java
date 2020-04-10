@@ -20,6 +20,10 @@ public class AlbumDetailController {
     private Button backButton;
 
     @FXML
+    private Button addPhotoButton;
+
+    //On Click Methods
+    @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
         System.out.println("Logging out from albums main screen");
 
