@@ -33,6 +33,9 @@ public class AlbumsMainScreenController implements Initializable{
     @FXML
     private Button createAlbumButton;
 
+    //Editing mode
+    boolean editMode;
+
 //TEXTFIELDS
     @FXML
     private TextField searchAlbumsTextField;
@@ -48,6 +51,8 @@ public class AlbumsMainScreenController implements Initializable{
         editAlbumButton.setDisable(true);
         renameAlbumButton.setDisable(true);
         deleteAlbumButton.setDisable(true);
+
+        editMode = true; //on
 
         System.out.println("Intitializing");
         AlbumsListView.setItems(albumsObservableList);
@@ -69,17 +74,19 @@ public class AlbumsMainScreenController implements Initializable{
     private void goToAlbumDetailScreen() throws IOException{
         //ERROR: For some reason cannot click on listview with ActionEvent e as parameter
 
-        AlbumDetail selectedAlbum = AlbumsListView.getSelectionModel().getSelectedItem();
+        if(editMode == false){
+            AlbumDetail selectedAlbum = AlbumsListView.getSelectionModel().getSelectedItem();
 
-        Stage stage = null;
-        Parent root = null;
+            Stage stage = null;
+            Parent root = null;
 
-        stage = (Stage) AlbumsListView.getScene().getWindow();
-        root = root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
+            stage = (Stage) AlbumsListView.getScene().getWindow();
+            root = root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
 
     }
 
@@ -106,7 +113,7 @@ public class AlbumsMainScreenController implements Initializable{
     private void createAlbumPressed(){
 
 
-
+        editMode = true;
         TextInputDialog td = new TextInputDialog();
         td.setHeaderText("Enter an Album Name.");
         td.showAndWait();
@@ -131,11 +138,15 @@ public class AlbumsMainScreenController implements Initializable{
         editAlbumButton.setDisable(false);
         renameAlbumButton.setDisable(false);
         deleteAlbumButton.setDisable(false);
-
+        editMode = false;
     }
 
     @FXML
     private void renameAlbumPressed(ActionEvent e){
+        editMode = true;
+        if(AlbumsListView.getSelectionModel().getSelectedItem() == null){
+            return;
+        }
         TextInputDialog inputName = new TextInputDialog();
         inputName.setHeaderText("Enter a new album name.");
         inputName.showAndWait();
@@ -151,25 +162,31 @@ public class AlbumsMainScreenController implements Initializable{
         System.out.println("New Name: "+newName);
         AlbumsListView.getSelectionModel().getSelectedItem().name = newName; //changes name behind the scenes but doesn't show up
         AlbumsListView.getItems().set(AlbumsListView.getSelectionModel().getSelectedIndex(), selectedAlbum); //shows up
+        editMode = false;
     }
 
     @FXML
     private void deleteAlbumPressed(ActionEvent e){
-        if(AlbumsListView.getSelectionModel().getSelectedItem() == null){
-            return;
-        }
-        ButtonType userChoice = ButtonType.NO;
-       Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this album?", ButtonType.CANCEL, ButtonType.YES);
-       alert.showAndWait();
-       userChoice = alert.getResult();
-       if(userChoice == ButtonType.CANCEL){
-           return;
-       }
 
-       albumsObservableList.remove(AlbumsListView.getSelectionModel().getSelectedItem());
-       System.out.println("Deleted");
+            //must press twice - first click delete to turn off listview then pick item and then press delete again
+            editMode = true;
+            if(AlbumsListView.getSelectionModel().getSelectedItem() == null){
+                return;
+            }
+
+            ButtonType userChoice = ButtonType.NO;
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this album?", ButtonType.CANCEL, ButtonType.YES);
+            alert.showAndWait();
+            userChoice = alert.getResult();
+            if(userChoice == ButtonType.CANCEL) {
+                return;
+            }
+
+
+            albumsObservableList.remove(AlbumsListView.getSelectionModel().getSelectedItem());
+            System.out.println("Deleted");
+            editMode = false;
+
     }
-
-
 
 }
