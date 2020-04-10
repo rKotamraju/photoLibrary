@@ -32,6 +32,8 @@ public class AlbumsMainScreenController implements Initializable{
     private Button deleteAlbumButton;
     @FXML
     private Button createAlbumButton;
+    @FXML
+    private Button selectAlbumButton;
 
     //Editing mode
     boolean editMode;
@@ -51,6 +53,10 @@ public class AlbumsMainScreenController implements Initializable{
         editAlbumButton.setDisable(true);
         renameAlbumButton.setDisable(true);
         deleteAlbumButton.setDisable(true);
+        editAlbumButton.setVisible(false);
+        renameAlbumButton.setVisible(false);
+        deleteAlbumButton.setVisible(false);
+        selectAlbumButton.setDisable(true);
 
         editMode = true; //on
 
@@ -108,6 +114,23 @@ public class AlbumsMainScreenController implements Initializable{
         stage.show();
     }
 
+    @FXML
+    private void selectPressed(ActionEvent e){
+        editMode = true;
+
+        selectAlbumButton.setVisible(false);
+        renameAlbumButton.setVisible(true);
+        deleteAlbumButton.setVisible(true);
+        editAlbumButton.setVisible(true);
+
+        selectAlbumButton.setDisable(true);
+        renameAlbumButton.setDisable(false);
+        deleteAlbumButton.setDisable(false);
+        editAlbumButton.setDisable(false);
+
+
+    }
+
 
     @FXML
     private void createAlbumPressed(){
@@ -138,7 +161,9 @@ public class AlbumsMainScreenController implements Initializable{
         editAlbumButton.setDisable(false);
         renameAlbumButton.setDisable(false);
         deleteAlbumButton.setDisable(false);
+        selectAlbumButton.setDisable(false);
         editMode = false;
+
     }
 
     @FXML
@@ -163,6 +188,15 @@ public class AlbumsMainScreenController implements Initializable{
         AlbumsListView.getSelectionModel().getSelectedItem().name = newName; //changes name behind the scenes but doesn't show up
         AlbumsListView.getItems().set(AlbumsListView.getSelectionModel().getSelectedIndex(), selectedAlbum); //shows up
         editMode = false;
+
+        selectAlbumButton.setVisible(true);
+        renameAlbumButton.setVisible(false);
+        deleteAlbumButton.setVisible(false);
+        editAlbumButton.setVisible(false);
+        renameAlbumButton.setDisable(true);
+        deleteAlbumButton.setDisable(true);
+        editAlbumButton.setDisable(true);
+        selectAlbumButton.setDisable(false);
     }
 
     @FXML
@@ -186,6 +220,16 @@ public class AlbumsMainScreenController implements Initializable{
             albumsObservableList.remove(AlbumsListView.getSelectionModel().getSelectedItem());
             System.out.println("Deleted");
             editMode = false;
+
+            selectAlbumButton.setVisible(true);
+            renameAlbumButton.setVisible(false);
+            deleteAlbumButton.setVisible(false);
+            editAlbumButton.setVisible(false);
+            renameAlbumButton.setDisable(true);
+            deleteAlbumButton.setDisable(true);
+            editAlbumButton.setDisable(true);
+            selectAlbumButton.setDisable(false);
+
 
     }
 
