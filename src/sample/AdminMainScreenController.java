@@ -51,7 +51,7 @@ public class AdminMainScreenController implements Initializable {
 
          if(e.getSource() == logOutButton){
              stage = (Stage) logOutButton.getScene().getWindow();
-             root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+             root = FXMLLoader.load(getClass().getResource("loginScreen.fxml"));
          }
 
          Scene scene = new Scene(root);

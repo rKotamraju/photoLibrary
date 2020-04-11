@@ -87,7 +87,7 @@ public class AlbumsMainScreenController implements Initializable{
             Parent root = null;
 
             stage = (Stage) AlbumsListView.getScene().getWindow();
-            root = root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
+            root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -106,7 +106,7 @@ public class AlbumsMainScreenController implements Initializable{
         if(e.getSource() == logOutButton){
             stage = (Stage) logOutButton.getScene().getWindow();
 
-            root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+            root = FXMLLoader.load(getClass().getResource("loginScreen.fxml"));
         }
 
         Scene scene = new Scene(root);

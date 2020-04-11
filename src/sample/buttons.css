@@ -1,0 +1,21 @@
+.createButton{
+    -fx-background-color: forestGreen;
+    -fx-text-fill: white;
+    -fx-font-family: "Avenir Next";
+    -fx-background-radius: 10;
+}
+
+.logoutButton{
+    -fx-background-color: gray;
+    -fx-text-fill: white;
+    -fx-border-color: skyblue;
+    -fx-font-family: "Avenir Next";
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+.albumsLabel{
+    -fx-text-fill: black;
+    -fx-font-family: "Avenir";
+    -fx-font-size: 45px;
+}

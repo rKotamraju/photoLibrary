@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -7,43 +8,40 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AlbumsMainScreenController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="albumsLabel" text="Albums" textFill="#612961">
+            <Label fx:id="albumsLabel" layoutX="20.0" layoutY="10.0" styleClass="albumsLabel" text="Albums" textFill="#612961" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font name="AppleMyungjo Regular" size="48.0" />
                </font>
-               <HBox.margin>
-                  <Insets left="20.0" top="10.0" />
-               </HBox.margin></Label>
-            <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutPressed" text="Log Out">
-               <HBox.margin>
-                  <Insets left="320.0" top="30.0" />
-               </HBox.margin></Button>
-         </children></HBox>
+            </Label>
+            <Button fx:id="logOutButton" layoutX="398.0" layoutY="30.0" mnemonicParsing="false" onAction="#logOutPressed" styleClass="logoutButton" text="Log Out" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+         </children>
+      </AnchorPane>
    </top>
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="editAlbumButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" text="Edit">
-               <HBox.margin>
-                  <Insets left="20.0" top="60.0" />
-               </HBox.margin></Button>
-            <Button fx:id="renameAlbumButton" mnemonicParsing="false" onAction="#renameAlbumPressed" text="Rename">
-               <HBox.margin>
-                  <Insets left="20.0" top="60.0" />
-               </HBox.margin></Button>
-            <Button fx:id="deleteAlbumButton" mnemonicParsing="false" onAction="#deleteAlbumPressed" text="Delete">
-               <HBox.margin>
-                  <Insets left="20.0" top="60.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="createAlbumButton" mnemonicParsing="false" onAction="#createAlbumPressed" text="Create">
-               <HBox.margin>
-                  <Insets left="290.0" top="60.0" />
-               </HBox.margin>
-            </Button>
-         </children></HBox>
+            <Button fx:id="createAlbumButton" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#createAlbumPressed" styleClass="createButton" text="Create" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+            <HBox alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="250.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+               <children>
+                  <Button fx:id="editAlbumButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" text="Edit" />
+                  <Button fx:id="renameAlbumButton" mnemonicParsing="false" onAction="#renameAlbumPressed" text="Rename">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="deleteAlbumButton" mnemonicParsing="false" onAction="#deleteAlbumPressed" text="Delete">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+      </AnchorPane>
    </bottom>
    <center>
       <VBox prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -68,4 +66,9 @@
             <Insets />
          </BorderPane.margin></VBox>
    </center>
+
+   <stylesheets>
+      <URL value="@buttons.css" />
+   </stylesheets>
+
 </BorderPane>

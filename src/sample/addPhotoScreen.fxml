@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddPhotoController">
+   <top>
+      <AnchorPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="newPhotoLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="albumsLabel" text="New Photo" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backPressed" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+            <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutPressed" styleClass="logoutButton" text="Log Out" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="75.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
+               <children>
+                  <Button fx:id="pickComputerButton" mnemonicParsing="false" text="Pick From Computer">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="pickStockButton" mnemonicParsing="false" text="Pick Stock Image" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+            <Button fx:id="addPhotoButton" mnemonicParsing="false" styleClass="createButton" text="Add Photo" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <FlowPane alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0">
+               <children>
+                  <ImageView fx:id="photoImageView" fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" />
+                  <TextField fx:id="tagsTextField" alignment="CENTER" promptText="Enter Tags" />
+                  <TextField fx:id="captionsTextField" alignment="CENTER" promptText="Enter Caption">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </VBox>
+         </children>
+      </FlowPane>
+   </center>
+
+    <stylesheets>
+        <URL value="@buttons.css" />
+    </stylesheets>
+</BorderPane>
