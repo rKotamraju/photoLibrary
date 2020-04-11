@@ -8,10 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.text.html.ImageView;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,6 +38,7 @@ public class AddPhotoController implements Initializable {
     private TextField captionsTextField;
 
 //ImageView
+    private ImageView photosImageView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -76,6 +79,25 @@ public class AddPhotoController implements Initializable {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    private void pickComputerPressed(ActionEvent e) throws FileNotFoundException {
+        System.out.println("Picking a picture from the computer");
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File fileChosen = fileChooser.showOpenDialog(pickComputerButton.getScene().getWindow());
+        System.out.println("File Path :" + fileChosen.getAbsolutePath()); //THIS IS HOW TO GET THE PATH OF THE PICTURE SELECTED
+        //THIS IS WHAT WE NEED TO SAVE! IN SERIALIZING
+
+        //load photo into imageview
+        String imagePath = fileChosen.getAbsolutePath();
+        FileInputStream fis = new FileInputStream(imagePath);
+        Image myImage = new Image(fis);
+
+        //photosImageView.setImage(myImage);
+        //photosImageView = new ImageView(myImage);
     }
 
 }

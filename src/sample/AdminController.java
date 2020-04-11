@@ -39,7 +39,11 @@ public class AdminController implements Initializable {
         deleteUserButton.setDisable(true);
 
         System.out.println("Intitializing");
+        UserDetail stockUser = new UserDetail("stock");
+        usersObservableList.add(stockUser);
+
         usersListView.setItems(usersObservableList);
+
     }
 
      @FXML
