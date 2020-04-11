@@ -36,8 +36,6 @@ public class AddPhotoController implements Initializable {
     private TextField captionsTextField;
 
 //ImageView
-    @FXML
-    private ImageView photoImageView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
