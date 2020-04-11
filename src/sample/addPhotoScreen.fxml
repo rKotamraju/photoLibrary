@@ -10,8 +10,8 @@
    <top>
       <AnchorPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="newPhotoLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="albumsLabel" text="New Photo" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0" />
-            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backPressed" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+            <Label fx:id="newPhotoLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="albumsLabel" text="New Photo" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backPressed" styleClass="backButton" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
             <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutPressed" styleClass="logoutButton" text="Log Out" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
          </children>
       </AnchorPane>
@@ -21,12 +21,12 @@
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="75.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
                <children>
-                  <Button fx:id="pickComputerButton" mnemonicParsing="false" text="Pick From Computer">
+                  <Button fx:id="pickComputerButton" mnemonicParsing="false" styleClass="secondaryButton1" text="Pick From Computer">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="pickStockButton" mnemonicParsing="false" text="Pick Stock Image" />
+                  <Button fx:id="pickStockButton" mnemonicParsing="false" styleClass="secondaryButton2" text="Pick Stock Image" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -42,8 +42,8 @@
             <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0">
                <children>
                   <ImageView fx:id="photoImageView" fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextField fx:id="tagsTextField" alignment="CENTER" promptText="Enter Tags" />
-                  <TextField fx:id="captionsTextField" alignment="CENTER" promptText="Enter Caption">
+                  <TextField fx:id="tagsTextField" alignment="CENTER" promptText="Enter Tags" styleClass="text-field" />
+                  <TextField fx:id="captionsTextField" alignment="CENTER" promptText="Enter Caption" styleClass="text-field">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>

@@ -32,7 +32,7 @@ public class LoginScreenController {
         if(e.getSource() == loginButton){
             stage = (Stage) loginButton.getScene().getWindow();
             if(usernameTextField.getText().compareTo("admin") == 0){
-                root = FXMLLoader.load(getClass().getResource("secondScene.fxml"));
+                root = FXMLLoader.load(getClass().getResource("adminScreen.fxml"));
             }else{
                 root = FXMLLoader.load(getClass().getResource("albumsMainScreen.fxml"));
             }

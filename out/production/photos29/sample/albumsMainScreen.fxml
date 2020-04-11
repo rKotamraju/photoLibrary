@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AlbumsMainScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AlbumsMainController">
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
@@ -26,12 +26,12 @@
             <HBox alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="250.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
                <children>
                   <Button fx:id="editAlbumButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" text="Edit" />
-                  <Button fx:id="renameAlbumButton" mnemonicParsing="false" onAction="#renameAlbumPressed" text="Rename">
+                  <Button fx:id="renameAlbumButton" mnemonicParsing="false" onAction="#renameAlbumPressed" styleClass="secondaryButton1" text="Rename">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="deleteAlbumButton" mnemonicParsing="false" onAction="#deleteAlbumPressed" text="Delete">
+                  <Button fx:id="deleteAlbumButton" mnemonicParsing="false" onAction="#deleteAlbumPressed" styleClass="deleteButton" text="Delete">
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin></Button>
@@ -46,7 +46,7 @@
    <center>
       <VBox prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="searchAlbumsTextField" prefHeight="27.0" prefWidth="534.0" promptText="Search Albums">
+            <TextField fx:id="searchAlbumsTextField" prefHeight="27.0" prefWidth="534.0" promptText="Search Albums" styleClass="text-field">
                <VBox.margin>
                   <Insets left="20.0" right="200.0" />
                </VBox.margin>
@@ -56,7 +56,7 @@
                   <Insets left="20.0" right="20.0" top="15.0" />
                </VBox.margin>
             </ListView>
-            <Button fx:id="selectAlbumButton" mnemonicParsing="false" onAction="#selectPressed" text="Select Album">
+            <Button fx:id="selectAlbumButton" mnemonicParsing="false" onAction="#selectPressed" styleClass="secondaryButton2" text="Select Album">
                <VBox.margin>
                   <Insets left="20.0" top="10.0" />
                </VBox.margin>

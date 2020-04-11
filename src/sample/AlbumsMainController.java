@@ -19,7 +19,7 @@ import java.net.URL;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
-public class AlbumsMainScreenController implements Initializable{
+public class AlbumsMainController implements Initializable{
 
 //BUTTONS
     @FXML

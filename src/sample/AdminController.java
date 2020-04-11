@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
-public class AdminMainScreenController implements Initializable {
+public class AdminController implements Initializable {
     //Declaration of all buttons
      @FXML
      private Button logOutButton;

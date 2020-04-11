@@ -1,12 +1,12 @@
 .createButton{
-    -fx-background-color: forestGreen;
+    -fx-background-color: mediumseagreen;
     -fx-text-fill: white;
     -fx-font-family: "Avenir Next";
     -fx-background-radius: 10;
 }
 
 .logoutButton{
-    -fx-background-color: gray;
+    -fx-background-color: Cornflowerblue;
     -fx-text-fill: white;
     -fx-border-color: skyblue;
     -fx-font-family: "Avenir Next";
@@ -17,5 +17,43 @@
 .albumsLabel{
     -fx-text-fill: black;
     -fx-font-family: "Avenir";
-    -fx-font-size: 45px;
+    -fx-font-size: 36px;
+}
+
+.secondaryButton1{
+    -fx-background-color: lightSalmon;
+    -fx-text-fill: white;
+    -fx-font-family: "Avenir Next";
+    -fx-background-radius: 10;
+}
+
+.secondaryButton2{
+    -fx-background-color: mediumslateBlue;
+    -fx-text-fill: white;
+    -fx-font-family: "Avenir Next";
+    -fx-background-radius: 10;
+}
+
+.backButton{
+    -fx-background-color: skyBlue;
+    -fx-text-fill: white;
+    -fx-font-family: "Avenir Next";
+    -fx-background-radius: 10;
+}
+
+.deleteButton{
+    -fx-background-color: orangeRed;
+    -fx-text-fill: white;
+    -fx-font-family: "Avenir Next";
+    -fx-background-radius: 10;
+}
+
+.text-field{
+    -fx-text-alignment: left;
+    -fx-font-family: Avenir;
+    -fx-background-radius: 10;
+    -fx-background-color: white;
+    -fx-border-color: mediumSpringGreen;
+    -fx-border-radius: 10;
+    -fx-border-width: 2;
 }
