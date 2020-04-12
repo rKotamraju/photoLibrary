@@ -96,13 +96,14 @@ public class AddPhotoController implements Initializable {
        /* String imagePath = fileChosen.getAbsolutePath();
         FileInputStream fis = new FileInputStream(imagePath);
         Image myImage = new Image(fis);*/
+     //  File myFile = new File(fileChosen.getAbsolutePath());
+      // Image myImage = new Image(myFile.toURI().toString());
+      //  File myFile = new File ("/Pictures/Photos Library.photoslibrary/originals/9/97837677-417D-478D-A7DA-5AA8884D5B9B.png");
 
-       Image myImage = new Image(fileChosen.toURI().toURL().toExternalForm());
+        InputStream stream = getClass().getResourceAsStream("Downloads/me.jpg");
+        Image myImage = new Image(stream);
        photosImageView.setImage(myImage);
 
-
-        //photosImageView.setImage(myImage);
-        //photosImageView = new ImageView(myImage);
     }
 
 }
