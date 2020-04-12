@@ -56,6 +56,10 @@ public class AdminController implements Initializable {
 
         usersObservableList.addAll(usersList.getUsers());
 
+        UserDetail stock = new UserDetail("Stock");
+
+        usersObservableList.add(stock);
+
         usersListView.setItems(usersObservableList);
 
     }

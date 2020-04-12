@@ -18,11 +18,13 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class AddPhotoController extends Application implements Initializable{
+public class AddPhotoController implements Initializable{
 
 //BUTTONS
     @FXML
@@ -49,6 +51,10 @@ public class AddPhotoController extends Application implements Initializable{
     //Labels
     @FXML
     private Label newPhotoLabel;
+
+    //Image path
+
+    String path;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -116,7 +122,7 @@ public class AddPhotoController extends Application implements Initializable{
         //THIS IS WHAT WE NEED TO SAVE! IN SERIALIZING
 
         //load photo into imageview
-        String path = fileChosen.getAbsolutePath();
+        path = fileChosen.getAbsolutePath();
        // File myFile = new File(path.);
         File myFile = new File(path);
         Image myImage = new Image(myFile.toURI().toString());
@@ -128,8 +134,16 @@ public class AddPhotoController extends Application implements Initializable{
 
     }
 
-    @Override
-    public void start(Stage stage) throws Exception {
+    @FXML
+    private void addPhotoPressed(ActionEvent e){
+        String caption = captionsTextField.getText();
+        String[] tags = tagsTextField.getText().split(",");
+        ArrayList<String> listOfTags = new ArrayList<String>();
+        for(int i = 0; i < tags.length;i++){
+            listOfTags.add(tags[i]);
+        }
+        String photoPath = path;
 
     }
+
 }

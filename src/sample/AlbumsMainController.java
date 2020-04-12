@@ -230,6 +230,11 @@ public class AlbumsMainController implements Initializable{
             editAlbumButton.setDisable(true);
             selectAlbumButton.setDisable(false);
 
+    }
+
+    @FXML
+    private void searchingAlbums(ActionEvent e){
+        String lookingFor = searchAlbumsTextField.getText();
 
     }
 

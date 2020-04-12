@@ -46,7 +46,7 @@
    <center>
       <VBox prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="searchAlbumsTextField" prefHeight="27.0" prefWidth="534.0" promptText="Search Albums" styleClass="text-field">
+            <TextField fx:id="searchAlbumsTextField" onAction="#searchingAlbum" prefHeight="27.0" prefWidth="534.0" promptText="Search Albums" styleClass="text-field">
                <VBox.margin>
                   <Insets left="20.0" right="200.0" />
                </VBox.margin>
