@@ -232,10 +232,10 @@ public class AlbumsMainController implements Initializable{
 
     }
 
-    @FXML
+   /* @FXML
     private void searchingAlbums(ActionEvent e){
         String lookingFor = searchAlbumsTextField.getText();
 
-    }
+    }*/
 
 }

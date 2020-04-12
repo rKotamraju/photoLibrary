@@ -14,6 +14,10 @@ public class PhotoDetail {
         this.filePathLocal = filePath;
     }
 
+   /*public PhotoDetail(String filePath){
+        this.filePathLocal = filePath;
+    }*/
+
     public String toString(){
         return filePathLocal + " caption: " + caption;
     }

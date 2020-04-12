@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.EOFException;
@@ -31,6 +33,7 @@ public class LoginScreenController implements Initializable {
     @FXML
     private Button loginButton;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -42,6 +45,8 @@ public class LoginScreenController implements Initializable {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+
+
     }
 
     @FXML

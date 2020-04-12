@@ -8,6 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.EOFException;
@@ -55,12 +57,8 @@ public class AdminController implements Initializable {
         }
 
         usersObservableList.addAll(usersList.getUsers());
-
-        UserDetail stock = new UserDetail("Stock");
-
-        usersObservableList.add(stock);
-
         usersListView.setItems(usersObservableList);
+
 
     }
 
