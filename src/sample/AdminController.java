@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URL;
@@ -39,21 +40,19 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        deleteUserButton.setDisable(true);
         //System.out.println("Intitializing");
-        //UserDetail stockUser = new UserDetail("stock");
-        ///usersObservableList.add(stockUser);
-        usersList = new UsersList();
 
         try {
             usersList = UsersList.readApp();
+        } catch (EOFException e){
+            usersList = new UsersList();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        usersObservableList = usersList.getUsers();
+        usersObservableList.addAll(usersList.getUsers());
 
         usersListView.setItems(usersObservableList);
 
@@ -64,7 +63,7 @@ public class AdminController implements Initializable {
 
          System.out.println("Logging out from Admin Main Screen");
 
-         //UsersList.writeApp(usersList);
+         UsersList.writeApp(usersList);
 
          Stage stage = null;
          Parent root = null;
@@ -95,8 +94,8 @@ public class AdminController implements Initializable {
          }
 
          UserDetail newUser = new UserDetail(username);
-         usersList.getUsers().add(newUser);
-
+         usersObservableList.add(newUser);
+         usersList.addUser(newUser);
          deleteUserButton.setDisable(false);
      }
 
@@ -113,7 +112,10 @@ public class AdminController implements Initializable {
              return;
          }
 
-         usersList.getUsers().remove(usersListView.getSelectionModel().getSelectedItem());
+         UserDetail removedUser = usersListView.getSelectionModel().getSelectedItem();
+         usersObservableList.remove(removedUser);
+         usersList.removeUser(removedUser);
+
          System.out.println("Deleted");
      }
 }

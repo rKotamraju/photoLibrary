@@ -9,17 +9,21 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 public class UsersList implements Serializable {
 
-    private ObservableList<UserDetail> users;
+    private ArrayList<UserDetail> users;
     public static final String storeDir = "dat";
     public static final String storeFile = "users.dat";
     static final long serialVersionUID = 1L;
 
     public UsersList(){
-        users = observableArrayList();
+        users = new ArrayList<UserDetail>();
     }
 
     public void addUser(UserDetail newUser){
         users.add(newUser);
+    }
+
+    public void removeUser(UserDetail removedUser){
+        users.remove(removedUser);
     }
 
     public void listUsers(){
@@ -47,7 +51,7 @@ public class UsersList implements Serializable {
         return usersList;
     }
 
-    public ObservableList<UserDetail> getUsers(){
+    public ArrayList<UserDetail> getUsers(){
         return users;
     }
 
