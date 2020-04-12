@@ -95,6 +95,9 @@ public class AddPhotoController implements Initializable {
         //THIS IS WHAT WE NEED TO SAVE! IN SERIALIZING
 
         //load photo into imageview
+        String path = fileChosen.getAbsolutePath();
+
+        
 
 
 
