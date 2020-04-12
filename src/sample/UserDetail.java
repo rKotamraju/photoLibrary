@@ -2,7 +2,7 @@ package sample;
 
 import java.io.Serializable;
 
-public class UserDetail implements Serializable {
+public class UserDetail implements Serializable{
     String username;
     int numAlbums;
 
