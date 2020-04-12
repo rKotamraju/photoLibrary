@@ -51,6 +51,16 @@ public class UsersList implements Serializable {
         return usersList;
     }
 
+    public boolean checkName(String name){
+
+        for( UserDetail u : users ){
+            if (u.getUsername().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public ArrayList<UserDetail> getUsers(){
         return users;
     }

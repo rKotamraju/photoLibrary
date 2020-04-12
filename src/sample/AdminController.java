@@ -21,6 +21,8 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 public class AdminController implements Initializable {
 
+    static final long serialVersionUID = 1L;
+
     protected UsersList usersList;
 
     //Buttons
