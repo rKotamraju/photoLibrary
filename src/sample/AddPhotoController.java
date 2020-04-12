@@ -14,6 +14,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -82,7 +83,7 @@ public class AddPhotoController implements Initializable {
     }
 
     @FXML
-    private void pickComputerPressed(ActionEvent e) throws FileNotFoundException {
+    private void pickComputerPressed(ActionEvent e) throws MalformedURLException {
         System.out.println("Picking a picture from the computer");
 
         FileChooser fileChooser = new FileChooser();
@@ -92,9 +93,13 @@ public class AddPhotoController implements Initializable {
         //THIS IS WHAT WE NEED TO SAVE! IN SERIALIZING
 
         //load photo into imageview
-        String imagePath = fileChosen.getAbsolutePath();
+       /* String imagePath = fileChosen.getAbsolutePath();
         FileInputStream fis = new FileInputStream(imagePath);
-        Image myImage = new Image(fis);
+        Image myImage = new Image(fis);*/
+
+       Image myImage = new Image(fileChosen.toURI().toURL().toExternalForm());
+       photosImageView.setImage(myImage);
+
 
         //photosImageView.setImage(myImage);
         //photosImageView = new ImageView(myImage);
