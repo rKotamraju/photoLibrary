@@ -41,7 +41,7 @@
          <children>
             <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0">
                <children>
-                  <ImageView fx:id="photosImageView" fitHeight="175.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <TextField fx:id="tagsTextField" alignment="CENTER" promptText="Enter Tags" styleClass="text-field" />
                   <TextField fx:id="captionsTextField" alignment="CENTER" promptText="Enter Caption" styleClass="text-field">
                      <opaqueInsets>

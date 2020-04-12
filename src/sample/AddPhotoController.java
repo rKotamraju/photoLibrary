@@ -43,7 +43,8 @@ public class AddPhotoController extends Application implements Initializable{
     private TextField captionsTextField;
 
 //ImageView
-    private ImageView photosImageView;
+    @FXML
+    private ImageView photoImageView;
 
     //Labels
     @FXML
@@ -52,9 +53,21 @@ public class AddPhotoController extends Application implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addPhotoButton.setDisable(true);
+        photoImageView = new ImageView();
+
+        FileInputStream input = null;
+        try {
+            input = new FileInputStream("/Users/sujitmolleti/Desktop/Images/targaryen.png");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Image image = new Image(input);
+        photoImageView = new ImageView(image);
+
+
+        System.out.println("Image loading error: " + image.isError());
+
     }
-
-
 
 
     @FXML
@@ -106,9 +119,10 @@ public class AddPhotoController extends Application implements Initializable{
         String path = fileChosen.getAbsolutePath();
        // File myFile = new File(path.);
         File myFile = new File(path);
-        Image myImage = new Image(myFile.toURI().toURL().toExternalForm());
-        photosImageView.setImage(myImage);
+        Image myImage = new Image(myFile.toURI().toString());
 
+
+        //photoImageView.setImage(myImage);
 
         newPhotoLabel.setText("Changed");
 
