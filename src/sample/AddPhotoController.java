@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,7 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class AddPhotoController implements Initializable {
+public class AddPhotoController extends Application implements Initializable{
 
 //BUTTONS
     @FXML
@@ -43,10 +45,16 @@ public class AddPhotoController implements Initializable {
 //ImageView
     private ImageView photosImageView;
 
+    //Labels
+    @FXML
+    private Label newPhotoLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         addPhotoButton.setDisable(true);
     }
+
+
 
 
     @FXML
@@ -96,10 +104,18 @@ public class AddPhotoController implements Initializable {
 
         //load photo into imageview
         String path = fileChosen.getAbsolutePath();
+       // File myFile = new File(path.);
+        File myFile = new File(path);
+        Image myImage = new Image(myFile.toURI().toURL().toExternalForm());
+        photosImageView.setImage(myImage);
 
-        
 
+        newPhotoLabel.setText("Changed");
 
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
 
     }
 }
