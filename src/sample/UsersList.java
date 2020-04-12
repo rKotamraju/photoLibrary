@@ -1,15 +1,22 @@
 package sample;
 
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.util.ArrayList;
 
+import static javafx.collections.FXCollections.observableArrayList;
+
 public class UsersList implements Serializable {
 
-    private ArrayList<UserDetail> users;
+    private ObservableList<UserDetail> users;
     public static final String storeDir = "dat";
     public static final String storeFile = "users.dat";
     static final long serialVersionUID = 1L;
 
+    public UsersList(){
+        users = observableArrayList();
+    }
 
     public void addUser(UserDetail newUser){
         users.add(newUser);
@@ -38,6 +45,10 @@ public class UsersList implements Serializable {
         UsersList usersList = (UsersList) ois.readObject();
 
         return usersList;
+    }
+
+    public ObservableList<UserDetail> getUsers(){
+        return users;
     }
 
 

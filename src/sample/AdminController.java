@@ -34,15 +34,26 @@ public class AdminController implements Initializable {
     @FXML
     private ListView<UserDetail> usersListView;
 
-    final ObservableList<UserDetail> usersObservableList = observableArrayList();
+    ObservableList<UserDetail> usersObservableList = observableArrayList();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         deleteUserButton.setDisable(true);
-        System.out.println("Intitializing");
-        UserDetail stockUser = new UserDetail("stock");
-        usersObservableList.add(stockUser);
+        //System.out.println("Intitializing");
+        //UserDetail stockUser = new UserDetail("stock");
+        ///usersObservableList.add(stockUser);
+        usersList = new UsersList();
+
+        try {
+            usersList = UsersList.readApp();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        usersObservableList = usersList.getUsers();
 
         usersListView.setItems(usersObservableList);
 
@@ -52,6 +63,9 @@ public class AdminController implements Initializable {
         private void logOutPressed(ActionEvent e) throws IOException {
 
          System.out.println("Logging out from Admin Main Screen");
+
+         //UsersList.writeApp(usersList);
+
          Stage stage = null;
          Parent root = null;
 
@@ -81,7 +95,7 @@ public class AdminController implements Initializable {
          }
 
          UserDetail newUser = new UserDetail(username);
-         usersObservableList.add(newUser);
+         usersList.getUsers().add(newUser);
 
          deleteUserButton.setDisable(false);
      }
@@ -99,7 +113,7 @@ public class AdminController implements Initializable {
              return;
          }
 
-         usersObservableList.remove(usersListView.getSelectionModel().getSelectedItem());
+         usersList.getUsers().remove(usersListView.getSelectionModel().getSelectedItem());
          System.out.println("Deleted");
      }
 }

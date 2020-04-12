@@ -1,6 +1,8 @@
 package sample;
 
-public class UserDetail {
+import java.io.Serializable;
+
+public class UserDetail implements Serializable {
     String username;
     int numAlbums;
 
