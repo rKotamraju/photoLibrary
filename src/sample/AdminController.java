@@ -11,23 +11,26 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
 public class AdminController implements Initializable {
-    //Declaration of all buttons
+
+    protected UsersList usersList;
+
+    //Buttons
      @FXML
      private Button logOutButton;
-
      @FXML
      private Button deleteUserButton;
-
      @FXML
      private Button createNewUserButton;
 
-     //Declaration of ListView
+     //ListView
     @FXML
     private ListView<UserDetail> usersListView;
 
@@ -37,7 +40,6 @@ public class AdminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         deleteUserButton.setDisable(true);
-
         System.out.println("Intitializing");
         UserDetail stockUser = new UserDetail("stock");
         usersObservableList.add(stockUser);
