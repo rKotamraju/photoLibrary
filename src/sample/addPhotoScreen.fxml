@@ -45,7 +45,7 @@
                   <HBox prefHeight="27.0" prefWidth="276.0">
                      <children>
                         <TextField fx:id="tagsTextField" alignment="CENTER" prefHeight="34.0" prefWidth="200.0" promptText="Tag" styleClass="text-field" />
-                        <ComboBox fx:id="tagTypeComboBox" onAction="#tagTypeSelected" prefWidth="150.0" promptText="Type">
+                        <ComboBox fx:id="tagTypeComboBox" onAction="#tagTypeSelected" prefWidth="150.0" promptText="Type" styleClass="text-field" >
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin></ComboBox>
