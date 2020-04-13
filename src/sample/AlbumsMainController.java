@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -24,6 +25,8 @@ public class AlbumsMainController implements Initializable{
 
 //Fields
     private UserDetail user;
+    private UsersList usersList;
+    static final long serialVersionUID = 1L;
 
 //BUTTONS
     @FXML
@@ -64,7 +67,6 @@ public class AlbumsMainController implements Initializable{
 
         editMode = true; //on
 
-        System.out.println("Intitializing");
         AlbumsListView.setItems(albumsObservableList);
 
         AlbumsListView.focusedProperty().addListener(new ChangeListener<Boolean>() {
@@ -104,6 +106,8 @@ public class AlbumsMainController implements Initializable{
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
         System.out.println("Logging out from albums main screen");
+
+        usersList.writeApp(usersList);
 
         Stage stage = null;
         Parent root = null;
@@ -162,6 +166,7 @@ public class AlbumsMainController implements Initializable{
 
         AlbumDetail newAlbum = new AlbumDetail(albumName);
         albumsObservableList.add(newAlbum);
+        user.addAlbum(newAlbum);
 
         editAlbumButton.setDisable(false);
         renameAlbumButton.setDisable(false);
@@ -239,6 +244,11 @@ public class AlbumsMainController implements Initializable{
 
     public void setUser(UserDetail user){
         this.user = user;
+        albumsObservableList.addAll(user.getAlbums());
+    }
+
+    public void setUsersList(UsersList usersList){
+        this.usersList = usersList;
     }
 
 

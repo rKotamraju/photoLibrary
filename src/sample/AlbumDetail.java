@@ -1,11 +1,13 @@
 package sample;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AlbumDetail {
+public class AlbumDetail implements Serializable {
     String name;
     int count;
     ArrayList<PhotoDetail> photos;
+    static final long serialVersionUID = 1L;
 
     public AlbumDetail(String name){
         this.name = name;
