@@ -25,7 +25,7 @@ public class AdminController implements Initializable {
 
     static final long serialVersionUID = 1L;
 
-    UsersList usersList = UsersList.getInstance();
+    private UsersList usersList = UsersList.getInstance();
 
     //Buttons
      @FXML
@@ -118,7 +118,7 @@ public class AdminController implements Initializable {
 
          UserDetail removedUser = usersListView.getSelectionModel().getSelectedItem();
          usersObservableList.remove(removedUser);
-         usersList.removeUser(removedUser);
+         UsersList.getInstance().removeUser(removedUser);
 
          System.out.println("Deleted");
      }

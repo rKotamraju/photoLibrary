@@ -89,6 +89,7 @@ public class AlbumDetailController implements Initializable {
             loader.setLocation(getClass().getResource("albumsMainScreen.fxml"));
             root = loader.load();
             AlbumsMainController next = loader.getController();
+            next.setUser(UsersList.getInstance().getUser(user.getUsername()));
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);

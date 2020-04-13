@@ -113,7 +113,7 @@ public class AlbumsMainController implements Initializable{
         System.out.println("Logging out from albums main screen");
 
         //saving data on albums
-        usersList.writeApp();
+        UsersList.getInstance().writeApp();
 
         Stage stage = null;
         Parent root = null;

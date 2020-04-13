@@ -70,11 +70,11 @@ public class LoginScreenController implements Initializable {
             if(usernameText.compareTo("admin") == 0){
                 loader.setLocation(getClass().getResource("adminScreen.fxml"));
                 root = loader.load();
-            }else if(usersList.checkName(usernameText)){
+            }else if(UsersList.getInstance().checkName(usernameText)){
                 loader.setLocation(getClass().getResource("albumsMainScreen.fxml"));
                 root = loader.load();
                 AlbumsMainController next = loader.getController();
-                next.setUser(usersList.getUser(usernameText));
+                next.setUser(UsersList.getInstance().getUser(usernameText));
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Incorrect Username or Password!", ButtonType.OK);
                 alert.showAndWait();
