@@ -37,10 +37,6 @@ public class AlbumDetailController implements Initializable {
     @FXML
     private Label albumNameLabel;
 
-    //TableView
-    @FXML
-    private TableView albumTableView;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
