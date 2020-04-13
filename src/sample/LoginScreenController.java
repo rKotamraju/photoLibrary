@@ -57,9 +57,13 @@ public class LoginScreenController implements Initializable {
         Parent root = null;
         FXMLLoader loader = new FXMLLoader();
 
-        String usernameText = usernameTextField.getText();
+        String usernameText = usernameTextField.getText().trim();
 
-        UserDetail u = usersList.getUser(usernameText);
+        if(usernameText.length() == 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Incorrect Username or Password!", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
         
         if(e.getSource() == loginButton){
             stage = (Stage) loginButton.getScene().getWindow();
@@ -71,6 +75,7 @@ public class LoginScreenController implements Initializable {
                 root = loader.load();
                 AlbumsMainController next = loader.getController();
                 next.setUser(usersList.getUser(usernameText));
+                next.setUsersList(usersList);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Incorrect Username or Password!", ButtonType.OK);
                 alert.showAndWait();
