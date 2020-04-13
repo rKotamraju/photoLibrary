@@ -31,7 +31,7 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <TableView fixedCellSize="75.0" layoutX="200.0" layoutY="17.0" prefHeight="200.0" prefWidth="200.0" styleClass="text-field" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="10.0">
+            <TableView fx:id="albumTableView" fixedCellSize="75.0" layoutX="200.0" layoutY="17.0" prefHeight="200.0" prefWidth="200.0" styleClass="text-field" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="10.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />

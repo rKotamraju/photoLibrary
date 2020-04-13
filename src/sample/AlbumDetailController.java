@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -36,6 +37,10 @@ public class AlbumDetailController implements Initializable {
     @FXML
     private Label albumNameLabel;
 
+    //TableView
+    @FXML
+    private TableView albumTableView;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -47,6 +52,8 @@ public class AlbumDetailController implements Initializable {
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
         System.out.println("Logging out from albums main screen");
+
+        UsersList.getInstance().writeApp();
 
         Stage stage = null;
         Parent root = null;
@@ -65,7 +72,9 @@ public class AlbumDetailController implements Initializable {
 
     @FXML
     private void backPressed(ActionEvent e) throws IOException {
-        System.out.println("Logging out from albums main screen");
+        System.out.println("Going back to albums main screen");
+
+        UsersList.getInstance().writeApp();
 
         Stage stage = null;
         Parent root = null;
@@ -88,10 +97,14 @@ public class AlbumDetailController implements Initializable {
 
        Stage stage = null;
         Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
 
         if(e.getSource() == addPhotoButton){
             stage = (Stage) addPhotoButton.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("addPhotoScreen.fxml"));
+            loader.setLocation(getClass().getResource("addPhotoScreen.fxml"));
+            root = loader.load();
+            AddPhotoController next = loader.getController();
+            next.setAlbumAndUser(user, album);
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);

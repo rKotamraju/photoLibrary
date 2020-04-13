@@ -30,6 +30,10 @@ import java.util.ResourceBundle;
 
 public class AddPhotoController implements Initializable{
 
+//Fields
+    private UserDetail user;
+    private AlbumDetail album;
+
 //BUTTONS
     @FXML
     private Button logOutButton;
@@ -89,7 +93,9 @@ public class AddPhotoController implements Initializable{
 
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
-        System.out.println("Logging out from albums main screen");
+        System.out.println("Logging out from add Photo screen");
+
+        UsersList.getInstance().writeApp();
 
         Stage stage = null;
         Parent root = null;
@@ -109,14 +115,20 @@ public class AddPhotoController implements Initializable{
     @FXML
     private void backPressed(ActionEvent e) throws IOException {
 
+        UsersList.getInstance().writeApp();
+
         Stage stage = null;
         Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
 
         if(e.getSource() == backButton){
             stage = (Stage) backButton.getScene().getWindow();
-
-            root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
+            loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+            root = loader.load();
+            AlbumDetailController next = loader.getController();
+            next.setAlbumAndUser(user, album);
         }
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -250,5 +262,9 @@ public class AddPhotoController implements Initializable{
         }
     }
 
+    public void setAlbumAndUser(UserDetail user, AlbumDetail album){
+        this.user = user;
+        this.album = album;
+    }
 
 }
