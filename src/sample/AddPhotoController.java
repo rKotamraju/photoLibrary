@@ -133,7 +133,7 @@ public class AddPhotoController implements Initializable{
         //THIS IS WHAT WE NEED TO SAVE! IN SERIALIZING
 
         //load photo into imageview
-       path = fileChosen.getAbsolutePath();
+        path = fileChosen.getAbsolutePath();
         File myFile = new File(path);
         Image myImage = new Image(myFile.toURI().toString());
 
@@ -192,21 +192,62 @@ public class AddPhotoController implements Initializable{
 
     }
 
+    public void setStockPhoto(String subject){
+        String tempPath;
+        if(subject.equals("cat")){
+            System.out.println("Cat selected");
+            tempPath = "/Image/cat_caviar.jpg";
+        }
+        else if(subject.equals("dog")){
+            System.out.println("Dog selected");
+            tempPath = "/Image/puppy.jpeg";
+        }
+        else if(subject.equals("chocolate")){
+            System.out.println("Chocolate selected");
+            tempPath = "/Image/chocolate.jpg";
+        }
+        else if(subject.equals("family")){
+            System.out.println("Family selected");
+            tempPath= "/Image/family.jpeg";
+        }
+        else if(subject.equals("baby")){
+            System.out.println("Baby selected");
+            tempPath = "/Image/happy.jpg";
+        }
+        else{
+            System.out.println("Flower selected");
+            tempPath = "/Image/flower.jpg";
+        }
+
+        path = tempPath;
+
+        Image myImage = new Image(tempPath);
+
+        System.out.println("About to set ImageView");
+
+        photoImageView.setImage(myImage);
+
+        addPhotoButton.setDisable(false);
+    }
     @FXML
     private void addTagPressed(ActionEvent e){
         System.out.println(tagsTextField.getText());
         System.out.println(tagTypeComboBox.getSelectionModel().getSelectedItem());
-        if(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type")){
-            System.out.println("Inside");
-            TextInputDialog newTag = new TextInputDialog();
-            newTag.setHeaderText("Add New Tag");
-            newTag.showAndWait();
-            tagTypeOptions.add(newTag.getResult());
-            listOfTags.put(newTag.getResult(),tagsTextField.getText());
-        }else{
+        if(!(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type"))){
             listOfTags.put(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText());
         }
 
+    }
+
+    @FXML
+    private void tagTypeSelected(ActionEvent e){
+        if(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type")){
+            TextInputDialog newTag = new TextInputDialog();
+            newTag.setHeaderText("Add New Tag Type");
+            newTag.showAndWait();
+            tagTypeOptions.add(newTag.getResult());
+            listOfTags.put(newTag.getResult(),tagsTextField.getText());
+        }
     }
 
 
