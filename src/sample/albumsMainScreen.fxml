@@ -25,7 +25,6 @@
             <Button fx:id="createAlbumButton" alignment="BOTTOM_RIGHT" mnemonicParsing="false" onAction="#createAlbumPressed" styleClass="createButton" text="Create" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
             <HBox alignment="BOTTOM_LEFT" prefHeight="50.0" prefWidth="250.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
                <children>
-                  <Button fx:id="editAlbumButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="57.0" text="Edit" />
                   <Button fx:id="renameAlbumButton" mnemonicParsing="false" onAction="#renameAlbumPressed" styleClass="secondaryButton1" text="Rename">
                      <HBox.margin>
                         <Insets left="20.0" />

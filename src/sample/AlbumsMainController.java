@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -14,7 +13,6 @@ import javafx.stage.Stage;
 import javafx.fxml.Initializable;
 
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import java.net.URL;
@@ -31,8 +29,7 @@ public class AlbumsMainController implements Initializable{
 //BUTTONS
     @FXML
     private Button logOutButton;
-    @FXML
-    private Button editAlbumButton;
+
     @FXML
     private Button renameAlbumButton;
     @FXML
@@ -57,15 +54,11 @@ public class AlbumsMainController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        editAlbumButton.setDisable(true);
         renameAlbumButton.setDisable(true);
         deleteAlbumButton.setDisable(true);
-        editAlbumButton.setVisible(false);
-        renameAlbumButton.setVisible(false);
-        deleteAlbumButton.setVisible(false);
-        selectAlbumButton.setDisable(true);
 
-        editMode = true; //on
+        editMode = false;
+
 
         AlbumsListView.setItems(albumsObservableList);
 
@@ -103,10 +96,17 @@ public class AlbumsMainController implements Initializable{
 
     }
 
+    public void isListViewEmpty(){
+        if(albumsObservableList.size() == 0){
+            AlbumsListView.setDisable(true);
+        }
+    }
+
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
         System.out.println("Logging out from albums main screen");
 
+        //saving data on albums
         usersList.writeApp(usersList);
 
         Stage stage = null;
@@ -127,15 +127,12 @@ public class AlbumsMainController implements Initializable{
     private void selectPressed(ActionEvent e){
         editMode = true;
 
-        selectAlbumButton.setVisible(false);
-        renameAlbumButton.setVisible(true);
-        deleteAlbumButton.setVisible(true);
-        editAlbumButton.setVisible(true);
-
-        selectAlbumButton.setDisable(true);
         renameAlbumButton.setDisable(false);
         deleteAlbumButton.setDisable(false);
-        editAlbumButton.setDisable(false);
+
+        if(user.getAlbums().size() == 0){
+            selectAlbumButton.setDisable(true);
+        }
 
 
     }
@@ -143,7 +140,6 @@ public class AlbumsMainController implements Initializable{
 
     @FXML
     private void createAlbumPressed(){
-        System.out.println(user);
 
         editMode = true;
         TextInputDialog td = new TextInputDialog();
@@ -168,11 +164,9 @@ public class AlbumsMainController implements Initializable{
         albumsObservableList.add(newAlbum);
         user.addAlbum(newAlbum);
 
-        editAlbumButton.setDisable(false);
-        renameAlbumButton.setDisable(false);
-        deleteAlbumButton.setDisable(false);
         selectAlbumButton.setDisable(false);
         editMode = false;
+        AlbumsListView.setDisable(false);
 
     }
 
@@ -199,13 +193,8 @@ public class AlbumsMainController implements Initializable{
         AlbumsListView.getItems().set(AlbumsListView.getSelectionModel().getSelectedIndex(), selectedAlbum); //shows up
         editMode = false;
 
-        selectAlbumButton.setVisible(true);
-        renameAlbumButton.setVisible(false);
-        deleteAlbumButton.setVisible(false);
-        editAlbumButton.setVisible(false);
         renameAlbumButton.setDisable(true);
         deleteAlbumButton.setDisable(true);
-        editAlbumButton.setDisable(true);
         selectAlbumButton.setDisable(false);
     }
 
@@ -213,8 +202,11 @@ public class AlbumsMainController implements Initializable{
     private void deleteAlbumPressed(ActionEvent e){
 
             //must press twice - first click delete to turn off listview then pick item and then press delete again
+
+            AlbumDetail toBeDeleted = AlbumsListView.getSelectionModel().getSelectedItem();
+
             editMode = true;
-            if(AlbumsListView.getSelectionModel().getSelectedItem() == null){
+            if(toBeDeleted == null){
                 return;
             }
 
@@ -227,24 +219,26 @@ public class AlbumsMainController implements Initializable{
             }
 
 
-            albumsObservableList.remove(AlbumsListView.getSelectionModel().getSelectedItem());
+            albumsObservableList.remove(toBeDeleted);
+            user.removeAlbum(toBeDeleted);
+            isListViewEmpty();
+
             System.out.println("Deleted");
             editMode = false;
 
-            selectAlbumButton.setVisible(true);
-            renameAlbumButton.setVisible(false);
-            deleteAlbumButton.setVisible(false);
-            editAlbumButton.setVisible(false);
             renameAlbumButton.setDisable(true);
             deleteAlbumButton.setDisable(true);
-            editAlbumButton.setDisable(true);
             selectAlbumButton.setDisable(false);
-
     }
 
     public void setUser(UserDetail user){
         this.user = user;
         albumsObservableList.addAll(user.getAlbums());
+
+        if(user.getAlbums().size() == 0) {
+            selectAlbumButton.setDisable(true);
+            isListViewEmpty();
+        }
     }
 
     public void setUsersList(UsersList usersList){
