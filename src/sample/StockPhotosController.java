@@ -1,17 +1,22 @@
 package sample;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,8 +25,24 @@ public class StockPhotosController implements Initializable {
     @FXML
     private Button addStockPhotoButton;
 
+    //ImageViews
     @FXML
-    private GridPane stockGridPane;
+    private ImageView dogImageView;
+
+    @FXML
+    private ImageView catImageView;
+
+    @FXML
+    private ImageView chocolateImageView;
+
+    @FXML
+    private ImageView happyBabyImageView;
+
+    @FXML
+    private ImageView flowerImageView;
+
+    @FXML
+    private ImageView familyImageView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -29,40 +50,87 @@ public class StockPhotosController implements Initializable {
         Image happyBaby = new Image("/Image/happy.jpg");
         Image flower = new Image("/Image/flower.jpg");
         Image cat = new Image("Image/cat_caviar.jpg");
-        Image targaryen = new Image("Image/targaryen.png");
+        Image chocolate = new Image("Image/chocolate.jpg");
+        Image family = new Image("/Image/family.jpeg");
 
-        ImageView dogView = new ImageView();
-        dogView.setFitHeight(100);
-        dogView.setFitWidth(130);
-        dogView.setImage(dog);
 
-        ImageView babyView = new ImageView();
-        babyView.setFitWidth(130);
-        babyView.setFitHeight(100);
-        babyView.setImage(happyBaby);
+        dogImageView.setImage(dog);
 
-        ImageView flowerView = new ImageView();
-        flowerView.setFitHeight(100);
-        flowerView.setFitWidth(130);
-        flowerView.setImage(flower);
+        happyBabyImageView.setImage(happyBaby);
 
-        ImageView catView = new ImageView();
-        catView.setFitHeight(100);
-        catView.setFitWidth(130);
-        catView.setImage(cat);
+        flowerImageView.setImage(flower);
 
-        ImageView targaryenView = new ImageView();
-        targaryenView.setFitWidth(100);
-        targaryenView.setFitHeight(50);
-        targaryenView.setImage(targaryen);
+        catImageView.setImage(cat);
 
-        stockGridPane.add(dogView,0, 0);
-        stockGridPane.add(babyView,1,0);
-        stockGridPane.add(flowerView,0,1);
-        stockGridPane.add(catView,1,1);
-        stockGridPane.add(targaryenView,0,2);
-        stockGridPane.setAlignment(Pos.CENTER);
+        chocolateImageView.setImage(chocolate);
+
+        familyImageView.setImage(family);
     }
 
+    @FXML
+    private void dogClicked(MouseEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
+        Parent root = (Parent) loader.load();
+        AddPhotoController alb = loader.getController();
+        alb.setStockPhoto("dog");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void catClicked(MouseEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
+        Parent root = (Parent) loader.load();
+        AddPhotoController alb = loader.getController();
+        alb.setStockPhoto("cat");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void familyClicked(MouseEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
+        Parent root = (Parent) loader.load();
+        AddPhotoController alb = loader.getController();
+        alb.setStockPhoto("family");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void babyClicked(MouseEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
+        Parent root = (Parent) loader.load();
+        AddPhotoController alb = loader.getController();
+        alb.setStockPhoto("baby");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void chocolateClicked(MouseEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
+        Parent root = (Parent) loader.load();
+        AddPhotoController alb = loader.getController();
+        alb.setStockPhoto("chocolate");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void flowerClicked(MouseEvent e) throws IOException {
+        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
+        Parent root = (Parent) loader.load();
+        AddPhotoController alb = loader.getController();
+        alb.setStockPhoto("flower");
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 
 }

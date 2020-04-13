@@ -133,7 +133,7 @@ public class AddPhotoController implements Initializable{
         //THIS IS WHAT WE NEED TO SAVE! IN SERIALIZING
 
         //load photo into imageview
-       path = fileChosen.getAbsolutePath();
+        path = fileChosen.getAbsolutePath();
         File myFile = new File(path);
         Image myImage = new Image(myFile.toURI().toString());
 
@@ -192,6 +192,41 @@ public class AddPhotoController implements Initializable{
 
     }
 
+    public void setStockPhoto(String subject){
+        String path;
+        if(subject.equals("cat")){
+            System.out.println("Cat selected");
+            path = "/Image/cat_caviar.jpg";
+        }
+        else if(subject.equals("dog")){
+            System.out.println("Dog selected");
+            path = "/Image/puppy.jpeg";
+        }
+        else if(subject.equals("chocolate")){
+            System.out.println("Chocolate selected");
+            path = "/Image/chocolate.jpg";
+        }
+        else if(subject.equals("family")){
+            System.out.println("Family selected");
+            path = "/Image/family.jpeg";
+        }
+        else if(subject.equals("baby")){
+            System.out.println("Baby selected");
+            path = "/Image/happy.jpg";
+        }
+        else{
+            System.out.println("Flower selected");
+            path = "/Image/flower.jpg";
+        }
+
+        Image myImage = new Image(path);
+
+        System.out.println("About to set ImageView");
+
+        photoImageView.setImage(myImage);
+
+        addPhotoButton.setDisable(false);
+    }
     @FXML
     private void addTagPressed(ActionEvent e){
         System.out.println(tagsTextField.getText());
