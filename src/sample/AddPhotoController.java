@@ -178,6 +178,7 @@ public class AddPhotoController implements Initializable{
     @FXML
     private void pickStockPressed(ActionEvent e){
 
+
     }
 
     @FXML
