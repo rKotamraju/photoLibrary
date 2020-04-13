@@ -233,17 +233,21 @@ public class AddPhotoController implements Initializable{
     private void addTagPressed(ActionEvent e){
         System.out.println(tagsTextField.getText());
         System.out.println(tagTypeComboBox.getSelectionModel().getSelectedItem());
-        if(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type")){
-            System.out.println("Inside");
-            TextInputDialog newTag = new TextInputDialog();
-            newTag.setHeaderText("Add New Tag");
-            newTag.showAndWait();
-            tagTypeOptions.add(newTag.getResult());
-            listOfTags.put(newTag.getResult(),tagsTextField.getText());
-        }else{
+        if(!(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type"))){
             listOfTags.put(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText());
         }
 
+    }
+
+    @FXML
+    private void tagTypeSelected(ActionEvent e){
+        if(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type")){
+            TextInputDialog newTag = new TextInputDialog();
+            newTag.setHeaderText("Add New Tag Type");
+            newTag.showAndWait();
+            tagTypeOptions.add(newTag.getResult());
+            listOfTags.put(newTag.getResult(),tagsTextField.getText());
+        }
     }
 
 
