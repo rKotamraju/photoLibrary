@@ -43,17 +43,7 @@ public class AlbumDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        /*
-            So when loading the pictures of the images in, run a version of this through a for loop running through each picture.
-            Set the url of that picture to a file and convert it to an image and set to i,i in gridpane
-         */
-
-        Image image = new Image("/Image/targaryen.png");
-        ImageView pic = new ImageView();
-        pic.setFitWidth(70);
-        pic.setFitHeight(70);
-        pic.setImage(image);
-        albumViewGridPane.add(pic, 0,0);
+      
     }
 
     //On Click Methods
