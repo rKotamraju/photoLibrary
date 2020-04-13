@@ -23,7 +23,7 @@ public class AlbumsMainController implements Initializable{
 
 //Fields
     private UserDetail user;
-    private UsersList usersList;
+    private UsersList usersList = UsersList.getInstance();
     static final long serialVersionUID = 1L;
 
 //BUTTONS
@@ -84,9 +84,15 @@ public class AlbumsMainController implements Initializable{
 
             Stage stage = null;
             Parent root = null;
+            FXMLLoader loader = new FXMLLoader();
 
             stage = (Stage) AlbumsListView.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
+
+            loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+            root = loader.load();
+
+            AlbumDetailController next = loader.getController();
+            next.setAlbumAndUser(user, selectedAlbum);
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -107,7 +113,7 @@ public class AlbumsMainController implements Initializable{
         System.out.println("Logging out from albums main screen");
 
         //saving data on albums
-        usersList.writeApp(usersList);
+        usersList.writeApp();
 
         Stage stage = null;
         Parent root = null;
@@ -241,9 +247,6 @@ public class AlbumsMainController implements Initializable{
         }
     }
 
-    public void setUsersList(UsersList usersList){
-        this.usersList = usersList;
-    }
 
 
    /* @FXML

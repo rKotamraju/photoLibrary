@@ -9,13 +9,15 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 public class UsersList implements Serializable {
 
-    private ArrayList<UserDetail> users;
+    static UsersList usersList = new UsersList();
+
+    private ArrayList<UserDetail> users = new ArrayList<UserDetail>();
     public static final String storeDir = "dat";
     public static final String storeFile = "users.dat";
     static final long serialVersionUID = 1L;
 
-    public UsersList(){
-        users = new ArrayList<UserDetail>();
+    private UsersList(){
+
     }
 
     public void addUser(UserDetail newUser){
@@ -32,14 +34,14 @@ public class UsersList implements Serializable {
         }
     }
 
-    public static void writeApp(UsersList userList) throws IOException {
+    public void writeApp() throws IOException {
 
         //setting up the stream
         ObjectOutputStream oos = new
                 ObjectOutputStream(new FileOutputStream(storeDir + File.separator + storeFile));
 
         //writing object
-        oos.writeObject(userList);
+        oos.writeObject(usersList);
     }
 
     public static UsersList readApp() throws IOException, ClassNotFoundException{
@@ -75,6 +77,10 @@ public class UsersList implements Serializable {
 
     public ArrayList<UserDetail> getUsers(){
         return users;
+    }
+
+    public static UsersList getInstance(){
+        return usersList;
     }
 
 

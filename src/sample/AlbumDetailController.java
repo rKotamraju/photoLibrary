@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -17,6 +18,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AlbumDetailController implements Initializable {
+
+    //Fields
+    private UserDetail user;
+    private AlbumDetail album;
 
     //BUTTONS
     @FXML
@@ -30,6 +35,9 @@ public class AlbumDetailController implements Initializable {
 
     @FXML
     private GridPane albumViewGridPane;
+
+    @FXML
+    private Label albumNameLabel;
 
 
     @Override
@@ -74,11 +82,13 @@ public class AlbumDetailController implements Initializable {
 
         Stage stage = null;
         Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
 
         if(e.getSource() == backButton){
             stage = (Stage) backButton.getScene().getWindow();
-
-            root = FXMLLoader.load(getClass().getResource("albumsMainScreen.fxml"));
+            loader.setLocation(getClass().getResource("albumsMainScreen.fxml"));
+            root = loader.load();
+            AlbumsMainController next = loader.getController();
         }
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -113,6 +123,12 @@ public class AlbumDetailController implements Initializable {
 //        for(int i = 0; i < currentAlbum.photos.size(); i++){
 //            System.out.println(currentAlbum.photos.get(i).caption);
 //        }
+    }
+
+    public void setAlbumAndUser(UserDetail user, AlbumDetail album){
+        this.user = user;
+        this.album = album;
+        albumNameLabel.setText(album.toString());
     }
 
 

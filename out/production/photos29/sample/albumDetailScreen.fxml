@@ -9,7 +9,7 @@
    <top>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" styleClass="albumsLabel" text="Album Name" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
+            <Label fx:id="albumNameLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="albumsLabel" text="Album Name" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0" />
             <Button fx:id="backButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#backPressed" prefHeight="27.0" prefWidth="58.0" styleClass="backButton" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
             <Button fx:id="logoutButton" layoutX="478.0" layoutY="20.0" mnemonicParsing="false" onAction="#logOutPressed" styleClass="logoutButton" text="Log Out" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
          </children>

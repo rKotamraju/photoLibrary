@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class LoginScreenController implements Initializable {
 
-    private UsersList usersList;
+    private UsersList usersList = UsersList.getInstance();
     static final long serialVersionUID = 1L;
 
     @FXML
@@ -75,7 +75,6 @@ public class LoginScreenController implements Initializable {
                 root = loader.load();
                 AlbumsMainController next = loader.getController();
                 next.setUser(usersList.getUser(usernameText));
-                next.setUsersList(usersList);
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Incorrect Username or Password!", ButtonType.OK);
                 alert.showAndWait();

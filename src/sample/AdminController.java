@@ -25,7 +25,7 @@ public class AdminController implements Initializable {
 
     static final long serialVersionUID = 1L;
 
-    protected UsersList usersList;
+    UsersList usersList = UsersList.getInstance();
 
     //Buttons
      @FXML
@@ -49,7 +49,7 @@ public class AdminController implements Initializable {
         try {
             usersList = UsersList.readApp();
         } catch (EOFException e){
-            usersList = new UsersList();
+            //usersList = new UsersList();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -67,7 +67,7 @@ public class AdminController implements Initializable {
 
          System.out.println("Logging out from Admin Main Screen");
 
-         UsersList.writeApp(usersList);
+         UsersList.getInstance().writeApp();
 
          Stage stage = null;
          Parent root = null;
@@ -99,7 +99,7 @@ public class AdminController implements Initializable {
 
          UserDetail newUser = new UserDetail(username);
          usersObservableList.add(newUser);
-         usersList.addUser(newUser);
+         UsersList.getInstance().addUser(newUser);
          deleteUserButton.setDisable(false);
      }
 
