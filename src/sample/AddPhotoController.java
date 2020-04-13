@@ -193,33 +193,35 @@ public class AddPhotoController implements Initializable{
     }
 
     public void setStockPhoto(String subject){
-        String path;
+        String tempPath;
         if(subject.equals("cat")){
             System.out.println("Cat selected");
-            path = "/Image/cat_caviar.jpg";
+            tempPath = "/Image/cat_caviar.jpg";
         }
         else if(subject.equals("dog")){
             System.out.println("Dog selected");
-            path = "/Image/puppy.jpeg";
+            tempPath = "/Image/puppy.jpeg";
         }
         else if(subject.equals("chocolate")){
             System.out.println("Chocolate selected");
-            path = "/Image/chocolate.jpg";
+            tempPath = "/Image/chocolate.jpg";
         }
         else if(subject.equals("family")){
             System.out.println("Family selected");
-            path = "/Image/family.jpeg";
+            tempPath= "/Image/family.jpeg";
         }
         else if(subject.equals("baby")){
             System.out.println("Baby selected");
-            path = "/Image/happy.jpg";
+            tempPath = "/Image/happy.jpg";
         }
         else{
             System.out.println("Flower selected");
-            path = "/Image/flower.jpg";
+            tempPath = "/Image/flower.jpg";
         }
 
-        Image myImage = new Image(path);
+        path = tempPath;
+
+        Image myImage = new Image(tempPath);
 
         System.out.println("About to set ImageView");
 
