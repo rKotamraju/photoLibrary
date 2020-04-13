@@ -8,10 +8,11 @@
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
          <center>
-            <GridPane fx:id="stockGridPane" BorderPane.alignment="CENTER">
+            <GridPane fx:id="stockGridPane" alignment="BOTTOM_CENTER" onMouseClicked="#stockSelected" prefHeight="100.0" prefWidth="130.0" BorderPane.alignment="CENTER">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="100.0" prefWidth="200.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="100.0" prefWidth="200.0" />
+                <ColumnConstraints halignment="CENTER" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -30,13 +31,6 @@
                </BorderPane.margin>
             </Label>
          </top>
-         <bottom>
-            <Button fx:id="addStockPhotoButton" mnemonicParsing="false" text="Add Image" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets bottom="20.0" />
-               </BorderPane.margin>
-            </Button>
-         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>
