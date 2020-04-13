@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -20,6 +21,9 @@ import java.net.URL;
 import static javafx.collections.FXCollections.observableArrayList;
 
 public class AlbumsMainController implements Initializable{
+
+//Fields
+    private UserDetail user;
 
 //BUTTONS
     @FXML
@@ -135,7 +139,7 @@ public class AlbumsMainController implements Initializable{
 
     @FXML
     private void createAlbumPressed(){
-
+        System.out.println(user);
 
         editMode = true;
         TextInputDialog td = new TextInputDialog();
@@ -232,6 +236,11 @@ public class AlbumsMainController implements Initializable{
             selectAlbumButton.setDisable(false);
 
     }
+
+    public void setUser(UserDetail user){
+        this.user = user;
+    }
+
 
    /* @FXML
     private void searchingAlbums(ActionEvent e){

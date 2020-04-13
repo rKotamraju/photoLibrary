@@ -55,15 +55,22 @@ public class LoginScreenController implements Initializable {
         
         Stage stage = null;
         Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
 
         String usernameText = usernameTextField.getText();
+
+        UserDetail u = usersList.getUser(usernameText);
         
         if(e.getSource() == loginButton){
             stage = (Stage) loginButton.getScene().getWindow();
             if(usernameText.compareTo("admin") == 0){
-                root = FXMLLoader.load(getClass().getResource("adminScreen.fxml"));
+                loader.setLocation(getClass().getResource("adminScreen.fxml"));
+                root = loader.load();
             }else if(usersList.checkName(usernameText)){
-                root = FXMLLoader.load(getClass().getResource("albumsMainScreen.fxml"));
+                loader.setLocation(getClass().getResource("albumsMainScreen.fxml"));
+                root = loader.load();
+                AlbumsMainController next = loader.getController();
+                next.setUser(usersList.getUser(usernameText));
             } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Incorrect Username or Password!", ButtonType.OK);
                 alert.showAndWait();
@@ -71,7 +78,7 @@ public class LoginScreenController implements Initializable {
             }
 
         }
-        
+
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

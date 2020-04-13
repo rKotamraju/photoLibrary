@@ -61,6 +61,18 @@ public class UsersList implements Serializable {
         return false;
     }
 
+    public UserDetail getUser(String name){
+
+        for( UserDetail u : users ){
+            if (u.getUsername().equals(name)){
+                return u;
+            }
+        }
+
+        //will never return this because at this point we have checked if the user has existed
+        return null;
+    }
+
     public ArrayList<UserDetail> getUsers(){
         return users;
     }
