@@ -62,18 +62,7 @@ public class StockPhotosController implements Initializable {
         stockGridPane.add(catView,1,1);
         stockGridPane.add(targaryenView,0,2);
         stockGridPane.setAlignment(Pos.CENTER);
-
     }
 
-
-    @FXML
-    private void stockSelected(MouseEvent mouseEvent) {
-        Node source = (Node)mouseEvent.getSource();
-        System.out.println(source.toString());
-//        int colIndex = stockGridPane.getColumnIndex(source);
-//        int rowIndex = stockGridPane.getRowIndex(source);
-//
-//        System.out.println("STock selected, row: " + rowIndex + " , Colum : " + colIndex);
-    }
 
 }
