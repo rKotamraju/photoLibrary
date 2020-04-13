@@ -7,6 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,10 +28,24 @@ public class AlbumDetailController implements Initializable {
     @FXML
     private Button addPhotoButton;
 
+    @FXML
+    private GridPane albumViewGridPane;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        /*
+            So when loading the pictures of the images in, run a version of this through a for loop running through each picture.
+            Set the url of that picture to a file and convert it to an image and set to i,i in gridpane
+         */
+
+        Image image = new Image("/Image/targaryen.png");
+        ImageView pic = new ImageView();
+        pic.setFitWidth(70);
+        pic.setFitHeight(70);
+        pic.setImage(image);
+        albumViewGridPane.add(pic, 0,0);
     }
 
     //On Click Methods
@@ -70,7 +87,8 @@ public class AlbumDetailController implements Initializable {
 
     @FXML
     private void addPhotoPressed(ActionEvent e) throws IOException{
-        Stage stage = null;
+
+       Stage stage = null;
         Parent root = null;
 
         if(e.getSource() == addPhotoButton){

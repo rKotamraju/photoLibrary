@@ -176,7 +176,19 @@ public class AddPhotoController implements Initializable{
     }
 
     @FXML
-    private void pickStockPressed(ActionEvent e){
+    private void pickStockPressed(ActionEvent e) throws IOException {
+
+        Stage stage = null;
+        Parent root = null;
+
+        if(e.getSource() == pickStockButton){
+            stage = (Stage) pickStockButton.getScene().getWindow();
+
+            root = FXMLLoader.load(getClass().getResource("stockPhotos.fxml"));
+        }
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
