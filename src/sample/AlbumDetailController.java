@@ -34,16 +34,13 @@ public class AlbumDetailController implements Initializable {
     private Button addPhotoButton;
 
     @FXML
-    private GridPane albumViewGridPane;
-
-    @FXML
     private Label albumNameLabel;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-      
+
     }
 
     //On Click Methods
