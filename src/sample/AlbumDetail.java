@@ -11,11 +11,18 @@ public class AlbumDetail {
         this.name = name;
     }
 
+    public AlbumDetail(AlbumDetail album){
+        this.name = name;
+        this.count = count;
+        this.photos = photos;
+    }
+
     public String toString(){
         return name;
     }
 
     public void addPhoto(PhotoDetail photo){
-        photos.add(photo);
+
+        this.photos.add(photo);
     }
 }

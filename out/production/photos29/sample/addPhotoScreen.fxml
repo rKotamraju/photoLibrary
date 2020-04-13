@@ -26,7 +26,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="pickStockButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="149.0" styleClass="secondaryButton2" text="Pick Stock Image" />
+                  <Button fx:id="pickStockButton" mnemonicParsing="false" onAction="#pickStockPressed" prefHeight="29.0" prefWidth="149.0" styleClass="secondaryButton2" text="Pick Stock Image" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -42,7 +42,16 @@
             <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0">
                <children>
                   <ImageView fx:id="photoImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextField fx:id="tagsTextField" alignment="CENTER" promptText="Enter Tags" styleClass="text-field" />
+                  <HBox prefHeight="27.0" prefWidth="276.0">
+                     <children>
+                        <TextField fx:id="tagsTextField" alignment="CENTER" prefHeight="34.0" prefWidth="200.0" promptText="Tag" styleClass="text-field" />
+                        <ComboBox fx:id="tagTypeComboBox" prefWidth="150.0" promptText="Type">
+                           <HBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </HBox.margin></ComboBox>
+                        <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTagPressed" prefWidth="120.0" styleClass="createButton" text="Add" />
+                     </children>
+                  </HBox>
                   <TextField fx:id="captionsTextField" alignment="CENTER" promptText="Enter Caption" styleClass="text-field">
                      <opaqueInsets>
                         <Insets />

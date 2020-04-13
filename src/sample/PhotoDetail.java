@@ -1,22 +1,22 @@
 package sample;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PhotoDetail {
-    ArrayList<String> tags;
+    HashMap tags;
     String caption;
     String filePathLocal;
-    int date;
+    Time time;
 
-    public PhotoDetail(String caption, ArrayList<String> tags, String filePath){
+    public PhotoDetail(String caption, HashMap tags, String filePath, Time time){
         this.caption = caption;
         this.tags = tags;
         this.filePathLocal = filePath;
+        this.time = time;
     }
 
-   /*public PhotoDetail(String filePath){
-        this.filePathLocal = filePath;
-    }*/
 
     public String toString(){
         return filePathLocal + " caption: " + caption;

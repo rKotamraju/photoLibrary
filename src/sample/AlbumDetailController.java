@@ -25,6 +25,7 @@ public class AlbumDetailController implements Initializable {
     @FXML
     private Button addPhotoButton;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -80,7 +81,23 @@ public class AlbumDetailController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
+
     }
+
+    public void addPhotoToAlbum(PhotoDetail photo){
+        System.out.println("Photo passed to Album screen: " + photo.filePathLocal + " caption : " + photo.caption + " date: " + photo.time);
+
+        //NOW MUST ADD PHOTO TO ALBUM
+        //System.out.println("Current Album : " + currentAlbum.name);
+//      currentAlbum.addPhoto(photo);
+//        System.out.println("added photo");
+//
+//        for(int i = 0; i < currentAlbum.photos.size(); i++){
+//            System.out.println(currentAlbum.photos.get(i).caption);
+//        }
+    }
+
+
 
 
 }
