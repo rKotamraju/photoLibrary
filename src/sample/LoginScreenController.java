@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class LoginScreenController implements Initializable {
 
-    private UsersList usersList = UsersList.getInstance();
+    //private UsersList usersList = UsersList.getInstance();
     static final long serialVersionUID = 1L;
 
     @FXML
@@ -37,7 +37,7 @@ public class LoginScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            usersList = UsersList.readApp();
+            UsersList.getInstance().readApp();
         } catch (EOFException e){
             System.out.println("No users");
         } catch (IOException e) {

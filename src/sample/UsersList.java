@@ -44,13 +44,12 @@ public class UsersList implements Serializable {
         oos.writeObject(usersList);
     }
 
-    public static UsersList readApp() throws IOException, ClassNotFoundException{
+    public void readApp() throws IOException, ClassNotFoundException{
         ObjectInputStream ois = new
                 ObjectInputStream( new FileInputStream(storeDir + File.separator + storeFile));
 
-        UsersList usersList = (UsersList) ois.readObject();
+        usersList = (UsersList) ois.readObject();
 
-        return usersList;
     }
 
     public boolean checkName(String name){

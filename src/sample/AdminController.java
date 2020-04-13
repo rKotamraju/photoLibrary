@@ -25,7 +25,7 @@ public class AdminController implements Initializable {
 
     static final long serialVersionUID = 1L;
 
-    private UsersList usersList = UsersList.getInstance();
+    //private UsersList usersList = UsersList.getInstance();
 
     //Buttons
      @FXML
@@ -47,7 +47,7 @@ public class AdminController implements Initializable {
         //System.out.println("Intitializing");
 
         try {
-            usersList = UsersList.readApp();
+            UsersList.getInstance().readApp();
         } catch (EOFException e){
             //usersList = new UsersList();
         } catch (IOException e) {
@@ -56,7 +56,7 @@ public class AdminController implements Initializable {
             e.printStackTrace();
         }
 
-        usersObservableList.addAll(usersList.getUsers());
+        usersObservableList.addAll(UsersList.getInstance().getUsers());
         usersListView.setItems(usersObservableList);
 
 
