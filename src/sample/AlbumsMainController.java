@@ -141,6 +141,7 @@ public class AlbumsMainController implements Initializable{
         root = loader.load();
         AlbumDetailController next = loader.getController();
         next.setAlbumAndUser(user, tempAlbum);
+        next.setSearch();
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

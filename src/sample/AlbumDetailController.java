@@ -7,10 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,6 +27,7 @@ public class AlbumDetailController implements Initializable {
     //Fields
     private UserDetail user;
     private AlbumDetail album;
+    private boolean search;
 
     //BUTTONS
     @FXML
@@ -43,6 +41,8 @@ public class AlbumDetailController implements Initializable {
 
     @FXML
     private Label albumNameLabel;
+    @FXML
+    private Button createAlbumButton;
 
     @FXML
     private TableView<ImageDetail> albumTableView;
@@ -61,16 +61,12 @@ public class AlbumDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-//        PhotoDetail temp = new PhotoDetail("Birthday", "/Image/happy.jpg/", true);
-//        PhotoDetail temp2 = new PhotoDetail("Cookies", "/Image/puppy.jpeg/", true);
-//
-//        ImageDetail i1 = new ImageDetail(temp);
-//        ImageDetail i2 = new ImageDetail(temp2);
 
-//        albumsObservableList.add(i1);
-//        albumsObservableList.add(i2);
-//        albumsObservableList.add(i1);
-//        albumsObservableList.add(i2);
+        addPhotoButton.setDisable(true);
+        addPhotoButton.setVisible(false);
+        createAlbumButton.setDisable(false);
+        createAlbumButton.setVisible(true);
+
 
         images = new ArrayList<ImageDetail>();
 
@@ -146,6 +142,49 @@ public class AlbumDetailController implements Initializable {
 
     }
 
+    @FXML
+    private void createAlbumPressed() throws IOException {
+        //maybe change name because we have the same method in the AlbumsMainController
+        System.out.println("Create Album");
+
+        TextInputDialog td = new TextInputDialog();
+        td.setHeaderText("Enter an Album Name.");
+        td.showAndWait();
+
+        //if the user presses cancel
+        if(td.getResult() == null){
+            return;
+        }
+        String albumName = td.getResult().trim();
+        //if User tries to add an empty album
+        if(albumName.length() == 0){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "You must enter an album name!", ButtonType.OK);
+            alert.showAndWait();
+            createAlbumPressed();
+        }
+        album.setName(albumName);
+        user.addAlbum(album);
+
+        //Save and goBack
+        UsersList.getInstance().writeApp();
+
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+
+        stage = (Stage) backButton.getScene().getWindow();
+        loader.setLocation(getClass().getResource("albumsMainScreen.fxml"));
+        root = loader.load();
+        AlbumsMainController next = loader.getController();
+        next.setUser(UsersList.getInstance().getUser(user.getUsername()));
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
     public void pictureSelected(MouseEvent mouseEvent) throws IOException {
         System.out.println("picture selected");
 
@@ -200,6 +239,18 @@ public class AlbumDetailController implements Initializable {
 
         albumsObservableList.addAll(images);
 
+    }
+
+    public void setSearch(){
+        if(this.search){
+            this.search = false;
+            return;
+        }
+        this.search = true;
+        addPhotoButton.setDisable(true);
+        addPhotoButton.setVisible(false);
+        createAlbumButton.setDisable(false);
+        createAlbumButton.setVisible(true);
     }
 
 
