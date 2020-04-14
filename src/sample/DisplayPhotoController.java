@@ -6,9 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -109,32 +107,37 @@ public class DisplayPhotoController implements Initializable {
     }
 
     @FXML
-    private void deletePressed(ActionEvent e){
+    private void deletePressed(ActionEvent e) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this photo?", ButtonType.CANCEL, ButtonType.YES);
+        alert.showAndWait();
 
-        album.removePhoto(photo);
-        System.out.println("Photo was deleted from album");
+        if(alert.getResult() == ButtonType.YES){
+            album.removePhoto(photo);
+            System.out.println("Photo was deleted from album");
 
-        //Bring back to album screen
+
+            //Bring back to album screen
+            Stage stage = null;
+            Parent root = null;
+            FXMLLoader loader = new FXMLLoader();
+
+            stage = (Stage) deleteButton.getScene().getWindow();
+
+            loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+            root = loader.load();
+
+            AlbumDetailController next = loader.getController();
+            next.setAlbumAndUser(user,album);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
     }
 
     @FXML
     private void editPressed(ActionEvent e){
-        System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
-
-        deleteButton.setVisible(true);
-        deleteButton.setDisable(false);
-
-        saveButton.setDisable(false);
-        saveButton.setVisible(true);
-
-        addTagButton.setDisable(false);
-        addTagButton.setVisible(true);
-
-        deleteTagButton.setVisible(true);
-        deleteTagButton.setDisable(false);
-
-        recaptionButton.setDisable(false);
-        recaptionButton.setVisible(true);
+        turnOnEditing();
     }
 
     @FXML
@@ -202,6 +205,24 @@ public class DisplayPhotoController implements Initializable {
         deleteTagButton.setVisible(false);
         deleteTagButton.setDisable(true);
     }
+
+    public void turnOnEditing(){
+        deleteButton.setVisible(true);
+        deleteButton.setDisable(false);
+
+        saveButton.setDisable(false);
+        saveButton.setVisible(true);
+
+        addTagButton.setDisable(false);
+        addTagButton.setVisible(true);
+
+        deleteTagButton.setVisible(true);
+        deleteTagButton.setDisable(false);
+
+        recaptionButton.setDisable(false);
+        recaptionButton.setVisible(true);
+    }
+
 
     public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
         // System.out.println("Hello heloo");
