@@ -42,6 +42,9 @@ public class AlbumsMainController implements Initializable{
     @FXML
     private Button searchButton;
 
+    @FXML
+    private Button cancelButton;
+
     //Editing mode
     boolean editMode;
 
@@ -57,12 +60,9 @@ public class AlbumsMainController implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        renameAlbumButton.setDisable(true);
-        deleteAlbumButton.setDisable(true);
 
         editMode = false;
-
-
+        disableEditingMode();
         AlbumsListView.setItems(albumsObservableList);
 
         AlbumsListView.focusedProperty().addListener(new ChangeListener<Boolean>() {
@@ -211,13 +211,23 @@ public class AlbumsMainController implements Initializable{
         editMode = true;
 
         renameAlbumButton.setDisable(false);
+        renameAlbumButton.setVisible(true);
         deleteAlbumButton.setDisable(false);
+        deleteAlbumButton.setVisible(true);
+        cancelButton.setVisible(true);
+        cancelButton.setDisable(false);
 
         if(user.getAlbums().size() == 0){
             selectAlbumButton.setDisable(true);
         }
 
 
+    }
+
+    @FXML
+    private void cancelPressed(ActionEvent e){
+        disableEditingMode();
+        editMode = false;
     }
 
 
@@ -274,10 +284,11 @@ public class AlbumsMainController implements Initializable{
         System.out.println("New Name: "+newName);
         AlbumsListView.getSelectionModel().getSelectedItem().name = newName; //changes name behind the scenes but doesn't show up
         AlbumsListView.getItems().set(AlbumsListView.getSelectionModel().getSelectedIndex(), selectedAlbum); //shows up
+        AlbumsListView.setItems(albumsObservableList); //Added to fix rename problem on April 14th
+        
         editMode = false;
 
-        renameAlbumButton.setDisable(true);
-        deleteAlbumButton.setDisable(true);
+        disableEditingMode();
         selectAlbumButton.setDisable(false);
     }
 
@@ -309,8 +320,7 @@ public class AlbumsMainController implements Initializable{
             System.out.println("Deleted");
             editMode = false;
 
-            renameAlbumButton.setDisable(true);
-            deleteAlbumButton.setDisable(true);
+            disableEditingMode();
             selectAlbumButton.setDisable(false);
     }
 
@@ -324,12 +334,13 @@ public class AlbumsMainController implements Initializable{
         }
     }
 
+    private void disableEditingMode(){
+        renameAlbumButton.setDisable(true);
+        renameAlbumButton.setVisible(false);
+        deleteAlbumButton.setDisable(true);
+        deleteAlbumButton.setVisible(false);
+        cancelButton.setDisable(true);
+        cancelButton.setVisible(false);
 
-
-   /* @FXML
-    private void searchingAlbums(ActionEvent e){
-        String lookingFor = searchAlbumsTextField.getText();
-
-    }*/
-
+    }
 }

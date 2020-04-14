@@ -62,8 +62,8 @@ public class AlbumDetailController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-        addPhotoButton.setDisable(true);
-        addPhotoButton.setVisible(false);
+        addPhotoButton.setDisable(false);
+        addPhotoButton.setVisible(true);
         createAlbumButton.setDisable(false);
         createAlbumButton.setVisible(true);
 
