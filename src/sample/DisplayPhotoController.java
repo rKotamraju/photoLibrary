@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class DisplayPhotoController implements Initializable {
     //Fields
     private UserDetail user;
-    private AlbumDetail album;
+    public AlbumDetail album;
     private PhotoDetail photo;
 
     //Buttons
@@ -67,25 +67,33 @@ public class DisplayPhotoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        turnOffEditing();
+         turnOffEditing();
 
-        System.out.println("Checking...");
-        if(photo.getIsStock()){
-            System.out.println("File Path : " + photo.getFilePathLocal());
-            Image myImage = new Image(photo.getFilePathLocal());
-            photoImageView.setImage(myImage);
-        }
-        else{
-            String path = photo.getFilePathLocal();
-            File myFile = new File(path);
-            Image myImage = new Image(myFile.toURI().toString());
-            photoImageView.setImage(myImage);
-        }
+//        System.out.println("Checking...");
+//        photoImageView = new ImageView();
+//        System.out.println(this.album.name);
+//        setIntialPhoto();
 
-        captionLabel.setText(photo.getCaption());
-        dateLabel.setText(photo.getTime());
+//        if(this.photo.getIsStock()){
+//            System.out.println("File Path : " + this.photo.getFilePathLocal());
+//            Image myImage = new Image(this.photo.getFilePathLocal());
+//            photoImageView.setImage(myImage);
+//        }
+//        else{
+//            String path = this.photo.getFilePathLocal();
+//            File myFile = new File(path);
+//            Image myImage = new Image(myFile.toURI().toString());
+//            photoImageView.setImage(myImage);
+//        }
+//
+//        captionLabel.setText(this.photo.getCaption());
+//        dateLabel.setText(this.photo.getTime());
 
       // tagsLabel.setText(photo.ge);
+    }
+
+    private void setIntialPhoto(){
+        System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
     }
 
     @FXML
@@ -138,6 +146,8 @@ public class DisplayPhotoController implements Initializable {
 
     @FXML
     private void editPressed(ActionEvent e){
+        System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
+
         deleteButton.setVisible(true);
         deleteButton.setDisable(false);
 
@@ -178,18 +188,30 @@ public class DisplayPhotoController implements Initializable {
     @FXML
     private void addTagPressed(ActionEvent e){
         TextInputDialog newLabel = new TextInputDialog();
-        newLabel.setHeaderText("New Tag,");
+        newLabel.setHeaderText("Enter Format: 'New Tag,Tag Type'");
         newLabel.showAndWait();
+
+        String newTag = newLabel.getResult();
+        String tagType = newTag.substring(newTag.charAt(',')+1,newTag.length()) ;
+        newTag = newTag.substring(0,newTag.charAt(','));
+
+       //ADD TO HASHMAP WHEN HAVE ACCESS TO PHOTODETAIL photo.
+
     }
 
-    public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
-        System.out.println("Hello heloo");
-        this.user = user;
-        this.album = album;
-        this.photo = photo;
-        System.out.println("Setting user and album of stock photo controller: " + this.album);
-        // System.out.println(this.album);
+    @FXML
+    private void deleteTagPressed(ActionEvent e){
+        TextInputDialog newLabel = new TextInputDialog();
+        newLabel.setHeaderText("Enter Format: 'Tag,Tag Type'");
+        newLabel.showAndWait();
+
+        String tag = newLabel.getResult();
+        String tagType = tag.substring(tag.charAt(',')+1,tag.length()) ;
+        tag = tag.substring(0,tag.charAt(','));
+
+        //Delete from HASHMAP WHEN HAVE ACCESS TO PHOTODETAIL photo.
     }
+
 
     public void turnOffEditing(){
         deleteButton.setDisable(true);
@@ -206,5 +228,15 @@ public class DisplayPhotoController implements Initializable {
 
         deleteTagButton.setVisible(false);
         deleteTagButton.setDisable(true);
+    }
+
+    public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
+        // System.out.println("Hello heloo");
+        this.user = user;
+        this.album = album;
+        this.photo = photo;
+        System.out.println("Setting user and album of stock photo controller: " + this.album );
+        System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
+        // System.out.println(this.album);
     }
 }

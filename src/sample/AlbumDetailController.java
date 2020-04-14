@@ -14,10 +14,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -146,6 +146,31 @@ public class AlbumDetailController implements Initializable {
 
     }
 
+    public void pictureSelected(MouseEvent mouseEvent) throws IOException {
+        System.out.println("picture selected");
+
+        ImageDetail photoPicked = albumTableView.getSelectionModel().getSelectedItem();
+
+        System.out.println(photoPicked.retrievePhoto().getFilePathLocal());
+
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) albumTableView.getScene().getWindow();
+
+        loader.setLocation(getClass().getResource("displayPhoto.fxml"));
+        root = loader.load();
+
+        DisplayPhotoController next = loader.getController();
+        next.setAlbumAndUserandPhoto(user,album,photoPicked.retrievePhoto());
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
     //public void addPhotoToAlbum(PhotoDetail photo){
         //System.out.println("Photo passed to Album screen: " + photo.filePathLocal + " caption : " + photo.caption + " date: " + photo.time);
 
@@ -176,7 +201,6 @@ public class AlbumDetailController implements Initializable {
         albumsObservableList.addAll(images);
 
     }
-
 
 
 
