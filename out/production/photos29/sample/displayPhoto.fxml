@@ -70,7 +70,7 @@
                </children>
             </VBox>
             <Button fx:id="backButton" mnemonicParsing="false" onAction="#backPressed" prefHeight="29.0" prefWidth="79.0" styleClass="backButton" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-            <ComboBox fx:id="photoChoicesChoiceBox" layoutX="19.0" layoutY="354.0" onAction="#photoChoiceClicked" prefHeight="33.0" prefWidth="88.0" promptText="More..." styleClass="text-field" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" />
+            <ComboBox fx:id="photoChoicesChoiceBox" layoutX="19.0" layoutY="354.0" onAction="#photoChoiceClicked" prefHeight="33.0" prefWidth="88.0" promptText="....." styleClass="text-field" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
    </left>

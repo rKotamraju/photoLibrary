@@ -334,7 +334,4 @@ public class DisplayPhotoController implements Initializable {
         photoChoicesChoiceBox.getItems().add("Move Photo");
         photoChoicesChoiceBox.getItems().add("Copy Photo");
     }
-
-
-
 }
