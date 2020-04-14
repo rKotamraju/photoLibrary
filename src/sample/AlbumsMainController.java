@@ -23,7 +23,7 @@ public class AlbumsMainController implements Initializable{
 
 //Fields
     private UserDetail user;
-    private UsersList usersList = UsersList.getInstance();
+    //private UsersList usersList = UsersList.getInstance();
     static final long serialVersionUID = 1L;
 
 //BUTTONS

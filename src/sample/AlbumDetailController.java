@@ -52,7 +52,7 @@ public class AlbumDetailController implements Initializable {
     @FXML
     private TableColumn<ImageDetail, ImageView> column2;
 
-    private ImageView photo;
+    private ArrayList<ImageDetail> images;
 
 
     final ObservableList<ImageDetail> albumsObservableList = observableArrayList();
@@ -60,19 +60,20 @@ public class AlbumDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        PhotoDetail temp = new PhotoDetail("Birthday", "/Image/happy.jpg/", true);
-        PhotoDetail temp2 = new PhotoDetail("Cookies", "/Image/puppy.jpeg/", true);
+//        PhotoDetail temp = new PhotoDetail("Birthday", "/Image/happy.jpg/", true);
+//        PhotoDetail temp2 = new PhotoDetail("Cookies", "/Image/puppy.jpeg/", true);
+//
+//        ImageDetail i1 = new ImageDetail(temp);
+//        ImageDetail i2 = new ImageDetail(temp2);
 
-        ImageDetail i1 = new ImageDetail(temp);
-        ImageDetail i2 = new ImageDetail(temp2);
+//        albumsObservableList.add(i1);
+//        albumsObservableList.add(i2);
+//        albumsObservableList.add(i1);
+//        albumsObservableList.add(i2);
 
-        albumsObservableList.add(i1);
-        albumsObservableList.add(i2);
-        albumsObservableList.add(i1);
-        albumsObservableList.add(i2);
+        images = new ArrayList<ImageDetail>();
 
         column2.setCellValueFactory(new PropertyValueFactory<>("caption"));
-
         column1.setCellValueFactory(new PropertyValueFactory<>("photo"));
 
         albumTableView.setItems(albumsObservableList);
@@ -162,6 +163,11 @@ public class AlbumDetailController implements Initializable {
         this.album = album;
         albumNameLabel.setText(album.toString());
 
+        for( PhotoDetail p : album.getPhotos() ){
+            this.images.add(new ImageDetail(p));
+        }
+
+        albumsObservableList.addAll(images);
 
     }
 
