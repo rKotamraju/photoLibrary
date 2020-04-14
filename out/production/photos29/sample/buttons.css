@@ -58,6 +58,24 @@
     -fx-border-width: 2;
 }
 
+.dateLabel{
+    -fx-border-color: black;
+    -fx-background-color: white;
+    -fx-font-family: "Droid Sans Mono Slashed";
+    -fx-font-size: 14px;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.displayLabel{
+    -fx-border-color: black;
+    -fx-background-color: white;
+    -fx-font-family: "Droid Sans Mono Dotted";
+    -fx-font-size: 30px;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
 .noheader .column-header-background{
     -fx-max-height: 0;
     -fx-pref-height: 0;

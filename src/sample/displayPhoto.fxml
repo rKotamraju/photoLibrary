@@ -11,7 +11,13 @@
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="80" styleClass="text-field" text="Date" textAlignment="RIGHT" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0" />
+            <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="80" styleClass="dateLabel" text="Date" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font name="Avenir Next Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Label>
             <ImageView fx:id="photoImageView" fitHeight="160.0" fitWidth="200" layoutX="52.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="100.0" />
             <VBox fx:id="middleVBox" alignment="CENTER" layoutX="98.0" prefHeight="106.0" prefWidth="249.0" spacing="10.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="83.0">
                <children>
