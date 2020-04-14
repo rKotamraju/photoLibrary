@@ -13,43 +13,31 @@
          <children>
             <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="80" styleClass="text-field" text="Date" textAlignment="RIGHT" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0" />
             <ImageView fx:id="photoImageView" fitHeight="160.0" fitWidth="200" layoutX="52.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="100.0" />
-            <VBox fx:id="middleVBox" alignment="CENTER" prefHeight="100" prefWidth="389.0" spacing="10.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox fx:id="middleVBox" alignment="CENTER" layoutX="98.0" prefHeight="106.0" prefWidth="249.0" spacing="10.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="98.0" AnchorPane.rightAnchor="83.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="captionLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="133.0" styleClass="text-field" text="Caption">
-                           <HBox.margin>
-                              <Insets left="130.0" />
-                           </HBox.margin></Label>
-                        <Button fx:id="recaptionButton" mnemonicParsing="false" onAction="#recaptionPressed" prefHeight="29.0" prefWidth="87.0" styleClass="secondaryButton1" text="Recaption">
-                           <HBox.margin>
-                              <Insets left="15.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="11.0" />
-                           </font></Button>
                         <VBox prefHeight="29.0" prefWidth="45.0">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin></VBox>
+                        <TextField fx:id="captionTextField" alignment="CENTER" onAction="#captionChanged" prefHeight="33.0" prefWidth="171.0">
+                           <HBox.margin>
+                              <Insets right="45.0" />
+                           </HBox.margin>
+                        </TextField>
                      </children>
                   </HBox>
-                  <ListView fx:id="tagsListView" prefHeight="200.0" prefWidth="70.0">
-                     <VBox.margin>
-                        <Insets left="115.0" right="115.0" top="2.0" />
-                     </VBox.margin></ListView>
-                  <HBox prefHeight="64.0" prefWidth="430.0">
+                  <HBox prefHeight="144.0" prefWidth="150.0">
                      <children>
-                        <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTagPressed" styleClass="createButton" text="Add Tag">
+                        <ListView fx:id="tagsListView" onMouseClicked="#tagSelectedToDelete" prefHeight="63.0" prefWidth="164.0">
                            <HBox.margin>
-                              <Insets left="120.0" />
+                              <Insets left="50.0" right="20.0" />
                            </HBox.margin>
-                           <font>
-                              <Font size="11.0" />
-                           </font></Button>
-                        <Button fx:id="deleteTagButton" mnemonicParsing="false" onAction="#deleteTagPressed" styleClass="deleteButton" text="Delete Tag">
+                        </ListView>
+                        <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTagPressed" prefWidth="59.0" styleClass="createButton" text="+Tag">
                            <HBox.margin>
-                              <Insets left="20.0" />
+                              <Insets left="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="11.0" />
@@ -74,11 +62,6 @@
          <children>
             <VBox layoutX="20.0" spacing="5.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
                <children>
-                  <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePressed" prefHeight="30.0" prefWidth="86.0" styleClass="deleteButton" text="Delete All">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
                   <Button fx:id="saveButton" mnemonicParsing="false" onAction="#savePressed" prefHeight="29.0" prefWidth="87.0" styleClass="createButton" text="Save Edits">
                      <VBox.margin>
                         <Insets />
@@ -87,6 +70,7 @@
                </children>
             </VBox>
             <Button fx:id="backButton" mnemonicParsing="false" onAction="#backPressed" prefHeight="29.0" prefWidth="79.0" styleClass="backButton" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+            <ComboBox fx:id="photoChoicesChoiceBox" layoutX="19.0" layoutY="354.0" onAction="#photoChoiceClicked" prefHeight="33.0" prefWidth="88.0" promptText="More..." styleClass="text-field" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="0.0" />
          </children>
       </AnchorPane>
    </left>

@@ -67,5 +67,15 @@ public class PhotoDetail implements Serializable {
         return tags;
     }
 
+    public void removeTag(String tag){
+        tags.remove(tag);
+    }
+
+    public void addTag(String tag, String tagType){
+        tags.put(tagType, tag);
+    }
+
+
+
 
 }
