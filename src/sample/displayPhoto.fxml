@@ -48,7 +48,7 @@
                            <font>
                               <Font size="11.0" />
                            </font></Button>
-                        <Button fx:id="deleteTagButton" mnemonicParsing="false" styleClass="deleteButton" text="Delete Tag">
+                        <Button fx:id="deleteTagButton" mnemonicParsing="false" onAction="#deleteTagPressed" styleClass="deleteButton" text="Delete Tag">
                            <HBox.margin>
                               <Insets left="20.0" />
                            </HBox.margin>

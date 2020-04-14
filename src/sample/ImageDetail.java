@@ -7,8 +7,6 @@ import java.io.File;
 
 public class ImageDetail {
 
-
-    //
     private PhotoDetail p;
     private ImageView photo;
     private String filePathLocal;
@@ -40,6 +38,10 @@ public class ImageDetail {
 
         return photo;
 
+    }
+
+    public PhotoDetail retrievePhoto(){
+        return p;
     }
 
     public String getCaption(){
