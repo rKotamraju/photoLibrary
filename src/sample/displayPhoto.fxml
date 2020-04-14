@@ -34,9 +34,9 @@
                            </HBox.margin></VBox>
                      </children>
                   </HBox>
-                  <ListView prefHeight="200.0" prefWidth="70.0">
+                  <ListView fx:id="tagsListView" prefHeight="200.0" prefWidth="70.0">
                      <VBox.margin>
-                        <Insets left="115.0" right="85.0" top="2.0" />
+                        <Insets left="115.0" right="115.0" top="2.0" />
                      </VBox.margin></ListView>
                   <HBox prefHeight="64.0" prefWidth="430.0">
                      <children>
