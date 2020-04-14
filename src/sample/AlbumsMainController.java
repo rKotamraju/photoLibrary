@@ -38,6 +38,8 @@ public class AlbumsMainController implements Initializable{
     private Button createAlbumButton;
     @FXML
     private Button selectAlbumButton;
+    @FXML
+    private Button searchButton;
 
     //Editing mode
     boolean editMode;
@@ -75,6 +77,14 @@ public class AlbumsMainController implements Initializable{
     }
 
 //ONCLICK METHODS
+    @FXML
+    private void searchButtonPressed(ActionEvent e){
+        System.out.println("Search Button Pressed");
+
+
+    }
+
+
     @FXML
     private void goToAlbumDetailScreen() throws IOException{
         //ERROR: For some reason cannot click on listview with ActionEvent e as parameter
