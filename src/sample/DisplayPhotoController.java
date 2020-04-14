@@ -67,12 +67,12 @@ public class DisplayPhotoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-         turnOffEditing();
+        turnOffEditing();
 
-//        System.out.println("Checking...");
-//        photoImageView = new ImageView();
-//        System.out.println(this.album.name);
-//        setIntialPhoto();
+        System.out.println("Checking...");
+        photoImageView = new ImageView();
+        System.out.println(this.album.name);
+        setIntialPhoto();
 
 //        if(this.photo.getIsStock()){
 //            System.out.println("File Path : " + this.photo.getFilePathLocal());
