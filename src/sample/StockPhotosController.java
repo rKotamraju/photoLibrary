@@ -69,71 +69,129 @@ public class StockPhotosController implements Initializable {
         chocolateImageView.setImage(chocolate);
 
         familyImageView.setImage(family);
+
     }
 
     @FXML
     private void dogClicked(MouseEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
-        Parent root = (Parent) loader.load();
-        AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("dog",user,album);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+//        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
+//        Parent root = (Parent) loader.load();
+//        AddPhotoController alb = loader.getController();
+//        alb.setStockPhoto("dog",user,album);
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene(root));
+//        stage.show();
+
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) dogImageView.getScene().getWindow();
+
+        loader.setLocation(getClass().getResource("addPhotoScreen.fxml"));
+        root = loader.load();
+
+        AddPhotoController next = loader.getController();
+        next.setStockPhoto("dog",user,album);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 
     @FXML
     private void catClicked(MouseEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
-        Parent root = (Parent) loader.load();
-        AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("cat",user,album);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) catImageView.getScene().getWindow();
+
+        loader.setLocation(getClass().getResource("addPhotoScreen.fxml"));
+        root = loader.load();
+
+        AddPhotoController next = loader.getController();
+        next.setStockPhoto("cat",user,album);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 
+
     @FXML
     private void familyClicked(MouseEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
-        Parent root = (Parent) loader.load();
-        AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("family",user,album);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) familyImageView.getScene().getWindow();
+
+        loader.setLocation(getClass().getResource("addPhotoScreen.fxml"));
+        root = loader.load();
+
+        AddPhotoController next = loader.getController();
+        next.setStockPhoto("family",user,album);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 
     @FXML
     private void babyClicked(MouseEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
-        Parent root = (Parent) loader.load();
-        AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("baby",user,album);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) happyBabyImageView.getScene().getWindow();
+
+        loader.setLocation(getClass().getResource("addPhotoScreen.fxml"));
+        root = loader.load();
+
+        AddPhotoController next = loader.getController();
+        next.setStockPhoto("baby",user,album);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 
     @FXML
     private void chocolateClicked(MouseEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
-        Parent root = (Parent) loader.load();
-        AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("chocolate",user,album);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) chocolateImageView.getScene().getWindow();
+
+        loader.setLocation(getClass().getResource("addPhotoScreen.fxml"));
+        root = loader.load();
+
+        AddPhotoController next = loader.getController();
+        next.setStockPhoto("chocolate",user,album);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 
     @FXML
     private void flowerClicked(MouseEvent e) throws IOException {
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
-        Parent root = (Parent) loader.load();
-        AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("flower",user,album);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) flowerImageView.getScene().getWindow();
+
+        loader.setLocation(getClass().getResource("addPhotoScreen.fxml"));
+        root = loader.load();
+
+        AddPhotoController next = loader.getController();
+        next.setStockPhoto("flower",user,album);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
         stage.show();
     }
 
