@@ -85,17 +85,51 @@ public class AlbumsMainController implements Initializable{
         //not allowing user to search for nothing, no need for alert because google does not alert
         if(searchedText.length() == 0){ return; }
 
-        String[] part = searchedText.split("=");
+        ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
+
+        String[] part = searchedText.split("[ =]+");
         String tag = part[0];
         String value = part[1];
 
-        ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
+        if(part.length > 2){
+            String logical = part[2].toLowerCase();
+            String tag2 = part[3];
+            String value2 = part[4];
 
-        for(AlbumDetail a : user.getAlbums()){
-            for(PhotoDetail p : a.getPhotos()){
-                temp.add(p);
+            for(AlbumDetail a : user.getAlbums()){
+                for(PhotoDetail p : a.getPhotos()){
+                    if(logical.equals("and")) {
+                        if (p.getTags().containsValue(value) && p.getTags().containsValue(value2)) {
+                            temp.add(p);
+                        }
+                    }
+                    else if(logical.equals("or")){
+                        if(p.getTags().containsValue(value) || p.getTags().containsValue(value2)){
+                            temp.add(p);
+                        }
+                    }
+                }
+            }
+
+
+        }else{
+            for(AlbumDetail a : user.getAlbums()){
+                for(PhotoDetail p : a.getPhotos()){
+                    if(p.getTags().containsValue(value)) {
+                        temp.add(p);
+                    }
+                }
             }
         }
+
+
+
+        if(temp.size() == 0){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "There are no search results", ButtonType.CLOSE);
+            alert.showAndWait();
+            return;
+        }
+
         AlbumDetail tempAlbum = new AlbumDetail(searchedText, temp);
 
         Stage stage = null;

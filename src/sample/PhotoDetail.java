@@ -61,9 +61,11 @@ public class PhotoDetail implements Serializable {
     public String toString(){
         return caption;
     }
-    
 
 
+    public HashMap getTags(){
+        return tags;
+    }
 
 
 }
