@@ -21,7 +21,7 @@
                            <HBox.margin>
                               <Insets left="130.0" />
                            </HBox.margin></Label>
-                        <Button fx:id="recaptionButton" mnemonicParsing="false" prefHeight="29.0" prefWidth="87.0" styleClass="secondaryButton1" text="Recaption">
+                        <Button fx:id="recaptionButton" mnemonicParsing="false" onAction="#recaptionPressed" prefHeight="29.0" prefWidth="87.0" styleClass="secondaryButton1" text="Recaption">
                            <HBox.margin>
                               <Insets left="15.0" />
                            </HBox.margin>
@@ -41,7 +41,7 @@
                   </Label>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="addTagButton" mnemonicParsing="false" styleClass="createButton" text="Add Tag">
+                        <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTagPressed" styleClass="createButton" text="Add Tag">
                            <HBox.margin>
                               <Insets left="120.0" />
                            </HBox.margin>
