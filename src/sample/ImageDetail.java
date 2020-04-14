@@ -3,6 +3,8 @@ package sample;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
+
 public class ImageDetail {
 
 
@@ -19,10 +21,19 @@ public class ImageDetail {
     }
 
     public ImageView getPhoto(){
-        photo = new ImageView();
-        //File myFile = new File(filePathLocal);
-        Image myImage = new Image(filePathLocal);
-        photo.setImage(myImage);
+        if(p.getIsStock()){ //if Stock Photo
+            photo = new ImageView();
+            //File myFile = new File(filePathLocal);
+            Image myImage = new Image(filePathLocal);
+            photo.setImage(myImage);
+        }
+
+        else{
+            photo = new ImageView();
+            File myFile = new File(filePathLocal);
+            Image myImage = new Image(myFile.toURI().toString());
+            photo.setImage(myImage);
+        }
 
         photo.setFitHeight(150);
         photo.setFitWidth(150);

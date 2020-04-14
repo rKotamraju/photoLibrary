@@ -20,16 +20,18 @@ public class PhotoDetail implements Serializable {
     private Time time;
     private boolean isStock;
 
-    public PhotoDetail(String caption, HashMap tags, String filePath, Time time){
+    public PhotoDetail(String caption, HashMap tags, String filePath, Time time, boolean isStock){
         this.caption = caption;
         this.tags = tags;
         this.filePathLocal = filePath;
         this.time = time;
+        this.isStock = isStock;
     }
 
-    public PhotoDetail(String caption, String filePathLocal){
+    public PhotoDetail(String caption, String filePathLocal, boolean isStock){
         this.caption = caption;
         this.filePathLocal = filePathLocal;
+        this.isStock = isStock;
 
     }
 
@@ -49,5 +51,7 @@ public class PhotoDetail implements Serializable {
     public boolean getIsStock(){
         return isStock;
     }
+
+
 
 }

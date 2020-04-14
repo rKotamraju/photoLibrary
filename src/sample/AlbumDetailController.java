@@ -60,8 +60,8 @@ public class AlbumDetailController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        PhotoDetail temp = new PhotoDetail("Birthday", "/Image/happy.jpg/");
-        PhotoDetail temp2 = new PhotoDetail("Cookies", "/Image/puppy.jpeg/");
+        PhotoDetail temp = new PhotoDetail("Birthday", "/Image/happy.jpg/", true);
+        PhotoDetail temp2 = new PhotoDetail("Cookies", "/Image/puppy.jpeg/", true);
 
         ImageDetail i1 = new ImageDetail(temp);
         ImageDetail i2 = new ImageDetail(temp2);
@@ -144,7 +144,7 @@ public class AlbumDetailController implements Initializable {
 
     }
 
-    public void addPhotoToAlbum(PhotoDetail photo){
+    //public void addPhotoToAlbum(PhotoDetail photo){
         //System.out.println("Photo passed to Album screen: " + photo.filePathLocal + " caption : " + photo.caption + " date: " + photo.time);
 
         //NOW MUST ADD PHOTO TO ALBUM
@@ -155,12 +155,14 @@ public class AlbumDetailController implements Initializable {
 //        for(int i = 0; i < currentAlbum.photos.size(); i++){
 //            System.out.println(currentAlbum.photos.get(i).caption);
 //        }
-    }
+   // }
 
     public void setAlbumAndUser(UserDetail user, AlbumDetail album){
         this.user = user;
         this.album = album;
         albumNameLabel.setText(album.toString());
+
+
     }
 
 

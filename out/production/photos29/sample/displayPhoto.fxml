@@ -6,66 +6,59 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DisplayPhotoController">
-   <children>
-      <BorderPane prefHeight="400.0" prefWidth="600.0">
-         <center>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.DisplayPhotoController">
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="80" styleClass="text-field" text="Date" textAlignment="RIGHT" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0" />
+            <ImageView fx:id="photoImageView" fitHeight="217.0" fitWidth="286.0" layoutX="52.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="60.0" />
+            <VBox alignment="CENTER" prefHeight="75.0" prefWidth="389.0" spacing="10.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="80" styleClass="text-field" text="Date" textAlignment="RIGHT">
-                     <VBox.margin>
-                        <Insets left="160.0" top="20.0" />
-                     </VBox.margin></Label>
-                  <ImageView fx:id="photoImageView" fitHeight="217.0" fitWidth="286.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets left="60.0" top="20.0" />
-                     </VBox.margin></ImageView>
                   <Label fx:id="captionLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="123.0" styleClass="text-field" text="Caption">
                      <VBox.margin>
-                        <Insets left="140.0" top="20.0" />
-                     </VBox.margin></Label>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
                   <Label fx:id="tagsLabel" alignment="CENTER" prefHeight="34.0" prefWidth="126.0" styleClass="text-field" text="Tags">
                      <VBox.margin>
-                        <Insets left="140.0" top="10.0" />
-                     </VBox.margin></Label>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
                </children>
             </VBox>
-         </center>
-         <right>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="logOutButton" layoutY="20.0" mnemonicParsing="false" onAction="#logOutPressed" prefHeight="31.0" prefWidth="82.0" styleClass="logoutButton" text="Log Out" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+            <Button fx:id="editButton" layoutY="351.0" mnemonicParsing="false" onAction="#editPressed" styleClass="secondaryButton2" text="Edit Photo" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+         </children>
+      </AnchorPane>
+   </right>
+   <left>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="20.0" spacing="5.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0">
                <children>
-                  <Button fx:id="logOutButton" mnemonicParsing="false" onAction="#logOutPressed" prefHeight="31.0" prefWidth="82.0" styleClass="logoutButton" text="Log Out">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin></Button>
-                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#editPressed" styleClass="secondaryButton2" text="Edit Photo">
-                     <VBox.margin>
-                        <Insets top="300.0" />
-                     </VBox.margin></Button>
-               </children>
-            </VBox>
-         </right>
-         <left>
-            <VBox prefHeight="400.0" prefWidth="118.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backPressed" prefHeight="29.0" prefWidth="79.0" styleClass="backButton" text="Back">
-                     <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
-                     </VBox.margin></Button>
                   <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deletePressed" prefHeight="30.0" prefWidth="86.0" styleClass="deleteButton" text="Delete">
                      <VBox.margin>
-                        <Insets left="20.0" top="262.0" />
-                     </VBox.margin></Button>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
                   <Button fx:id="saveButton" mnemonicParsing="false" onAction="#savePressed" prefHeight="29.0" prefWidth="87.0" styleClass="createButton" text="Save Edits">
                      <VBox.margin>
-                        <Insets left="20.0" top="10.0" />
-                     </VBox.margin></Button>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
-         </left>
-         <stylesheets>
-            <URL value="@buttons.css" />
-         </stylesheets>
-      </BorderPane>
-   </children>
-</AnchorPane>
+            <Button fx:id="backButton" mnemonicParsing="false" onAction="#backPressed" prefHeight="29.0" prefWidth="79.0" styleClass="backButton" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+         </children>
+      </AnchorPane>
+   </left>
+   <stylesheets>
+      <URL value="@buttons.css" />
+   </stylesheets>
+</BorderPane>

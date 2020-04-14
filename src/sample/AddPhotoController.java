@@ -75,6 +75,9 @@ public class AddPhotoController implements Initializable{
     //add tags
     HashMap<String,String> listOfTags = new HashMap<String,String>();
 
+    //isStock Boolean
+    Boolean isStock = false;
+
 
 
     @Override
@@ -151,6 +154,7 @@ public class AddPhotoController implements Initializable{
 
         System.out.println("About to set ImageView");
 
+        isStock = false;
         photoImageView.setImage(myImage);
 
         addPhotoButton.setDisable(false);
@@ -169,21 +173,36 @@ public class AddPhotoController implements Initializable{
         System.out.println("Date: " + timeOfPicture); //hour, minute, second format
 
         //Create photo object
-        PhotoDetail photo = new PhotoDetail(caption, listOfTags, photoPath, timeOfPicture);
+        PhotoDetail newPhoto = new PhotoDetail(caption, listOfTags, photoPath, timeOfPicture, isStock);
         //System.out.println("Photo added : " + photo.filePathLocal + " caption : " + photo.caption + " date: " + photo.time);
         System.out.println(Arrays.asList(listOfTags));
 
 
         //Bring Back to Album and add to album
+        System.out.println("Album name: " + this.album.name);
+        album.addPhoto(newPhoto);
+        System.out.println("After add photo");
 
-        FXMLLoader loader = new FXMLLoader((getClass().getResource("albumDetailScreen.fxml")));
+        /*FXMLLoader loader = new FXMLLoader((getClass().getResource("albumDetailScreen.fxml")));
         Parent root = (Parent) loader.load();
         AlbumDetailController alb = loader.getController();
-        alb.addPhotoToAlbum(photo);
+        //alb.addPhotoToAlbum(photo);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+         */
 
+        Stage stage = null;
+        Parent root = null;
+
+        if(e.getSource() == addPhotoButton){
+            stage = (Stage) addPhotoButton.getScene().getWindow();
+            root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
@@ -205,6 +224,7 @@ public class AddPhotoController implements Initializable{
     }
 
     public void setStockPhoto(String subject){
+        isStock = true;
         String tempPath;
         if(subject.equals("cat")){
             System.out.println("Cat selected");
@@ -265,6 +285,14 @@ public class AddPhotoController implements Initializable{
     public void setAlbumAndUser(UserDetail user, AlbumDetail album){
         this.user = user;
         this.album = album;
+        System.out.println("Setting user and album of add photo controller");
+        System.out.println(this.album);
     }
+
+//    public void setUser(UserDetail user){
+////        this.user = user;
+////        //albumsObservableList.addAll(user.getAlbums());
+////
+////    }
 
 }
