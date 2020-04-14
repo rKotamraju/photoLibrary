@@ -69,32 +69,8 @@ public class DisplayPhotoController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         turnOffEditing();
 
-        System.out.println("Checking...");
-        photoImageView = new ImageView();
-        System.out.println(this.album.name);
-        setIntialPhoto();
-
-//        if(this.photo.getIsStock()){
-//            System.out.println("File Path : " + this.photo.getFilePathLocal());
-//            Image myImage = new Image(this.photo.getFilePathLocal());
-//            photoImageView.setImage(myImage);
-//        }
-//        else{
-//            String path = this.photo.getFilePathLocal();
-//            File myFile = new File(path);
-//            Image myImage = new Image(myFile.toURI().toString());
-//            photoImageView.setImage(myImage);
-//        }
-//
-//        captionLabel.setText(this.photo.getCaption());
-//        dateLabel.setText(this.photo.getTime());
-
-      // tagsLabel.setText(photo.ge);
     }
 
-    private void setIntialPhoto(){
-        System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
-    }
 
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
@@ -238,5 +214,20 @@ public class DisplayPhotoController implements Initializable {
         System.out.println("Setting user and album of stock photo controller: " + this.album );
         System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
         // System.out.println(this.album);
+
+        if(this.photo.getIsStock()){
+            System.out.println("File Path : " + this.photo.getFilePathLocal());
+            Image myImage = new Image(this.photo.getFilePathLocal());
+            photoImageView.setImage(myImage);
+        }
+        else{
+            String path = this.photo.getFilePathLocal();
+            File myFile = new File(path);
+            Image myImage = new Image(myFile.toURI().toString());
+            photoImageView.setImage(myImage);
+        }
+
+        captionLabel.setText(this.photo.getCaption());
+        dateLabel.setText(this.photo.getTime());
     }
 }
