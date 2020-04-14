@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -78,9 +79,40 @@ public class AlbumsMainController implements Initializable{
 
 //ONCLICK METHODS
     @FXML
-    private void searchButtonPressed(ActionEvent e){
-        System.out.println("Search Button Pressed");
+    private void searchButtonPressed(ActionEvent e) throws IOException {
+        String searchedText = searchAlbumsTextField.getText().trim();
 
+        //not allowing user to search for nothing, no need for alert because google does not alert
+        if(searchedText.length() == 0){ return; }
+
+        String[] part = searchedText.split("=");
+        String tag = part[0];
+        String value = part[1];
+
+        ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
+
+        for(AlbumDetail a : user.getAlbums()){
+            for(PhotoDetail p : a.getPhotos()){
+                temp.add(p);
+            }
+        }
+        AlbumDetail tempAlbum = new AlbumDetail(searchedText, temp);
+
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) AlbumsListView.getScene().getWindow();
+        loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+        root = loader.load();
+        AlbumDetailController next = loader.getController();
+        next.setAlbumAndUser(user, tempAlbum);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        //make sure to disable add photo button
 
     }
 
