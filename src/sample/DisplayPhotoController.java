@@ -177,7 +177,9 @@ public class DisplayPhotoController implements Initializable {
 
     @FXML
     private void addTagPressed(ActionEvent e){
-
+        TextInputDialog newLabel = new TextInputDialog();
+        newLabel.setHeaderText("New Tag,");
+        newLabel.showAndWait();
     }
 
     public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
