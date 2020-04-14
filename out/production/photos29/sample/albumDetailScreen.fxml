@@ -3,7 +3,6 @@
 <?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AlbumDetailController">
@@ -23,7 +22,6 @@
       <AnchorPane prefHeight="62.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="addPhotoButton" mnemonicParsing="false" onAction="#addPhotoPressed" styleClass="createButton" text="Add Photo" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-            <Slider prefHeight="16.0" prefWidth="270.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="25.0" />
          </children>
       </AnchorPane>
    </bottom>
@@ -33,25 +31,15 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
-               <children>
-                  <ImageView fx:id="image1" fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/flower.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/puppy.jpeg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="180.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Image/happy.jpg" />
-                     </image>
-                  </ImageView>
-               </children>
-            </HBox>
+            <TableView fx:id="albumTableView" prefHeight="200.0" prefWidth="200.0" styleClass="noheader" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+              <columns>
+                <TableColumn fx:id="column1" prefWidth="75.0" text="Caption" />
+                <TableColumn fx:id="column2" prefWidth="75.0" text="Photo" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
          </children>
       </AnchorPane>
    </center>

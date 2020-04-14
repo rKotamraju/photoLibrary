@@ -57,3 +57,9 @@
     -fx-border-radius: 10;
     -fx-border-width: 2;
 }
+
+.noheader .column-header-background{
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    -fx-min-height: 0;
+}

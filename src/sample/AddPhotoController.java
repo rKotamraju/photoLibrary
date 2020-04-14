@@ -170,7 +170,7 @@ public class AddPhotoController implements Initializable{
 
         //Create photo object
         PhotoDetail photo = new PhotoDetail(caption, listOfTags, photoPath, timeOfPicture);
-        System.out.println("Photo added : " + photo.filePathLocal + " caption : " + photo.caption + " date: " + photo.time);
+        //System.out.println("Photo added : " + photo.filePathLocal + " caption : " + photo.caption + " date: " + photo.time);
         System.out.println(Arrays.asList(listOfTags));
 
 

@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,7 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -16,7 +19,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import static javafx.collections.FXCollections.observableArrayList;
 
 public class AlbumDetailController implements Initializable {
 
@@ -37,10 +43,37 @@ public class AlbumDetailController implements Initializable {
     @FXML
     private Label albumNameLabel;
 
+    @FXML
+    private TableView<PhotoDetail> albumTableView;
+
+    @FXML
+    private TableColumn<PhotoDetail, String> column1;
+
+    @FXML
+    private TableColumn<PhotoDetail, ImageView> column2;
+
+    private ImageView photo;
+
+
+    final ObservableList<PhotoDetail> albumsObservableList = observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        PhotoDetail temp = new PhotoDetail("Birthday", "/Image/happy.jpg/");
+        PhotoDetail temp2 = new PhotoDetail("Cookies", "/Image/puppy.jpeg/");
+
+        albumsObservableList.add(temp);
+        albumsObservableList.add(temp);
+        albumsObservableList.add(temp);
+        albumsObservableList.add(temp2);
+
+        column2.setCellValueFactory(new PropertyValueFactory<>("caption"));
+
+        column1.setCellValueFactory(new PropertyValueFactory<>("photo"));
+
+        albumTableView.setItems(albumsObservableList);
+        //albumTableView.getColumns().addAll(column1, column2);
 
     }
 
@@ -106,11 +139,10 @@ public class AlbumDetailController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-
     }
 
     public void addPhotoToAlbum(PhotoDetail photo){
-        System.out.println("Photo passed to Album screen: " + photo.filePathLocal + " caption : " + photo.caption + " date: " + photo.time);
+        //System.out.println("Photo passed to Album screen: " + photo.filePathLocal + " caption : " + photo.caption + " date: " + photo.time);
 
         //NOW MUST ADD PHOTO TO ALBUM
         //System.out.println("Current Album : " + currentAlbum.name);
