@@ -118,7 +118,7 @@ public class AddPhotoController implements Initializable{
     @FXML
     private void backPressed(ActionEvent e) throws IOException {
 
-        UsersList.getInstance().writeApp();
+        //UsersList.getInstance().writeApp();
 
         Stage stage = null;
         Parent root = null;
@@ -184,17 +184,23 @@ public class AddPhotoController implements Initializable{
         album.addPhoto(newPhoto);
         System.out.println("After add photo");
 //
-//        Stage stage = null;
-//        Parent root = null;
-//
-//        if(e.getSource() == addPhotoButton){
-//            stage = (Stage) addPhotoButton.getScene().getWindow();
-//            root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
-//        }
-//
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
+        UsersList.getInstance().writeApp();
+
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        if(e.getSource() == addPhotoButton){
+            stage = (Stage) addPhotoButton.getScene().getWindow();
+            loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+            root = loader.load();
+            AlbumDetailController next = loader.getController();
+            next.setAlbumAndUser(user, album);
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
