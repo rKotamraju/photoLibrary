@@ -11,16 +11,25 @@
    <center>
       <AnchorPane BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="80" styleClass="text-field" text="Date" textAlignment="RIGHT" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0" />
+            <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="80" styleClass="dateLabel" text="Date" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0">
+               <font>
+                  <Font name="Avenir Next Bold" size="13.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets></Label>
             <ImageView fx:id="photoImageView" fitHeight="160.0" fitWidth="200" layoutX="52.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="100.0" />
             <VBox fx:id="middleVBox" alignment="CENTER" prefHeight="100" prefWidth="389.0" spacing="10.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="captionLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="133.0" styleClass="text-field" text="Caption">
+                        <Label fx:id="captionLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="29.0" prefWidth="133.0" styleClass="displayLabel" text="Caption">
                            <HBox.margin>
                               <Insets left="130.0" />
-                           </HBox.margin></Label>
+                           </HBox.margin>
+                           <font>
+                              <Font name="Droid Serif" size="13.0" />
+                           </font></Label>
                         <Button fx:id="recaptionButton" mnemonicParsing="false" onAction="#recaptionPressed" prefHeight="29.0" prefWidth="87.0" styleClass="secondaryButton1" text="Recaption">
                            <HBox.margin>
                               <Insets left="15.0" />

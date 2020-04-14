@@ -64,8 +64,8 @@ public class AlbumDetailController implements Initializable {
 
         addPhotoButton.setDisable(false);
         addPhotoButton.setVisible(true);
-        createAlbumButton.setDisable(false);
-        createAlbumButton.setVisible(true);
+        createAlbumButton.setDisable(true);
+        createAlbumButton.setVisible(false);
 
 
         images = new ArrayList<ImageDetail>();

@@ -91,6 +91,8 @@ public class AlbumsMainController implements Initializable{
         String tag = part[0];
         String value = part[1];
 
+
+
         if(part.length > 2){
             String logical = part[2].toLowerCase();
             String tag2 = part[3];
