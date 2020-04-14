@@ -166,6 +166,7 @@ public class AddPhotoController implements Initializable{
         String[] tags = tagsTextField.getText().split(",");
 
         String photoPath = path;
+
         File myFile = new File(path);
 
         //Save Time/Date of Image
@@ -209,7 +210,7 @@ public class AddPhotoController implements Initializable{
     @FXML
     private void pickStockPressed(ActionEvent e) throws IOException {
 
-        Stage stage = null;
+      /*  Stage stage = null;
         Parent root = null;
 
         if(e.getSource() == pickStockButton){
@@ -220,10 +221,30 @@ public class AddPhotoController implements Initializable{
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+*/
 
+
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) pickStockButton.getScene().getWindow();
+
+        loader.setLocation(getClass().getResource("stockPhotos.fxml"));
+        root = loader.load();
+
+        StockPhotosController next = loader.getController();
+        next.setAlbumAndUser(user, album);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    public void setStockPhoto(String subject){
+    public void setStockPhoto(String subject, UserDetail user, AlbumDetail album){
+        this.user = user;
+        this.album = album;
+        System.out.println("Reset user and album of add photo controller: " + this.album);
         isStock = true;
         String tempPath;
         if(subject.equals("cat")){

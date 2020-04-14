@@ -21,6 +21,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class StockPhotosController implements Initializable {
+    //Fields
+    private UserDetail user;
+    private AlbumDetail album;
+
     //Buttons
     @FXML
     private Button addStockPhotoButton;
@@ -72,7 +76,7 @@ public class StockPhotosController implements Initializable {
         FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
         Parent root = (Parent) loader.load();
         AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("dog");
+        alb.setStockPhoto("dog",user,album);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
@@ -83,7 +87,7 @@ public class StockPhotosController implements Initializable {
         FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
         Parent root = (Parent) loader.load();
         AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("cat");
+        alb.setStockPhoto("cat",user,album);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
@@ -94,7 +98,7 @@ public class StockPhotosController implements Initializable {
         FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
         Parent root = (Parent) loader.load();
         AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("family");
+        alb.setStockPhoto("family",user,album);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
@@ -105,7 +109,7 @@ public class StockPhotosController implements Initializable {
         FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
         Parent root = (Parent) loader.load();
         AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("baby");
+        alb.setStockPhoto("baby",user,album);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
@@ -116,7 +120,7 @@ public class StockPhotosController implements Initializable {
         FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
         Parent root = (Parent) loader.load();
         AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("chocolate");
+        alb.setStockPhoto("chocolate",user,album);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
@@ -127,10 +131,16 @@ public class StockPhotosController implements Initializable {
         FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
         Parent root = (Parent) loader.load();
         AddPhotoController alb = loader.getController();
-        alb.setStockPhoto("flower");
+        alb.setStockPhoto("flower",user,album);
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
     }
 
+    public void setAlbumAndUser(UserDetail user, AlbumDetail album){
+        this.user = user;
+        this.album = album;
+       System.out.println("Setting user and album of stock photo controller: " + this.album);
+       // System.out.println(this.album);
+    }
 }
