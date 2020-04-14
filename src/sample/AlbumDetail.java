@@ -34,20 +34,18 @@ public class AlbumDetail implements Serializable {
 
     public ArrayList<PhotoDetail> getPhotos(){
 
-        ArrayList<PhotoDetail> tempList = new ArrayList<PhotoDetail>();
+        //ArrayList<PhotoDetail> tempList = new ArrayList<PhotoDetail>();
 
         PhotoDetail temp = new PhotoDetail("Birthday", "/Image/happy.jpg/", true);
         PhotoDetail temp2 = new PhotoDetail("Cookies", "/Image/puppy.jpeg/", true);
         PhotoDetail temp3 = new PhotoDetail("Cookies and Milk", "/Image/flower.jpg/", true);
 
-        tempList.add(temp);
-        tempList.add(temp2);
-        tempList.add(temp3);
+        photos.add(temp);
+        photos.add(temp2);
+        photos.add(temp3);
 
 
-        //return this.photos;
-
-        return tempList;
+        return this.photos;
     }
 
 
