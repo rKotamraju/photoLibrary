@@ -140,7 +140,7 @@ public class StockPhotosController implements Initializable {
     public void setAlbumAndUser(UserDetail user, AlbumDetail album){
         this.user = user;
         this.album = album;
-       System.out.println("Setting user and album of stock photo controller: " + this.album);
+        System.out.println("Setting user and album of stock photo controller: " + this.album);
        // System.out.println(this.album);
     }
 }

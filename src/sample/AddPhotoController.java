@@ -183,22 +183,18 @@ public class AddPhotoController implements Initializable{
         System.out.println("Album name: " + this.album.name);
         album.addPhoto(newPhoto);
         System.out.println("After add photo");
-
-        Stage stage = null;
-        Parent root = null;
-
-        if(e.getSource() == addPhotoButton){
-            stage = (Stage) addPhotoButton.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
-        }
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-        for(int i = 0; i < album.getPhotos().size();i++){
-            System.out.println("File Path of Photos : " + album.getPhotos().get(i).getFilePathLocal());
-        }
+//
+//        Stage stage = null;
+//        Parent root = null;
+//
+//        if(e.getSource() == addPhotoButton){
+//            stage = (Stage) addPhotoButton.getScene().getWindow();
+//            root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
+//        }
+//
+//        Scene scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
 
     }
 

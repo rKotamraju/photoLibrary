@@ -44,12 +44,12 @@
                   <ImageView fx:id="photoImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                   <HBox prefHeight="27.0" prefWidth="276.0">
                      <children>
-                        <TextField fx:id="tagsTextField" alignment="CENTER" prefHeight="34.0" prefWidth="200.0" promptText="Tag" styleClass="text-field" />
-                        <ComboBox fx:id="tagTypeComboBox" onAction="#tagTypeSelected" prefWidth="150.0" promptText="Type" styleClass="text-field" >
+                        <TextField fx:id="tagsTextField" alignment="CENTER" prefHeight="33.0" prefWidth="119.0" promptText="Tag" styleClass="text-field" />
+                        <ComboBox fx:id="tagTypeComboBox" onAction="#tagTypeSelected" prefHeight="33.0" prefWidth="112.0" promptText="Type" styleClass="text-field">
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin></ComboBox>
-                        <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTagPressed" prefWidth="120.0" styleClass="createButton" text="Add" />
+                        <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTagPressed" prefWidth="120.0" styleClass="createButton" text="+Tag" />
                      </children>
                   </HBox>
                   <TextField fx:id="captionsTextField" alignment="CENTER" promptText="Enter Caption" styleClass="text-field">
