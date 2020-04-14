@@ -38,6 +38,7 @@ public class AlbumDetail implements Serializable {
 
         PhotoDetail temp = new PhotoDetail("Birthday", "/Image/happy.jpg/", true);
         PhotoDetail temp2 = new PhotoDetail("Cookies", "/Image/puppy.jpeg/", true);
+        PhotoDetail temp3 = new PhotoDetail("Cookies and Milk", "/Image/flower.jpg/", true);
 
         tempList.add(temp);
         tempList.add(temp2);
