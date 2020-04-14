@@ -39,12 +39,25 @@ public class DisplayPhotoController implements Initializable {
     @FXML
     private Button saveButton;
 
+    @FXML
+    private Button deleteTagButton;
+
+    @FXML
+    private Button addTagButton;
+
+    @FXML
+    private Button recaptionButton;
+
+
     //Labels
     @FXML
     private Label captionLabel;
 
     @FXML
     private Label tagsLabel;
+
+    @FXML
+    private Label dateLabel;
 
     //ImageView
     @FXML
@@ -59,6 +72,17 @@ public class DisplayPhotoController implements Initializable {
         saveButton.setDisable(true);
         saveButton.setVisible(false);
 
+        recaptionButton.setVisible(false);
+        recaptionButton.setDisable(true);
+
+        addTagButton.setDisable(true);
+        addTagButton.setVisible(false);
+
+        deleteTagButton.setVisible(false);
+        deleteTagButton.setDisable(true);
+
+
+
         if(photo.getIsStock() == true){
             Image myImage = new Image(photo.getFilePathLocal());
             photoImageView.setImage(myImage);
@@ -69,6 +93,11 @@ public class DisplayPhotoController implements Initializable {
             Image myImage = new Image(myFile.toURI().toString());
             photoImageView.setImage(myImage);
         }
+
+        captionLabel.setText(photo.getCaption());
+        dateLabel.setText(photo.getTime());
+
+       // tagsLabel.setText(photo.ge);
     }
 
     @FXML
@@ -128,12 +157,7 @@ public class DisplayPhotoController implements Initializable {
         album.removePhoto(photo);
         System.out.println("Photo was deleted from album");
 
-        //at the end
-        deleteButton.setDisable(true);
-        deleteButton.setVisible(false);
-
-        saveButton.setDisable(true);
-        saveButton.setVisible(false);
+        //Bring back to album screen
     }
 
     @FXML
@@ -143,11 +167,21 @@ public class DisplayPhotoController implements Initializable {
 
         saveButton.setDisable(false);
         saveButton.setVisible(true);
+
+        addTagButton.setDisable(false);
+        addTagButton.setVisible(true);
+
+        deleteTagButton.setVisible(true);
+        deleteTagButton.setDisable(false);
+
+        recaptionButton.setDisable(false);
+        recaptionButton.setVisible(true);
     }
 
     @FXML
     private void savePressed(ActionEvent e){
 
+        //photo.setCaption();
 
         //at the end
 
@@ -156,6 +190,15 @@ public class DisplayPhotoController implements Initializable {
 
         saveButton.setDisable(true);
         saveButton.setVisible(false);
+
+        recaptionButton.setVisible(false);
+        recaptionButton.setDisable(true);
+
+        addTagButton.setDisable(true);
+        addTagButton.setVisible(false);
+
+        deleteTagButton.setVisible(false);
+        deleteTagButton.setDisable(true);
     }
 
     public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
