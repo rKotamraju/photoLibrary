@@ -44,18 +44,18 @@ public class AlbumDetailController implements Initializable {
     private Label albumNameLabel;
 
     @FXML
-    private TableView<PhotoDetail> albumTableView;
+    private TableView<ImageDetail> albumTableView;
 
     @FXML
-    private TableColumn<PhotoDetail, String> column1;
+    private TableColumn<ImageDetail, String> column1;
 
     @FXML
-    private TableColumn<PhotoDetail, ImageView> column2;
+    private TableColumn<ImageDetail, ImageView> column2;
 
     private ImageView photo;
 
 
-    final ObservableList<PhotoDetail> albumsObservableList = observableArrayList();
+    final ObservableList<ImageDetail> albumsObservableList = observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -63,10 +63,13 @@ public class AlbumDetailController implements Initializable {
         PhotoDetail temp = new PhotoDetail("Birthday", "/Image/happy.jpg/");
         PhotoDetail temp2 = new PhotoDetail("Cookies", "/Image/puppy.jpeg/");
 
-        albumsObservableList.add(temp);
-        albumsObservableList.add(temp);
-        albumsObservableList.add(temp);
-        albumsObservableList.add(temp2);
+        ImageDetail i1 = new ImageDetail(temp);
+        ImageDetail i2 = new ImageDetail(temp2);
+
+        albumsObservableList.add(i1);
+        albumsObservableList.add(i2);
+        albumsObservableList.add(i1);
+        albumsObservableList.add(i2);
 
         column2.setCellValueFactory(new PropertyValueFactory<>("caption"));
 

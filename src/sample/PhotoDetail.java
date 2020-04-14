@@ -4,16 +4,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PhotoDetail {
-    private ImageView photo;
+public class PhotoDetail implements Serializable {
+    //private ImageView photo;
+
+    static final long serialVersionUID = 1L;
+
     private HashMap tags;
     private String caption;
     private String filePathLocal;
     private Time time;
+    private boolean isStock;
 
     public PhotoDetail(String caption, HashMap tags, String filePath, Time time){
         this.caption = caption;
@@ -36,21 +41,13 @@ public class PhotoDetail {
         return filePathLocal;
     }
 
-    public ImageView getPhoto(){
-        photo = new ImageView();
-        //File myFile = new File(filePathLocal);
-        Image myImage = new Image(filePathLocal);
-        photo.setImage(myImage);
-
-        photo.setFitHeight(150);
-        photo.setFitWidth(150);
-
-        return photo;
-    }
-
 
     public String toString(){
         return caption;
+    }
+
+    public boolean getIsStock(){
+        return isStock;
     }
 
 }
