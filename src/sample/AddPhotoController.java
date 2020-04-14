@@ -83,6 +83,9 @@ public class AddPhotoController implements Initializable{
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
        addPhotoButton.setDisable(true);
+       tagsTextField.setDisable(true);
+       tagTypeComboBox.setDisable(true);
+       captionsTextField.setDisable(true);
        tagTypeOptions.add("Location");
        tagTypeOptions.add("Person");
        tagTypeOptions.add("Color");
@@ -158,6 +161,9 @@ public class AddPhotoController implements Initializable{
         photoImageView.setImage(myImage);
 
         addPhotoButton.setDisable(false);
+        tagTypeComboBox.setDisable(false);
+        tagsTextField.setDisable(false);
+        captionsTextField.setDisable(false);
     }
 
     @FXML
@@ -264,6 +270,9 @@ public class AddPhotoController implements Initializable{
         photoImageView.setImage(myImage);
 
         addPhotoButton.setDisable(false);
+        tagTypeComboBox.setDisable(false);
+        tagsTextField.setDisable(false);
+        captionsTextField.setDisable(false);
     }
     @FXML
     private void addTagPressed(ActionEvent e){

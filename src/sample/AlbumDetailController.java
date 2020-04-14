@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -157,6 +158,11 @@ public class AlbumDetailController implements Initializable {
 //            System.out.println(currentAlbum.photos.get(i).caption);
 //        }
    // }
+
+//    @FXML
+//    private void photoSelected(MouseEvent e){
+//        System.out.println("Picture clicked in table view");
+//    }
 
     public void setAlbumAndUser(UserDetail user, AlbumDetail album){
         this.user = user;

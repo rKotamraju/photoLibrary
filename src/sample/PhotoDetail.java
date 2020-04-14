@@ -36,11 +36,25 @@ public class PhotoDetail implements Serializable {
     }
 
     public String getCaption(){
+
         return caption;
     }
 
     public String getFilePathLocal(){
+
         return filePathLocal;
+    }
+
+    public String getTime(){
+        return time.toString();
+    }
+    public boolean getIsStock(){
+
+        return isStock;
+    }
+
+    public void setCaption(String caption){
+        this.caption = caption;
     }
 
 
@@ -48,9 +62,6 @@ public class PhotoDetail implements Serializable {
         return caption;
     }
 
-    public boolean getIsStock(){
-        return isStock;
-    }
 
 
 
