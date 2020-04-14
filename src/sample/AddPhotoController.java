@@ -184,15 +184,6 @@ public class AddPhotoController implements Initializable{
         album.addPhoto(newPhoto);
         System.out.println("After add photo");
 
-        /*FXMLLoader loader = new FXMLLoader((getClass().getResource("albumDetailScreen.fxml")));
-        Parent root = (Parent) loader.load();
-        AlbumDetailController alb = loader.getController();
-        //alb.addPhotoToAlbum(photo);
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-         */
-
         Stage stage = null;
         Parent root = null;
 
@@ -205,24 +196,14 @@ public class AddPhotoController implements Initializable{
         stage.setScene(scene);
         stage.show();
 
+        for(int i = 0; i < album.getPhotos().size();i++){
+            System.out.println("File Path of Photos : " + album.getPhotos().get(i).getFilePathLocal());
+        }
+
     }
 
     @FXML
     private void pickStockPressed(ActionEvent e) throws IOException {
-
-      /*  Stage stage = null;
-        Parent root = null;
-
-        if(e.getSource() == pickStockButton){
-            stage = (Stage) pickStockButton.getScene().getWindow();
-
-            root = FXMLLoader.load(getClass().getResource("stockPhotos.fxml"));
-        }
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-*/
-
 
         Stage stage = null;
         Parent root = null;
@@ -310,10 +291,5 @@ public class AddPhotoController implements Initializable{
         System.out.println(this.album);
     }
 
-//    public void setUser(UserDetail user){
-////        this.user = user;
-////        //albumsObservableList.addAll(user.getAlbums());
-////
-////    }
 
 }
