@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +12,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DisplayPhotoController implements Initializable {
@@ -33,24 +39,18 @@ public class DisplayPhotoController implements Initializable {
     private Button editButton;
 
     @FXML
-    private Button deleteButton;
-
-    @FXML
     private Button saveButton;
 
-    @FXML
-    private Button deleteTagButton;
 
     @FXML
     private Button addTagButton;
 
+    //ComboBox
     @FXML
-    private Button recaptionButton;
+    private ComboBox<String> photoChoicesChoiceBox;
 
 
     //Labels
-    @FXML
-    private Label captionLabel;
 
     @FXML
     private Label dateLabel;
@@ -59,16 +59,30 @@ public class DisplayPhotoController implements Initializable {
     @FXML
     private ImageView photoImageView;
 
+    //TextFields
+    @FXML
+    private TextField captionTextField;
+
+    //ListViews
+    @FXML
+    private ListView tagsListView;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         turnOffEditing();
-
     }
+
+    //Lists
+    final ObservableList<String> tags = FXCollections.observableArrayList();
+    //final ObservableList<String> tags;
+
+    Boolean editMode;
+
 
 
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
+        editMode = false;
         System.out.println("Logging out from albums main screen");
 
         Stage stage = null;
@@ -106,8 +120,9 @@ public class DisplayPhotoController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void deletePressed(ActionEvent e) throws IOException {
+
+    private void deletePressed() throws IOException {
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this photo?", ButtonType.CANCEL, ButtonType.YES);
         alert.showAndWait();
 
@@ -121,7 +136,7 @@ public class DisplayPhotoController implements Initializable {
             Parent root = null;
             FXMLLoader loader = new FXMLLoader();
 
-            stage = (Stage) deleteButton.getScene().getWindow();
+            stage = (Stage) photoChoicesChoiceBox.getScene().getWindow();
 
             loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
             root = loader.load();
@@ -132,6 +147,54 @@ public class DisplayPhotoController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
+        }
+    }
+    public void photoChoiceClicked(ActionEvent e) throws IOException {
+        if(photoChoicesChoiceBox.getValue().equals("Delete Photo")){
+            deletePressed();
+        }
+
+        else if(photoChoicesChoiceBox.getValue().equals("Move Photo")){
+
+            TextInputDialog moveAlbumPrompt = new TextInputDialog();
+            moveAlbumPrompt.setHeaderText("Which album do you want to move this picture to?'");
+            moveAlbumPrompt.showAndWait();
+
+            String moveAlbum = moveAlbumPrompt.getResult();
+
+            AlbumDetail toAlbum = user.getAlbum(moveAlbum);
+
+            toAlbum.addPhoto(photo);
+
+            album.removePhoto(photo);
+
+            Stage stage = null;
+            Parent root = null;
+            FXMLLoader loader = new FXMLLoader();
+
+            stage = (Stage) photoChoicesChoiceBox.getScene().getWindow();
+
+            loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+            root = loader.load();
+
+            AlbumDetailController next = loader.getController();
+            next.setAlbumAndUser(user,album);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+
+        else if(photoChoicesChoiceBox.getValue().equals("Copy Photo")){
+            TextInputDialog moveAlbumPrompt = new TextInputDialog();
+            moveAlbumPrompt.setHeaderText("Which album do you want to copy this picture to?'");
+            moveAlbumPrompt.showAndWait();
+
+            String moveAlbum = moveAlbumPrompt.getResult();
+
+            AlbumDetail toAlbum = user.getAlbum(moveAlbum);
+
+            toAlbum.addPhoto(photo);
         }
     }
 
@@ -147,19 +210,12 @@ public class DisplayPhotoController implements Initializable {
 
         //at the end
 
+        String newCaption = captionTextField.getText();
+        photo.setCaption(captionTextField.getText());
+
        turnOffEditing();
     }
 
-    @FXML
-    private void recaptionPressed(ActionEvent e){
-        TextInputDialog newLabel = new TextInputDialog();
-        newLabel.setHeaderText("Enter New Caption");
-        newLabel.showAndWait();
-        captionLabel.setText(newLabel.getResult());
-        photo.setCaption(captionLabel.getText());
-        System.out.println(photo.getCaption());
-        turnOffEditing();
-    }
 
     @FXML
     private void addTagPressed(ActionEvent e){
@@ -167,48 +223,67 @@ public class DisplayPhotoController implements Initializable {
         newLabel.setHeaderText("Enter Format: 'New Tag,Tag Type'");
         newLabel.showAndWait();
 
-        String newTag = newLabel.getResult();
-        String tagType = newTag.substring(newTag.charAt(',')+1,newTag.length()) ;
-        newTag = newTag.substring(0,newTag.charAt(','));
+        String tag = newLabel.getResult();
+
+        String[] tagArray = tag.split(",");
+
+        String newTag = tagArray[0];
+        String tagType = tagArray[1];
 
        //ADD TO HASHMAP WHEN HAVE ACCESS TO PHOTODETAIL photo.
+
+        tags.add(newTag);
+        //photo.getTags().put(tagType,newTag);
+        photo.addTag(tag,tagType);
+       // int indexOfPhoto = album.getPhotos().indexOf(photo);
+
 
     }
 
     @FXML
-    private void deleteTagPressed(ActionEvent e){
-        TextInputDialog newLabel = new TextInputDialog();
-        newLabel.setHeaderText("Enter Format: 'Tag,Tag Type'");
-        newLabel.showAndWait();
+    public void captionChanged(ActionEvent actionEvent) {
+        System.out.println("Caption Being Edited");
+        String newCaption = captionTextField.getText();
+        photo.setCaption(captionTextField.getText());
+    }
 
-        String tag = newLabel.getResult();
-        String tagType = tag.substring(tag.charAt(',')+1,tag.length()) ;
-        tag = tag.substring(0,tag.charAt(','));
+    @FXML
+    private void tagSelectedToDelete(){
+        if(editMode == true){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this tag?", ButtonType.CANCEL, ButtonType.YES);
+            alert.showAndWait();
 
+            if(alert.getResult() == ButtonType.YES) {
+                System.out.println("Tag to be removed : " +tagsListView.getSelectionModel().getSelectedItem().toString());
+                tags.remove(tagsListView.getSelectionModel().getSelectedItem());
+                photo.removeTag(tagsListView.getSelectionModel().getSelectedItem().toString());
+            }
+        }
         //Delete from HASHMAP WHEN HAVE ACCESS TO PHOTODETAIL photo.
     }
 
 
     public void turnOffEditing(){
-        deleteButton.setDisable(true);
-        deleteButton.setVisible(false);
+        editMode = false;
+       // tagsListView.setDisable(true);
+        captionTextField.setDisable(true);
+        photoChoicesChoiceBox.setDisable(true);
+        photoChoicesChoiceBox.setVisible(false);
 
         saveButton.setDisable(true);
         saveButton.setVisible(false);
 
-        recaptionButton.setVisible(false);
-        recaptionButton.setDisable(true);
-
         addTagButton.setDisable(true);
         addTagButton.setVisible(false);
 
-        deleteTagButton.setVisible(false);
-        deleteTagButton.setDisable(true);
     }
 
     public void turnOnEditing(){
-        deleteButton.setVisible(true);
-        deleteButton.setDisable(false);
+        editMode = true;
+        //tagsListView.setDisable(false);
+        captionTextField.setDisable(false);
+        photoChoicesChoiceBox.setDisable(false);
+        photoChoicesChoiceBox.setVisible(true);
 
         saveButton.setDisable(false);
         saveButton.setVisible(true);
@@ -216,11 +291,6 @@ public class DisplayPhotoController implements Initializable {
         addTagButton.setDisable(false);
         addTagButton.setVisible(true);
 
-        deleteTagButton.setVisible(true);
-        deleteTagButton.setDisable(false);
-
-        recaptionButton.setDisable(false);
-        recaptionButton.setVisible(true);
     }
 
 
@@ -233,6 +303,8 @@ public class DisplayPhotoController implements Initializable {
         System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
         // System.out.println(this.album);
 
+        photoImageView.setFitHeight(250);
+        photoImageView.setFitWidth(250);
         if(this.photo.getIsStock()){
             System.out.println("File Path : " + this.photo.getFilePathLocal());
             Image myImage = new Image(this.photo.getFilePathLocal());
@@ -245,7 +317,24 @@ public class DisplayPhotoController implements Initializable {
             photoImageView.setImage(myImage);
         }
 
-        captionLabel.setText(this.photo.getCaption());
+        captionTextField.setText(this.photo.getCaption());
+        captionTextField.setDisable(true);
+        //tagsListView.setDisable(true);
         dateLabel.setText(this.photo.getTime());
+
+        System.out.println(photo.getTags().values());
+        tags.addAll(photo.getTags().values());
+        for(String temp : tags){
+            System.out.println(temp);
+        }
+
+        tagsListView.setItems(tags);
+
+        photoChoicesChoiceBox.getItems().add("Delete Photo");
+        photoChoicesChoiceBox.getItems().add("Move Photo");
+        photoChoicesChoiceBox.getItems().add("Copy Photo");
     }
+
+
+
 }

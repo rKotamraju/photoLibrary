@@ -287,7 +287,7 @@ public class AlbumsMainController implements Initializable{
         AlbumsListView.getSelectionModel().getSelectedItem().name = newName; //changes name behind the scenes but doesn't show up
         AlbumsListView.getItems().set(AlbumsListView.getSelectionModel().getSelectedIndex(), selectedAlbum); //shows up
         AlbumsListView.setItems(albumsObservableList); //Added to fix rename problem on April 14th
-        
+
         editMode = false;
 
         disableEditingMode();
@@ -296,8 +296,6 @@ public class AlbumsMainController implements Initializable{
 
     @FXML
     private void deleteAlbumPressed(ActionEvent e){
-
-            //must press twice - first click delete to turn off listview then pick item and then press delete again
 
             AlbumDetail toBeDeleted = AlbumsListView.getSelectionModel().getSelectedItem();
 

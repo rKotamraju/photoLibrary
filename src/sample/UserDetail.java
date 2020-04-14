@@ -35,6 +35,15 @@ public class UserDetail implements Serializable{
     public ArrayList<AlbumDetail> getAlbums(){
         return this.albums;
     }
+
+    public AlbumDetail getAlbum(String name){
+        for(AlbumDetail a : albums){
+            if(a.name.equals(name)){
+                return a;
+            }
+        }
+        return null;
+    }
     /*public void addAlbum(AlbumDetail album){
         albums.add(album);
         System.out.println("Added Album");
