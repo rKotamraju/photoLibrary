@@ -14,10 +14,10 @@ public class AlbumDetail implements Serializable {
         this.photos = new ArrayList<PhotoDetail>();
     }
 
-//    public AlbumDetail(AlbumDetail album){
-//        this.name = name;
-//        this.photos = new ArrayList<PhotoDetail>();
-//    }
+    public AlbumDetail(String searchedText, ArrayList<PhotoDetail> searchedPhotos){
+        this.name = searchedText;
+        this.photos = searchedPhotos;
+    }
 
     public String getName(){
         return name;
