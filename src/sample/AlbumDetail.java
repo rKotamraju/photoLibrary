@@ -42,6 +42,7 @@ public class AlbumDetail implements Serializable {
 
         tempList.add(temp);
         tempList.add(temp2);
+        tempList.add(temp3);
 
 
         //return this.photos;
