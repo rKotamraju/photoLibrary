@@ -55,9 +55,6 @@ public class DisplayPhotoController implements Initializable {
     private Label captionLabel;
 
     @FXML
-    private Label tagsLabel;
-
-    @FXML
     private Label dateLabel;
 
     //ImageView

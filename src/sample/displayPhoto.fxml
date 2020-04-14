@@ -13,7 +13,7 @@
          <children>
             <Label fx:id="dateLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="35.0" prefWidth="80" styleClass="text-field" text="Date" textAlignment="RIGHT" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="20.0" />
             <ImageView fx:id="photoImageView" fitHeight="160.0" fitWidth="200" layoutX="52.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="170.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="100.0" />
-            <VBox alignment="CENTER" prefHeight="75.0" prefWidth="389.0" spacing="10.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <VBox fx:id="middleVBox" alignment="CENTER" prefHeight="100" prefWidth="389.0" spacing="10.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
@@ -34,12 +34,11 @@
                            </HBox.margin></VBox>
                      </children>
                   </HBox>
-                  <Label fx:id="tagsLabel" alignment="CENTER" prefHeight="23.0" prefWidth="135.0" styleClass="text-field" text="Tags">
+                  <ListView prefHeight="200.0" prefWidth="70.0">
                      <VBox.margin>
-                        <Insets right="35.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                        <Insets left="115.0" right="85.0" top="2.0" />
+                     </VBox.margin></ListView>
+                  <HBox prefHeight="64.0" prefWidth="430.0">
                      <children>
                         <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTagPressed" styleClass="createButton" text="Add Tag">
                            <HBox.margin>
