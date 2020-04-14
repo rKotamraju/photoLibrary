@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -66,24 +67,11 @@ public class DisplayPhotoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        deleteButton.setDisable(true);
-        deleteButton.setVisible(false);
+        turnOffEditing();
 
-        saveButton.setDisable(true);
-        saveButton.setVisible(false);
-
-        recaptionButton.setVisible(false);
-        recaptionButton.setDisable(true);
-
-        addTagButton.setDisable(true);
-        addTagButton.setVisible(false);
-
-        deleteTagButton.setVisible(false);
-        deleteTagButton.setDisable(true);
-
-
-
-        if(photo.getIsStock() == true){
+        System.out.println("Checking...");
+        if(photo.getIsStock()){
+            System.out.println("File Path : " + photo.getFilePathLocal());
             Image myImage = new Image(photo.getFilePathLocal());
             photoImageView.setImage(myImage);
         }
@@ -97,7 +85,7 @@ public class DisplayPhotoController implements Initializable {
         captionLabel.setText(photo.getCaption());
         dateLabel.setText(photo.getTime());
 
-       // tagsLabel.setText(photo.ge);
+      // tagsLabel.setText(photo.ge);
     }
 
     @FXML
@@ -121,18 +109,6 @@ public class DisplayPhotoController implements Initializable {
 
     @FXML
     private void backPressed(ActionEvent e) throws IOException {
-
-//        Stage stage = null;
-//        Parent root = null;
-//
-//        if(e.getSource() == backButton){
-//            stage = (Stage) backButton.getScene().getWindow();
-//
-//            root = FXMLLoader.load(getClass().getResource("albumDetailScreen.fxml"));
-//        }
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
 
         Stage stage = null;
         Parent root = null;
@@ -185,6 +161,35 @@ public class DisplayPhotoController implements Initializable {
 
         //at the end
 
+       turnOffEditing();
+    }
+
+    @FXML
+    private void recaptionPressed(ActionEvent e){
+        TextInputDialog newLabel = new TextInputDialog();
+        newLabel.setHeaderText("Enter New Caption");
+        newLabel.showAndWait();
+        captionLabel.setText(newLabel.getResult());
+        photo.setCaption(captionLabel.getText());
+        System.out.println(photo.getCaption());
+        turnOffEditing();
+    }
+
+    @FXML
+    private void addTagPressed(ActionEvent e){
+
+    }
+
+    public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
+        System.out.println("Hello heloo");
+        this.user = user;
+        this.album = album;
+        this.photo = photo;
+        System.out.println("Setting user and album of stock photo controller: " + this.album);
+        // System.out.println(this.album);
+    }
+
+    public void turnOffEditing(){
         deleteButton.setDisable(true);
         deleteButton.setVisible(false);
 
@@ -199,13 +204,5 @@ public class DisplayPhotoController implements Initializable {
 
         deleteTagButton.setVisible(false);
         deleteTagButton.setDisable(true);
-    }
-
-    public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
-        this.user = user;
-        this.album = album;
-        this.photo = photo;
-        System.out.println("Setting user and album of stock photo controller: " + this.album);
-        // System.out.println(this.album);
     }
 }

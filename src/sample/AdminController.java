@@ -104,7 +104,7 @@ public class AdminController implements Initializable {
      }
 
      @FXML
-    private void deleteUserPressed(ActionEvent e){
+    private void deleteUserPressed(ActionEvent e) {
          if(usersListView.getSelectionModel().getSelectedItem() == null){
              return;
          }
