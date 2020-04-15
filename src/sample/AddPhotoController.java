@@ -186,28 +186,29 @@ public class AddPhotoController implements Initializable{
         System.out.println(Arrays.asList(listOfTags));
 
 
-        //Bring Back to Album and add to album
-        System.out.println("Album name: " + this.album.name);
-        album.addPhoto(newPhoto);
-        System.out.println("After add photo");
+            //Bring Back to Album and add to album
+            System.out.println("Album name: " + this.album.name);
+            album.addPhoto(newPhoto);
+            System.out.println("After add photo");
 //
-        UsersList.getInstance().writeApp();
+            UsersList.getInstance().writeApp();
 
-        Stage stage = null;
-        Parent root = null;
-        FXMLLoader loader = new FXMLLoader();
+            Stage stage = null;
+            Parent root = null;
+            FXMLLoader loader = new FXMLLoader();
 
-        if(e.getSource() == addPhotoButton){
-            stage = (Stage) addPhotoButton.getScene().getWindow();
-            loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
-            root = loader.load();
-            AlbumDetailController next = loader.getController();
-            next.setAlbumAndUser(user, album);
-        }
+            if(e.getSource() == addPhotoButton){
+                stage = (Stage) addPhotoButton.getScene().getWindow();
+                loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+                root = loader.load();
+                AlbumDetailController next = loader.getController();
+                next.setAlbumAndUser(user, album);
+            }
 
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
 
     }
 
@@ -277,32 +278,72 @@ public class AddPhotoController implements Initializable{
     }
     @FXML
     private void addTagPressed(ActionEvent e){
-        System.out.println(tagsTextField.getText());
-        System.out.println(tagTypeComboBox.getSelectionModel().getSelectedItem());
+        if(tagsTextField.getText()==null || tagTypeComboBox.getSelectionModel().getSelectedItem()==null || tagsTextField.getText().equals("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Must enter both a tag and a tag type!", ButtonType.CLOSE);
+            alert.showAndWait();
+            return;
+        }
+//        System.out.println(tagsTextField.getText());
+//        System.out.println(tagTypeComboBox.getSelectionModel().getSelectedItem());
         if(!(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type"))){
             //listOfTags.put(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText());
+            if(listOfTags.contains(new TagNode(tagTypeComboBox.getSelectionModel().getSelectedItem().trim(), tagsTextField.getText().trim()))){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Tag Already Exists! (not adding new type)");
+                alert.showAndWait();
+                return;
+            }
 
-            listOfTags.add(
-                    new TagNode(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText())
-            );
+            listOfTags.add(new TagNode(tagTypeComboBox.getSelectionModel().getSelectedItem().trim(),tagsTextField.getText().trim()));
+            System.out.println(tagsTextField.getText());
+            System.out.println(tagTypeComboBox.getSelectionModel().getSelectedItem());
+        }
+        else{
+            return;
         }
 
         tagsTextField.setText("");
+        tagTypeComboBox.getSelectionModel().clearSelection();
 
     }
 
     @FXML
     private void tagTypeSelected(ActionEvent e){
-        if(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type")){
-            TextInputDialog newTag = new TextInputDialog();
-            newTag.setHeaderText("Add New Tag Type");
-            newTag.showAndWait();
-            tagTypeOptions.add(newTag.getResult());
-            //listOfTags.put(newTag.getResult(),tagsTextField.getText());
+        if (tagTypeComboBox.getSelectionModel().getSelectedItem() != null) {
+            if(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type")){
+                TextInputDialog newTag = new TextInputDialog();
+                newTag.setHeaderText("Add New Tag Type");
+                newTag.showAndWait();
 
-            listOfTags.add(new TagNode(newTag.getResult(), tagsTextField.getText()));
-            tagsTextField.setText("");
+                if(tagTypeOptions.contains(newTag.getResult().trim())){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Tag Type Already Exists! (adding new type)");
+                    alert.showAndWait();
+                    return;
+                }
 
+
+
+                tagTypeOptions.add(newTag.getResult().trim());
+                tagTypeComboBox.getSelectionModel().select(newTag.getResult().trim());
+
+                //add tag
+//                if(!(listOfTags.contains(new TagNode(newTag.getResult().trim(),tagsTextField.getText().trim())))){
+//
+//                    listOfTags.add(new TagNode(newTag.getResult().trim(), tagsTextField.getText().trim()));
+//                    System.out.println("Adding from tag selected : " + tagsTextField.getText());
+//                    System.out.println("Adding from tag selected : " + tagTypeComboBox.getSelectionModel().getSelectedItem());
+//                }
+
+                //already exists
+//                else{
+//                    Alert alert = new Alert(Alert.AlertType.ERROR, "Tag Already Exists!");
+//                    alert.showAndWait();
+//                    return;
+//                }
+
+            }
+        }
+        else{
+            return;
         }
     }
 
