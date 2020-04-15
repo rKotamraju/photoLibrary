@@ -424,7 +424,7 @@ public class DisplayPhotoController extends StockPhotosController implements Ini
     }
 
     /**
-     * Allows user to delete a certain tag from the photo
+     * Allows user to delete a certain tag from the photo and updates tag observable list
      * @throws IOException
      */
     @FXML
@@ -473,6 +473,10 @@ public class DisplayPhotoController extends StockPhotosController implements Ini
         }
     }
 
+    /**
+     * Turns off editing mode by locking ability to recaption, delete, add/delete tags, move/copy photo
+     */
+
 
     public void turnOffEditing(){
         editMode = false;
@@ -499,6 +503,10 @@ public class DisplayPhotoController extends StockPhotosController implements Ini
         nextPhotoButton.setDisable(false);
         prevPhotoButton.setDisable(false);
     }
+
+    /**
+     * Turns on editing ability by unlocking add/delete tag, delete photo, recaption, move/copy photo
+     */
 
     public void turnOnEditing(){
         editMode = true;
@@ -528,7 +536,11 @@ public class DisplayPhotoController extends StockPhotosController implements Ini
     }
 
 
-
+    /**
+     * Allows user to display the photo right before, creating a slideshow
+     * @param actionEvent
+     * @throws IOException
+     */
 
     public void prevPhotoPressed(ActionEvent actionEvent) throws IOException {
 
@@ -566,6 +578,12 @@ public class DisplayPhotoController extends StockPhotosController implements Ini
 
     }
 
+    /**
+     * Allows user to display next photo, creating a slideshow
+     * @param actionEvent
+     * @throws IOException
+     */
+
     public void nextPhotoPressed(ActionEvent actionEvent) throws IOException {
         System.out.println("In next photo");
 
@@ -599,6 +617,13 @@ public class DisplayPhotoController extends StockPhotosController implements Ini
             return;
         }
     }
+
+    /**
+     * Displays the content of the photo and allows user to pass current user, album, and photo into this method
+     * @param user
+     * @param album
+     * @param photo
+     */
 
     public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
         // System.out.println("Hello heloo");
@@ -662,6 +687,9 @@ public class DisplayPhotoController extends StockPhotosController implements Ini
         photoChoicesChoiceBox.getItems().add("Copy Photo");
     }
 
+    /**
+     * Keeps track of whether photo displayed is one from an album or from search results
+     */
     public void setFromSearch(){
         this.fromSearch = true;
     }
