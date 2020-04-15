@@ -176,28 +176,40 @@ public class DisplayPhotoController implements Initializable {
     }
 
     @FXML
-    public void pickedAlbum(MouseEvent e){
-        photoChoicesChoiceBox.getSelectionModel().clearSelection();
-    }
-    @FXML
     public void photoChoiceClicked(ActionEvent e) throws IOException {
         if(photoChoicesChoiceBox.getSelectionModel().getSelectedItem()!=null) {
             if (photoChoicesChoiceBox.getValue().equals("Delete Photo")) {
                 deletePressed();
             } else if (photoChoicesChoiceBox.getValue().equals("Move Photo")) {
-                if (albumsListView.getSelectionModel().getSelectedItem() == null) {
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "First pick an album to move the photo to!", ButtonType.CLOSE);
-                    alert.showAndWait();
-                    System.out.println("Right before return");
-                    return;
-                } else {
-                    AlbumDetail toAlbum = albumsListView.getSelectionModel().getSelectedItem();
+                TextInputDialog td = new TextInputDialog();
+                td.setHeaderText("Enter an Album Name");
+                td.showAndWait();
 
-                    if (album.equals(toAlbum)) {
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cannot move to same album", ButtonType.CLOSE);
-                        alert.showAndWait();
-                        return;
-                    } else {
+                if(td.getResult() == null){
+                    return;
+                }
+
+                String toAlbumString= td.getResult().trim();
+                AlbumDetail toAlbum = null;
+                for(AlbumDetail a : user.getAlbums()) {
+
+                    if(a.name.equals(toAlbumString)) {
+                        toAlbum = a;
+                    }
+
+                }
+
+                if(toAlbum == null){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This album does not exist", ButtonType.CLOSE);
+                    alert.showAndWait();
+                    return;
+                }
+                else if (album.equals(toAlbum)) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cannot move to same album", ButtonType.CLOSE);
+                    alert.showAndWait();
+                    return;
+                    }
+                else {
                         toAlbum.addPhoto(photo);
 
                         album.removePhoto(photo);
@@ -225,33 +237,41 @@ public class DisplayPhotoController implements Initializable {
 
                 }
 
-            } else if (photoChoicesChoiceBox.getValue().equals("Copy Photo")) {
+             else if (photoChoicesChoiceBox.getValue().equals("Copy Photo")) {
+                TextInputDialog td = new TextInputDialog();
+                td.setHeaderText("Enter an Album Name");
+                td.showAndWait();
 
-                if (albumsListView.getSelectionModel().getSelectedItem() == null) {
-                    //photoChoicesChoiceBox.setValue(null);
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "First pick an album to copy the photo to!", ButtonType.CLOSE);
-                    alert.showAndWait();
-                    //photoChoicesChoiceBox.getSelectionModel().clearSelection();
+                if(td.getResult() == null){
                     return;
                 }
-                else{
 
-                    AlbumDetail toAlbum = albumsListView.getSelectionModel().getSelectedItem();
+                String toAlbumString= td.getResult().trim();
+                AlbumDetail toAlbum = null;
+                for(AlbumDetail a : user.getAlbums()) {
 
-
-                    if (album.equals(toAlbum)) {
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cannot copy to same album", ButtonType.CLOSE);
-                        alert.showAndWait();
-                       // photoChoicesChoiceBox.setValue(null);
-                        return;
-                    }
-                    else {
-                        toAlbum.addPhoto(photo);
-                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Copied!", ButtonType.CLOSE);
-                        alert.showAndWait();
+                    if(a.name.equals(toAlbumString)) {
+                        toAlbum = a;
                     }
 
                 }
+
+                if(toAlbum == null){
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This album does not exist", ButtonType.CLOSE);
+                    alert.showAndWait();
+                    return;
+                }
+                else if (album.equals(toAlbum)) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cannot copy to same album", ButtonType.CLOSE);
+                    alert.showAndWait();
+                    return;
+                    }
+                else {
+                    toAlbum.addPhoto(photo);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Copied!", ButtonType.CLOSE);
+                    alert.showAndWait();
+                }
+
             }
         }else{
             return;
