@@ -12,6 +12,22 @@
     -fx-background-radius: 5;
     -fx-min-width: 85;
     -fx-min-height: 35;
+    -fx-max-width: 85;
+    -fx-max-height: 35;
     -fx-font-family: Lust;
+}
+
+.closeButton{
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-min-width: 85;
+    -fx-min-height: 35;
+    -fx-max-width: 85;
+    -fx-max-height: 35;
+    -fx-font-family: Lust;
+    -fx-text-fill: black;
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
 }
 

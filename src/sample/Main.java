@@ -54,9 +54,10 @@ public class Main extends Application {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            System.out.println("User Exited the app");
             window.close();
         }
 
-        System.out.println("User Exited the app");
+
     }
 }

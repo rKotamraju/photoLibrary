@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +33,9 @@ public class LoginScreenController implements Initializable {
 
     @FXML
     private Button loginButton;
+
+    @FXML
+    private Button closeButton;
 
 
     /**
@@ -125,6 +129,10 @@ public class LoginScreenController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    private void closeButtonPressed(ActionEvent e){
+        Main.onCloseRequest();
+    }
 
 
 }
