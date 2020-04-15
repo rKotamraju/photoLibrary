@@ -287,7 +287,7 @@ public class AddPhotoController implements Initializable{
                     new TagNode(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText())
             );
 
-            
+
             System.out.println(
                     listOfTags.get(0).equals(new TagNode(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText()))
             );

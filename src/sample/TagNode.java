@@ -23,6 +23,10 @@ public class TagNode implements Serializable {
 
     public boolean equals(Object o){
 
+        if( o == null ){
+            return false;
+        }
+
         TagNode other = (TagNode)o;
 
         return this.tag.equals(other.tag) && this.value.equals(other.value);
