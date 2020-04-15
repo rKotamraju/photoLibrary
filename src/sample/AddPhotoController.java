@@ -279,29 +279,37 @@ public class AddPhotoController implements Initializable{
         System.out.println("Reset user and album of add photo controller: " + this.album);
         isStock = true;
         String tempPath;
+
+        String[] stockImages = {"./data/cat_caviar.jpg/", "./data/puppy.jpeg/", "./data/chocolate.jpg/", "./data/family.jpeg/", "./data/happy.jpg/", "./data/flower.jpg/"};
+
         if(subject.equals("cat")){
-            System.out.println("Cat selected");
-            tempPath = "/data/cat_caviar.jpg";
+            File myFile = new File(stockImages[0]);
+            tempPath = myFile.toURI().toString();
         }
         else if(subject.equals("dog")){
             System.out.println("Dog selected");
-            tempPath = "/data/puppy.jpeg";
+            File myFile = new File(stockImages[1]);
+            tempPath = myFile.toURI().toString();
         }
         else if(subject.equals("chocolate")){
             System.out.println("Chocolate selected");
-            tempPath = "/data/chocolate.jpg";
+            File myFile = new File(stockImages[2]);
+            tempPath = myFile.toURI().toString();
         }
         else if(subject.equals("family")){
             System.out.println("Family selected");
-            tempPath= "/data/family.jpeg";
+            File myFile = new File(stockImages[3]);
+            tempPath = myFile.toURI().toString();
         }
         else if(subject.equals("baby")){
             System.out.println("Baby selected");
-            tempPath = "/data/happy.jpg";
+            File myFile = new File(stockImages[4]);
+            tempPath = myFile.toURI().toString();
         }
         else{
             System.out.println("Flower selected");
-            tempPath = "/data/flower.jpg";
+            File myFile = new File(stockImages[5]);
+            tempPath = myFile.toURI().toString();
         }
 
         path = tempPath;

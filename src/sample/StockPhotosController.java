@@ -55,25 +55,64 @@ public class StockPhotosController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image dog = new Image("../data/puppy.jpg");
-        Image happyBaby = new Image("/data/happy.jpg");
-        Image flower = new Image("/data/flower.jpg");
-        Image cat = new Image("/data/cat_caviar.jpg");
-        Image chocolate = new Image("/data/chocolate.jpg");
-        Image family = new Image("/data/family.jpeg");
+
+        String[] stockImages = {"./data/cat_caviar.jpg/", "./data/chocolate.jpg/", "./data/family.jpeg/", "./data/flower.jpg/", "./data/happy.jpg/", "./data/puppy.jpeg/"};
+
+        File myFile = new File(stockImages[0]);
+        String text = myFile.toURI().toString();
+        Image image = new Image(text);
+        catImageView.setImage(image);
+
+        myFile = new File(stockImages[1]);
+        text = myFile.toURI().toString();
+        image = new Image(text);
+        chocolateImageView.setImage(image);
+
+        myFile = new File(stockImages[2]);
+        text = myFile.toURI().toString();
+        image = new Image(text);
+        familyImageView.setImage(image);
+
+        myFile = new File(stockImages[3]);
+        text = myFile.toURI().toString();
+        image = new Image(text);
+        flowerImageView.setImage(image);
+
+        myFile = new File(stockImages[4]);
+        text = myFile.toURI().toString();
+        image = new Image(text);
+        happyBabyImageView.setImage(image);
+
+        myFile = new File(stockImages[5]);
+        text = myFile.toURI().toString();
+        image = new Image(text);
+        dogImageView.setImage(image);
 
 
-        dogImageView.setImage(dog);
-
-        happyBabyImageView.setImage(happyBaby);
-
-        flowerImageView.setImage(flower);
-
-        catImageView.setImage(cat);
-
-        chocolateImageView.setImage(chocolate);
-
-        familyImageView.setImage(family);
+//        myFile = new File(stockImages[4]);
+//        text = myFile.toURI().toString();
+//        image = new Image(text);
+//        happyBabyImageView.setImage(image);
+//
+//        Image dog = new Image(text);
+//        Image happyBaby = new Image("./data/happy.jpg");
+//        Image flower = new Image("./data/flower.jpg");
+//        Image cat = new Image(cattext);
+//        Image chocolate = new Image("./data/chocolate.jpg");
+//        Image family = new Image("./data/family.jpeg");
+//
+//
+//        dogImageView.setImage(dog);
+//
+//        happyBabyImageView.setImage(happyBaby);
+//
+//        flowerImageView.setImage(flower);
+//
+//        catImageView.setImage(cat);
+//
+//        chocolateImageView.setImage(chocolate);
+//
+//        familyImageView.setImage(family);
 
     }
 
