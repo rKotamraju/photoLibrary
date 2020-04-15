@@ -83,7 +83,7 @@ public class DisplayPhotoController implements Initializable {
     }
 
     //Lists
-    final ObservableList<String> tags = FXCollections.observableArrayList();
+    ObservableList<String> tags = FXCollections.observableArrayList();
 
     final ObservableList<String> tagTypes = FXCollections.observableArrayList();
 
@@ -300,14 +300,29 @@ public class DisplayPhotoController implements Initializable {
             alert.showAndWait();
 
             if(alert.getResult() == ButtonType.YES) {
-                System.out.println("Tag to be removed : " +tagsListView.getSelectionModel().getSelectedItem().toString());
-                tags.remove(tagsListView.getSelectionModel().getSelectedItem()); //setting observable list
 
-                String selectedCell = tagsListView.getSelectionModel().getSelectedItem().toString();
-                String tag = selectedCell.substring(0, selectedCell.indexOf('['));
-                String type = selectedCell.substring(selectedCell.indexOf('[')+1, selectedCell.indexOf(']'));
-                TagNode deleteTag = new TagNode(type, tag);
-                photo.removeTag(deleteTag);
+                if(tags.size()>1){
+                    System.out.println("Tag to be removed : " +tagsListView.getSelectionModel().getSelectedItem().toString());
+                    tags.remove(tagsListView.getSelectionModel().getSelectedItem()); //setting observable list
+
+
+                    String selectedCell = tagsListView.getSelectionModel().getSelectedItem().toString();
+                    String tag = selectedCell.substring(0, selectedCell.indexOf('['));
+                    String type = selectedCell.substring(selectedCell.indexOf('[')+1, selectedCell.indexOf(']'));
+                    TagNode deleteTag = new TagNode(type, tag);
+                    photo.removeTag(deleteTag);
+                }
+                else if(tags.size() == 1){
+                    System.out.println("Tag to be removed : " +tagsListView.getSelectionModel().getSelectedItem().toString());
+                    tags.removeAll();
+                    String selectedCell = tagsListView.getSelectionModel().getSelectedItem().toString();
+                    String tag = selectedCell.substring(0, selectedCell.indexOf('['));
+                    String type = selectedCell.substring(selectedCell.indexOf('[')+1, selectedCell.indexOf(']'));
+                    TagNode deleteTag = new TagNode(type, tag);
+                    photo.removeTag(deleteTag);
+
+                }
+
 //
 //                int indexPicked = tagsListView.getSelectionModel().getSelectedIndex();
 //                TagNode node = photo.getTags().get(indexPicked);

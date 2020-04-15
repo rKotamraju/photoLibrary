@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +16,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +27,7 @@ public class StockPhotosController implements Initializable {
 
     //Buttons
     @FXML
-    private Button addStockPhotoButton;
+    private Button backButton;
 
     //ImageViews
     @FXML
@@ -200,5 +200,23 @@ public class StockPhotosController implements Initializable {
         this.album = album;
         System.out.println("Setting user and album of stock photo controller: " + this.album);
        // System.out.println(this.album);
+    }
+
+    public void backButtonClicked(ActionEvent actionEvent) throws IOException {
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) backButton.getScene().getWindow();
+
+        loader.setLocation(getClass().getResource("addPhotoScreen.fxml"));
+        root = loader.load();
+
+        AddPhotoController next = loader.getController();
+        next.setAlbumAndUser(user,album);
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }

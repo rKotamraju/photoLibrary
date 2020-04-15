@@ -9,16 +9,6 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.StockPhotosController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
-         <top>
-            <Label text="Choose Stock Photo" textFill="#8267d3" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets top="20.0" />
-               </BorderPane.margin>
-               <font>
-                  <Font name="Avenir Next Condensed Bold" size="30.0" />
-               </font>
-            </Label>
-         </top>
          <left>
             <VBox prefHeight="300.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -59,6 +49,24 @@
                </children>
             </VBox>
          </center>
+         <top>
+            <HBox prefHeight="68.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" text="Back" styleClass="backButton">
+                     <HBox.margin>
+                        <Insets left="20.0" top="25.0" />
+                     </HBox.margin></Button>
+                  <Label text="Choose Stock Photo" textFill="#8267d3">
+                     <font>
+                        <Font name="Avenir Next Condensed Bold" size="30.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="130.0" top="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+         </top>
       </BorderPane>
    </children>
 </AnchorPane>

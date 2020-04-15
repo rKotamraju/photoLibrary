@@ -148,19 +148,25 @@ public class AddPhotoController implements Initializable{
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Open Resource File");
         File fileChosen = fileChooser.showOpenDialog(pickComputerButton.getScene().getWindow());
-        System.out.println("File Path :" + fileChosen.getAbsolutePath()); //THIS IS HOW TO GET THE PATH OF THE PICTURE SELECTED
-        //THIS IS WHAT WE NEED TO SAVE! IN SERIALIZING
+        if(fileChosen !=null){
+            System.out.println("File Path :" + fileChosen.getAbsolutePath()); //THIS IS HOW TO GET THE PATH OF THE PICTURE SELECTED
+            //THIS IS WHAT WE NEED TO SAVE! IN SERIALIZING
 
-        //load photo into imageview
-        path = fileChosen.getAbsolutePath();
-        File myFile = new File(path);
-        Image myImage = new Image(myFile.toURI().toString());
+            //load photo into imageview
+            path = fileChosen.getAbsolutePath();
+            File myFile = new File(path);
+            Image myImage = new Image(myFile.toURI().toString());
 
-        System.out.println("About to set ImageView");
+            System.out.println("About to set ImageView");
 
-        isStock = false;
-        isStock = false;
-        photoImageView.setImage(myImage);
+            isStock = false;
+            isStock = false;
+            photoImageView.setImage(myImage);
+        }
+        else{
+            return;
+        }
+
 
         addPhotoButton.setDisable(false);
         tagTypeComboBox.setDisable(false);
