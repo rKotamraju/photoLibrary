@@ -45,6 +45,12 @@ public class DisplayPhotoController implements Initializable {
     @FXML
     private Button addTagButton;
 
+    @FXML
+    private Button prevPhotoButton;
+
+    @FXML
+    private Button nextPhotoButton;
+
     //ComboBox
     @FXML
     private ComboBox<String> photoChoicesChoiceBox;
@@ -356,7 +362,7 @@ public class DisplayPhotoController implements Initializable {
         photoChoicesChoiceBox.getItems().add("Copy Photo");
     }
 
-    public void prevPhotoPressed(ActionEvent actionEvent) {
+    public void prevPhotoPressed(ActionEvent actionEvent) throws IOException {
 
         System.out.println("In prev photo");
 
@@ -365,11 +371,56 @@ public class DisplayPhotoController implements Initializable {
         if(currIndex > 0){
             PhotoDetail prevPhoto = album.getPhotos().get(currIndex - 1);
             System.out.println("Prev Photo: " + prevPhoto.getCaption());
+
+            Stage stage = null;
+            Parent root = null;
+            FXMLLoader loader = new FXMLLoader();
+
+            stage = (Stage) prevPhotoButton.getScene().getWindow();
+
+            loader.setLocation(getClass().getResource("displayPhoto.fxml"));
+            root = loader.load();
+
+            DisplayPhotoController next = loader.getController();
+            next.setAlbumAndUserandPhoto(user,album, prevPhoto);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else{
+            return;
         }
 
     }
 
-    public void nextPhotoPressed(ActionEvent actionEvent) {
+    public void nextPhotoPressed(ActionEvent actionEvent) throws IOException {
+        System.out.println("In next photo");
 
+        int currIndex = album.getPhotos().indexOf(photo);
+
+        if(currIndex < album.getPhotos().size()){
+            PhotoDetail nextPhoto = album.getPhotos().get(currIndex + 1);
+            System.out.println("Next Photo: " + nextPhoto.getCaption());
+
+            Stage stage = null;
+            Parent root = null;
+            FXMLLoader loader = new FXMLLoader();
+
+            stage = (Stage) nextPhotoButton.getScene().getWindow();
+
+            loader.setLocation(getClass().getResource("displayPhoto.fxml"));
+            root = loader.load();
+
+            DisplayPhotoController next = loader.getController();
+            next.setAlbumAndUserandPhoto(user,album, nextPhoto);
+
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+        else{
+            return;
+        }
     }
 }
