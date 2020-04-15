@@ -319,13 +319,20 @@ public class DisplayPhotoController implements Initializable {
 
         captionTextField.setText(this.photo.getCaption());
         captionTextField.setDisable(true);
-        //tagsListView.setDisable(true);
         dateLabel.setText(this.photo.getTime());
 
         //System.out.println(photo.getTags().values());
+        ArrayList<TagNode> temp = photo.getTags();
+        TagNode t = null;
+        for(int i = 0; i < temp.size();i++){
+            t = temp.get(i);
+
+            tags.add(t.getTag());
+        }
         //tags.addAll(photo.getTags());
-        for(String temp : tags){
-            System.out.println(temp);
+
+        for(String iterator : tags){
+            System.out.println(iterator);
         }
 
         tagsListView.setItems(tags);
