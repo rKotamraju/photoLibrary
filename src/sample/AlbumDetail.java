@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class AlbumDetail implements Serializable {
-    String name;
-    int count;
+    private String name;
     private ArrayList<PhotoDetail> photos;
     static final long serialVersionUID = 1L;
 

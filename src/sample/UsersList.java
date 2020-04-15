@@ -9,7 +9,7 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 public class UsersList implements Serializable {
 
-    static UsersList usersList = new UsersList();
+    private static UsersList usersList = new UsersList();
 
     private ArrayList<UserDetail> users = new ArrayList<UserDetail>();
     public static final String storeDir = "dat";

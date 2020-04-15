@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class UserDetail implements Serializable{
     private String username;
-    private int numAlbums;
     static final long serialVersionUID = 1L;
 
     private ArrayList<AlbumDetail> albums;
