@@ -137,7 +137,9 @@ public class AlbumsMainController implements Initializable{
         for(AlbumDetail a : user.getAlbums()){
             for(PhotoDetail p : a.getPhotos()){
                 Date photoDate = new SimpleDateFormat("MM/dd/yyyy").parse(p.getDate());
-                if(photoDate.after(startDate) && photoDate.before(endDate)) {
+                if(photoDate.equals(startDate) || photoDate.equals(endDate)){
+                    temp.add(p);
+                } else if(photoDate.after(startDate) && photoDate.before(endDate)) {
                     temp.add(p);
                 }
             }
