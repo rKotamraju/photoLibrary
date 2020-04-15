@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DisplayPhotoController extends StockPhotosController implements Initializable {
+public class DisplayPhotoController implements Initializable {
     //Fields
     private UserDetail user;
     public AlbumDetail album; //why is this public?
