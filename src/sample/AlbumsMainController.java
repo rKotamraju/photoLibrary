@@ -340,7 +340,15 @@ public class AlbumsMainController implements Initializable{
         if(albumName.length() == 0){
             Alert alert = new Alert(Alert.AlertType.ERROR, "You must enter an album name!", ButtonType.OK);
             alert.showAndWait();
-            createAlbumPressed();
+            return;
+        }
+
+        for( AlbumDetail a : user.getAlbums()){
+            if(a.getName().equals(albumName)){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "This album name already exists!", ButtonType.OK);
+                alert.showAndWait();
+                return;
+            }
         }
 
         AlbumDetail newAlbum = new AlbumDetail(albumName);
