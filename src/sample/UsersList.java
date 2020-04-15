@@ -9,6 +9,10 @@ import static javafx.collections.FXCollections.observableArrayList;
 
 public class UsersList implements Serializable {
 
+    /**
+     * Uses serializable to implements a users list containing the current state of the program
+     */
+
     private static UsersList usersList = new UsersList();
 
     private ArrayList<UserDetail> users = new ArrayList<UserDetail>();

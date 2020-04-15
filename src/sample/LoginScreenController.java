@@ -34,6 +34,11 @@ public class LoginScreenController implements Initializable {
     private Button loginButton;
 
 
+    /**
+     * Sets up login screen - user must log in with a valid username or admin
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -58,6 +63,9 @@ public class LoginScreenController implements Initializable {
 
     }
 
+    /**Sets up permanent stock user with a stock album of stock photos
+     * Must be in every run of application
+     */
     private void setUpStock(){
 
         String str = "stock";
@@ -73,6 +81,11 @@ public class LoginScreenController implements Initializable {
         UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 6", "/Image/puppy.jpeg/", true));
     }
 
+    /**
+     * Validates user's username and allows them to login to personalized account
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void loginPressed(ActionEvent e) throws IOException {
         System.out.println("Login Button Pressed");

@@ -48,6 +48,12 @@ public class StockPhotosController implements Initializable {
     @FXML
     private ImageView familyImageView;
 
+    /**
+     * Initializes image views in stock photo screen with images of stock photos
+     * @param url
+     * @param resourceBundle
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         Image dog = new Image("/Image/puppy.jpeg");
@@ -72,6 +78,11 @@ public class StockPhotosController implements Initializable {
 
     }
 
+    /**
+     * User picked a dog stock photo - saves info and takes back to add photo screen
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void dogClicked(MouseEvent e) throws IOException {
 //        FXMLLoader loader = new FXMLLoader((getClass().getResource("addPhotoScreen.fxml")));
@@ -99,6 +110,12 @@ public class StockPhotosController implements Initializable {
         stage.show();
     }
 
+    /**
+     * User picked a cat stock photo - saves info and takes back to add photo screen
+     * @param e
+     * @throws IOException
+     */
+
     @FXML
     private void catClicked(MouseEvent e) throws IOException {
         Stage stage = null;
@@ -119,6 +136,11 @@ public class StockPhotosController implements Initializable {
     }
 
 
+    /**
+     * User picked a family stock photo - saves info and takes back to add photo screen
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void familyClicked(MouseEvent e) throws IOException {
         Stage stage = null;
@@ -138,6 +160,11 @@ public class StockPhotosController implements Initializable {
         stage.show();
     }
 
+    /**
+     * User picked a baby stock photo - saves info and takes back to add photo screen
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void babyClicked(MouseEvent e) throws IOException {
         Stage stage = null;
@@ -157,6 +184,11 @@ public class StockPhotosController implements Initializable {
         stage.show();
     }
 
+    /**
+     * User picked a chocolate stock photo - saves info and takes back to add photo screen
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void chocolateClicked(MouseEvent e) throws IOException {
         Stage stage = null;
@@ -176,6 +208,11 @@ public class StockPhotosController implements Initializable {
         stage.show();
     }
 
+    /**
+     * User picked a flower stock photo - saves info and takes back to add photo screen
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void flowerClicked(MouseEvent e) throws IOException {
         Stage stage = null;
@@ -195,6 +232,12 @@ public class StockPhotosController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Allows user to send in current album and user to this screen
+     * @param user
+     * @param album
+     */
+
     public void setAlbumAndUser(UserDetail user, AlbumDetail album){
         this.user = user;
         this.album = album;
@@ -202,6 +245,11 @@ public class StockPhotosController implements Initializable {
        // System.out.println(this.album);
     }
 
+    /**
+     * Allows user to go back to add photo screen
+     * @param actionEvent
+     * @throws IOException
+     */
     public void backButtonClicked(ActionEvent actionEvent) throws IOException {
         Stage stage = null;
         Parent root = null;
