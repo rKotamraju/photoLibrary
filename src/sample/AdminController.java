@@ -127,6 +127,15 @@ public class AdminController implements Initializable {
          if(usersListView.getSelectionModel().getSelectedItem() == null){
              return;
          }
+
+         if(usersListView.getSelectionModel().getSelectedItem().getUsername().equals("Stock")){
+
+             Alert alert = new Alert(Alert.AlertType.WARNING,"YOU CANNOT DELETE THE STOCK USER!", ButtonType.OK);
+             alert.showAndWait();
+
+             return;
+         }
+
          ButtonType userChoice = ButtonType.NO;
          Alert alert = new Alert(Alert.AlertType.CONFIRMATION,"Are you sure you want to delete this user?", ButtonType.CANCEL, ButtonType.YES);
          alert.showAndWait();

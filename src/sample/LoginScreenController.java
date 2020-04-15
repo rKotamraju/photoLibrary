@@ -36,18 +36,37 @@ public class LoginScreenController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         try {
             UsersList.getInstance().readApp();
         } catch (EOFException e){
             System.out.println("No users");
-            UsersList.getInstance().addUser(new UserDetail("Stock"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
 
+        if(UsersList.getInstance().getUsers().size() == 0){
+            setUpStock();
+            try {
+                UsersList.getInstance().writeApp();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
+    }
+
+    private void setUpStock(){
+        UsersList.getInstance().addUser(new UserDetail("Stock"));
+        UsersList.getInstance().getUser("Stock").addAlbum(new AlbumDetail("Stock Album"));
+        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 1", "/Image/cat_caviar.jpg/", true));
+        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 2", "/Image/chocolate.jpg/", true));
+        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 3", "/Image/family.jpeg/", true));
+        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 4", "/Image/flower.jpg/", true));
+        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 5", "/Image/happy.jpg/", true));
+        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 6", "/Image/puppy.jpeg/", true));
     }
 
     @FXML

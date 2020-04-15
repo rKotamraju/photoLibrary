@@ -41,12 +41,16 @@ public class AlbumDetail implements Serializable {
             startDate = getFirstPhoto();
         } catch (ParseException e) {
             startDate = "";
+        } catch (NullPointerException e){
+            return name+" • "+photos.size();
         }
         String endDate = null;
         try {
             endDate = getLastPhoto();
         } catch (ParseException e) {
             endDate = "";
+        } catch (NullPointerException e){
+            return name+" • "+photos.size();
         }
 
         return name+" • "+photos.size()+ " • "+startDate+" to "+endDate;
