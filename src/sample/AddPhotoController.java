@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.beans.value.ObservableListValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,13 +16,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
 import java.net.URL;
-//import java.sql.Time;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
