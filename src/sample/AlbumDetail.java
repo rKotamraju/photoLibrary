@@ -82,11 +82,7 @@ public class AlbumDetail implements Serializable {
 
         return date;
     }
-
-    public String getAlbumName(){
-        return name;
-    }
-
+    
     public void addPhoto(PhotoDetail photo){
         photos.add(photo);
     }

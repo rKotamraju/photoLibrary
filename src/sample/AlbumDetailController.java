@@ -232,7 +232,7 @@ public class AlbumDetailController implements Initializable {
     public void setAlbumAndUser(UserDetail user, AlbumDetail album){
         this.user = user;
         this.album = album;
-        albumNameLabel.setText(album.toString());
+        albumNameLabel.setText(album.getName());
 
         for( PhotoDetail p : album.getPhotos() ){
             this.images.add(new ImageDetail(p));
