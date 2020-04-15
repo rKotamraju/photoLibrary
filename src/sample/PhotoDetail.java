@@ -51,6 +51,7 @@ public class PhotoDetail implements Serializable {
     public String getTime(){
         return time.toString();
     }
+
     public boolean getIsStock(){
 
         return isStock;
@@ -77,8 +78,6 @@ public class PhotoDetail implements Serializable {
     public void addTag(TagNode tag){
         tags.add(tag);
     }
-
-
 
 
 }
