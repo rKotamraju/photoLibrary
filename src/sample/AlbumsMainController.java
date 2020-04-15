@@ -275,6 +275,10 @@ public class AlbumsMainController implements Initializable{
         if(editMode == false){
             AlbumDetail selectedAlbum = AlbumsListView.getSelectionModel().getSelectedItem();
 
+            if(selectedAlbum == null){
+                return;
+            }
+
             Stage stage = null;
             Parent root = null;
             FXMLLoader loader = new FXMLLoader();

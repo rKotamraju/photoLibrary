@@ -45,7 +45,7 @@ public class Main extends Application {
     }
 
     public static void onCloseRequest(){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to close?", ButtonType.NO, ButtonType.YES);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are You Sure You Want To Exit?", ButtonType.NO, ButtonType.YES);
         alert.showAndWait();
 
         if(alert.getResult() == ButtonType.YES){
