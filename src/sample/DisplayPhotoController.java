@@ -73,6 +73,9 @@ public class DisplayPhotoController implements Initializable {
     @FXML
     private TextField captionTextField;
 
+    @FXML
+    private TextField tagTextField;
+
     //ListViews
     @FXML
     private ListView tagsListView;
@@ -83,7 +86,7 @@ public class DisplayPhotoController implements Initializable {
     }
 
     //Lists
-    ObservableList<String> tags = FXCollections.observableArrayList();
+    final ObservableList<String> tags = FXCollections.observableArrayList();
 
     final ObservableList<String> tagTypes = FXCollections.observableArrayList();
 
@@ -228,18 +231,17 @@ public class DisplayPhotoController implements Initializable {
 
     @FXML
     private void addTagPressed(ActionEvent e) throws IOException {
-        if(tagTypeChoiceBox.getSelectionModel().getSelectedItem() == null){
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Must select tag type first!", ButtonType.CLOSE);
+        if(tagTypeChoiceBox.getSelectionModel().getSelectedItem() == null || tagTextField.getText().equals("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Must add tag and tag type first!", ButtonType.CLOSE);
             alert.showAndWait();
             return;
         }else{
-            TextInputDialog newLabel = new TextInputDialog();
-            newLabel.setHeaderText("Enter New Tag'");
-            newLabel.showAndWait();
+//            TextInputDialog newLabel = new TextInputDialog();
+//            newLabel.setHeaderText("Enter New Tag'");
+//            newLabel.showAndWait();
 
-            String tag = newLabel.getResult().trim();
+            String tag = tagTextField.getText().trim();
             String type = tagTypeChoiceBox.getSelectionModel().getSelectedItem();
-
             //check to make sure you are not adding duplicates
             if(photo.getTags().contains(new TagNode(type,tag))){
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Tag already exists!", ButtonType.CLOSE);
@@ -303,7 +305,6 @@ public class DisplayPhotoController implements Initializable {
 
                 if(tags.size()>1){
                     System.out.println("Tag to be removed : " +tagsListView.getSelectionModel().getSelectedItem().toString());
-                    tags.remove(tagsListView.getSelectionModel().getSelectedItem()); //setting observable list
 
 
                     String selectedCell = tagsListView.getSelectionModel().getSelectedItem().toString();
@@ -311,18 +312,21 @@ public class DisplayPhotoController implements Initializable {
                     String type = selectedCell.substring(selectedCell.indexOf('[')+1, selectedCell.indexOf(']'));
                     TagNode deleteTag = new TagNode(type, tag);
                     photo.removeTag(deleteTag);
+                    tags.remove(tagsListView.getSelectionModel().getSelectedItem()); //setting observable list
                 }
                 else if(tags.size() == 1){
                     System.out.println("Tag to be removed : " +tagsListView.getSelectionModel().getSelectedItem().toString());
                     tags.removeAll();
+                    System.out.println("Size of observable list after removing all: " + tags.size());
+                    //tagsListView.getSelectionModel().
                     String selectedCell = tagsListView.getSelectionModel().getSelectedItem().toString();
                     String tag = selectedCell.substring(0, selectedCell.indexOf('['));
                     String type = selectedCell.substring(selectedCell.indexOf('[')+1, selectedCell.indexOf(']'));
                     TagNode deleteTag = new TagNode(type, tag);
                     photo.removeTag(deleteTag);
-                    tagsListView.setItems(tags);
-
+                    tagsListView.getItems().clear();
                 }
+
 
 //
 //                int indexPicked = tagsListView.getSelectionModel().getSelectedIndex();
@@ -353,6 +357,9 @@ public class DisplayPhotoController implements Initializable {
 
         tagTypeChoiceBox.setDisable(true);
         tagTypeChoiceBox.setVisible(false);
+
+        tagTextField.setDisable(true);
+        tagTextField.setVisible(false);
     }
 
     public void turnOnEditing(){
@@ -372,6 +379,8 @@ public class DisplayPhotoController implements Initializable {
         tagTypeChoiceBox.setVisible(true);
         tagTypeChoiceBox.setItems(tagTypes);
 
+        tagTextField.setDisable(false);
+        tagTextField.setVisible(true);
     }
 
 
@@ -474,6 +483,8 @@ public class DisplayPhotoController implements Initializable {
         captionTextField.setText(this.photo.getCaption());
         captionTextField.setDisable(true);
         dateLabel.setText(this.photo.getDate());
+        tagTextField.setDisable(true);
+        tagTextField.setVisible(false);
 
         ArrayList<TagNode> temp = photo.getTags();
         TagNode t = null;

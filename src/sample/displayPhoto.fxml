@@ -59,6 +59,7 @@
                   </HBox>
                </children>
             </VBox>
+            <TextField fx:id="tagTextField" layoutX="358.0" layoutY="357.0" prefHeight="21.0" prefWidth="58.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="358.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="357.0" />
          </children>
       </AnchorPane>
    </center>
