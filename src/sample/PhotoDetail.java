@@ -14,13 +14,16 @@ public class PhotoDetail implements Serializable {
 
     static final long serialVersionUID = 1L;
 
-    private HashMap tags;
+    //private HashMap tags;
+
+    private ArrayList<TagNode> tags;
+
     private String caption;
     private String filePathLocal;
     private Time time;
     private boolean isStock;
 
-    public PhotoDetail(String caption, HashMap tags, String filePath, Time time, boolean isStock){
+    public PhotoDetail(String caption, ArrayList<TagNode> tags, String filePath, Time time, boolean isStock){
         this.caption = caption;
         this.tags = tags;
         this.filePathLocal = filePath;
@@ -63,16 +66,16 @@ public class PhotoDetail implements Serializable {
     }
 
 
-    public HashMap getTags(){
+    public ArrayList<TagNode>  getTags(){
         return tags;
     }
 
-    public void removeTag(String tag){
+    public void removeTag(TagNode tag){
         tags.remove(tag);
     }
 
-    public void addTag(String tag, String tagType){
-        tags.put(tagType, tag);
+    public void addTag(TagNode tag){
+        tags.add(tag);
     }
 
 

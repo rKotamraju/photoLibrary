@@ -73,7 +73,9 @@ public class AddPhotoController implements Initializable{
     ObservableList<String> tagTypeOptions = FXCollections.observableArrayList();
 
     //add tags
-    HashMap<String,String> listOfTags = new HashMap<String,String>();
+    //HashMap<String,String> listOfTags = new HashMap<String,String>();
+
+    ArrayList<TagNode> listOfTags = new ArrayList<TagNode>();
 
     //isStock Boolean
     Boolean isStock = false;
@@ -279,7 +281,22 @@ public class AddPhotoController implements Initializable{
         System.out.println(tagsTextField.getText());
         System.out.println(tagTypeComboBox.getSelectionModel().getSelectedItem());
         if(!(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type"))){
-            listOfTags.put(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText());
+            //listOfTags.put(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText());
+
+            listOfTags.add(
+                    new TagNode(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText())
+            );
+
+            
+            System.out.println(
+                    listOfTags.get(0).equals(new TagNode(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText()))
+            );
+
+
+            System.out.println(
+                    listOfTags.contains(new TagNode(tagTypeComboBox.getSelectionModel().getSelectedItem(),tagsTextField.getText()))
+                    );
+
         }
 
     }
@@ -291,7 +308,12 @@ public class AddPhotoController implements Initializable{
             newTag.setHeaderText("Add New Tag Type");
             newTag.showAndWait();
             tagTypeOptions.add(newTag.getResult());
-            listOfTags.put(newTag.getResult(),tagsTextField.getText());
+            //listOfTags.put(newTag.getResult(),tagsTextField.getText());
+
+            listOfTags.add(new TagNode(newTag.getResult(), tagsTextField.getText()));
+
+
+
         }
     }
 

@@ -234,7 +234,7 @@ public class DisplayPhotoController implements Initializable {
 
         tags.add(newTag);
         //photo.getTags().put(tagType,newTag);
-        photo.addTag(tag,tagType);
+        photo.addTag(new TagNode(tagType, newTag));
        // int indexOfPhoto = album.getPhotos().indexOf(photo);
 
 
@@ -256,7 +256,7 @@ public class DisplayPhotoController implements Initializable {
             if(alert.getResult() == ButtonType.YES) {
                 System.out.println("Tag to be removed : " +tagsListView.getSelectionModel().getSelectedItem().toString());
                 tags.remove(tagsListView.getSelectionModel().getSelectedItem());
-                photo.removeTag(tagsListView.getSelectionModel().getSelectedItem().toString());
+                //photo.removeTag(tagsListView.getSelectionModel().getSelectedItem().toString());
             }
         }
         //Delete from HASHMAP WHEN HAVE ACCESS TO PHOTODETAIL photo.
@@ -322,8 +322,8 @@ public class DisplayPhotoController implements Initializable {
         //tagsListView.setDisable(true);
         dateLabel.setText(this.photo.getTime());
 
-        System.out.println(photo.getTags().values());
-        tags.addAll(photo.getTags().values());
+        //System.out.println(photo.getTags().values());
+        //tags.addAll(photo.getTags());
         for(String temp : tags){
             System.out.println(temp);
         }
