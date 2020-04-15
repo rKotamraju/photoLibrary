@@ -216,7 +216,7 @@ public class AddPhotoController implements Initializable{
 
 
             //Bring Back to Album and add to album
-            System.out.println("Album name: " + this.album.name);
+            System.out.println("Album name: " + this.album.getName());
             album.addPhoto(newPhoto);
             System.out.println("After add photo");
 //
