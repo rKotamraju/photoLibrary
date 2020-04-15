@@ -94,6 +94,14 @@ public class AdminController implements Initializable {
 
          String username = td.getResult().trim();
          if(username.length() == 0){
+             Alert alert = new Alert(Alert.AlertType.ERROR, "Invalid Username!", ButtonType.OK);
+             alert.showAndWait();
+             return;
+         }
+
+         if(invalidUsername(username)){
+             Alert alert = new Alert(Alert.AlertType.ERROR, "Username Already Exists!", ButtonType.OK);
+             alert.showAndWait();
              return;
          }
 
@@ -101,6 +109,17 @@ public class AdminController implements Initializable {
          usersObservableList.add(newUser);
          UsersList.getInstance().addUser(newUser);
          deleteUserButton.setDisable(false);
+     }
+
+     private boolean invalidUsername(String username){
+
+        for(UserDetail u : UsersList.getInstance().getUsers()){
+            String existingUsername = u.getUsername().toLowerCase();
+            if(existingUsername.equals(username.toLowerCase())){
+                return true;
+            }
+        }
+        return false;
      }
 
      @FXML
