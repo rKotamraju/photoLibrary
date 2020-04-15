@@ -81,17 +81,15 @@ public class LoginScreenController implements Initializable {
 
         UsersList.getInstance().addUser(new UserDetail(str));
         UsersList.getInstance().getUser(str).addAlbum(new AlbumDetail(album));
-//
-//        DirectoryChooser dc = new DirectoryChooser();
-//        dc.setInitialDirectory(new File("data"));
 
-       // File selected = dc.showDialog()
-        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 1", "../../data/puppy.jpeg/", true));
-//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 2", "/data/chocolate.jpg/", true));
-//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 3", "/data/family.jpeg/", true));
-//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 4", "/data/flower.jpg/", true));
-//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 5", "/data/happy.jpg/", true));
-//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 6", "/data/puppy.jpeg/", true));
+        String[] stockImages = {"./data/cat_caviar.jpg/", "./data/chocolate.jpg/", "./data/family.jpeg/", "./data/flower.jpg/", "./data/happy.jpg/", "./data/puppy.jpeg/"};
+
+        for(int i = 0; i<stockImages.length; i++) {
+            File myFile = new File(stockImages[i]);
+            String text = myFile.toURI().toString();
+            UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage "+(i+1), text, true));
+        }
+
     }
 
     /**
