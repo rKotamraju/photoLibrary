@@ -58,12 +58,20 @@ public class AlbumsMainController implements Initializable{
 
     final ObservableList<AlbumDetail> albumsObservableList = observableArrayList();
 
+//ComboBox
+    @FXML
+    private ComboBox searchComboBox;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         editMode = false;
         disableEditingMode();
         AlbumsListView.setItems(albumsObservableList);
+
+        searchComboBox.getItems().add("Tag");
+        searchComboBox.getItems().add("Date");
+        searchComboBox.getSelectionModel().selectFirst();
 
         AlbumsListView.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -80,6 +88,24 @@ public class AlbumsMainController implements Initializable{
 //ONCLICK METHODS
     @FXML
     private void searchButtonPressed(ActionEvent e) throws IOException {
+
+        if(searchComboBox.getSelectionModel().isSelected(0)){
+            searchByTag();
+        }else{
+            searchByDate();
+        }
+
+        //make sure to disable add photo button
+
+    }
+
+    private void searchByDate() throws IOException{
+        String searchedText = searchAlbumsTextField.getText().trim();
+
+        System.out.println("Searching By date");
+    }
+
+    private void searchByTag() throws IOException{
         String searchedText = searchAlbumsTextField.getText().trim();
 
         //not allowing user to search for nothing, no need for alert because google does not alert
@@ -155,11 +181,7 @@ public class AlbumsMainController implements Initializable{
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        //make sure to disable add photo button
-
     }
-
 
     @FXML
     private void goToAlbumDetailScreen() throws IOException{
