@@ -84,6 +84,12 @@ public class DisplayPhotoController implements Initializable {
     @FXML
     private ListView<AlbumDetail> albumsListView;
 
+    /**
+     * Intializes the screen by turning off editing of photo and just displaying contents
+     * @param url
+     * @param resourceBundle
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         turnOffEditing();
@@ -99,6 +105,11 @@ public class DisplayPhotoController implements Initializable {
     Boolean editMode;
 
 
+    /**
+     * Allows user to log out to the log in screen
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
         editMode = false;
@@ -118,6 +129,12 @@ public class DisplayPhotoController implements Initializable {
         stage.show();
 
     }
+
+    /**
+     * Takes user back to the screen which displays all of the photos in the album
+     * @param e
+     * @throws IOException
+     */
 
     @FXML
     private void backPressed(ActionEvent e) throws IOException {
@@ -142,7 +159,12 @@ public class DisplayPhotoController implements Initializable {
         stage.show();
     }
 
-@FXML
+    /**
+     * Allows user to delete this photo from the album
+     * Takes back to screen which displays all photos from the album, without the deleted photo
+     * @throws IOException
+     */
+    @FXML
     private void deletePressed() throws IOException {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this photo?", ButtonType.CANCEL, ButtonType.YES);
@@ -175,6 +197,13 @@ public class DisplayPhotoController implements Initializable {
         }
     }
 
+    /**
+     * Allows user to delete photo, move photo to a different album, or copy to a different album
+     * Displays all albums so user has a choice to pick
+     * Makes sure you are not copying/moving to same album or an album that does not exist
+     * @param e
+     * @throws IOException
+     */
     @FXML
     public void photoChoiceClicked(ActionEvent e) throws IOException {
         if(photoChoicesChoiceBox.getSelectionModel().getSelectedItem()!=null) {
@@ -278,6 +307,11 @@ public class DisplayPhotoController implements Initializable {
         }
     }
 
+    /**
+     * Turns on editing mode for album - can now add and delete tags, recaption the photo, delete photo, or move/copy to a different album
+     * @param e
+     */
+
     @FXML
     private void editPressed(ActionEvent e){
         turnOnEditing();
@@ -289,6 +323,11 @@ public class DisplayPhotoController implements Initializable {
 
         albumsListView.setItems(albumsObservableList);
     }
+
+    /**
+     * Saves all changes made to the photo
+     * @param e
+     */
 
     @FXML
     private void savePressed(ActionEvent e){
@@ -303,7 +342,12 @@ public class DisplayPhotoController implements Initializable {
        turnOffEditing();
     }
 
-
+    /**
+     * Allows user to add a new tag with a tag type to the photo
+     * Checks whether tag value pair already exists before adding
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void addTagPressed(ActionEvent e) throws IOException {
         if(tagTypeChoiceBox.getSelectionModel().getSelectedItem() == null || tagTextField.getText().equals("")){
@@ -334,6 +378,10 @@ public class DisplayPhotoController implements Initializable {
         }
     }
 
+    /**
+     * Allows user to choose a tag type and checks whether the type already exists
+     * @param e
+     */
     @FXML
     public void typeSelected(ActionEvent e){
         if(tagTypeChoiceBox.getSelectionModel().getSelectedItem()!=null) {
@@ -360,6 +408,11 @@ public class DisplayPhotoController implements Initializable {
         }
     }
 
+    /**
+     * Allows user to recaption the photo
+     * @param actionEvent
+     */
+
     @FXML
     public void captionChanged(ActionEvent actionEvent) {
         if(editMode == true){
@@ -370,6 +423,10 @@ public class DisplayPhotoController implements Initializable {
 
     }
 
+    /**
+     * Allows user to delete a certain tag from the photo
+     * @throws IOException
+     */
     @FXML
     private void tagSelectedToDelete() throws IOException {
         if(editMode == true){
