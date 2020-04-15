@@ -286,12 +286,12 @@ public class DisplayPhotoController implements Initializable {
                 }
 
                 if(toAlbum == null){
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "This album does not exist", ButtonType.CLOSE);
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "This Album Does Not Exist", ButtonType.CLOSE);
                     alert.showAndWait();
                     return;
                 }
                 else if (album.equals(toAlbum)) {
-                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cannot copy to same album", ButtonType.CLOSE);
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Cannot Copy to Same Album", ButtonType.CLOSE);
                     alert.showAndWait();
                     return;
                     }
