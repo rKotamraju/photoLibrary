@@ -55,6 +55,9 @@ public class DisplayPhotoController implements Initializable {
     @FXML
     private ComboBox<String> photoChoicesChoiceBox;
 
+    @FXML
+    private ComboBox<String> tagTypeChoiceBox;
+
 
     //Labels
 
@@ -64,6 +67,7 @@ public class DisplayPhotoController implements Initializable {
     //ImageView
     @FXML
     private ImageView photoImageView;
+
 
     //TextFields
     @FXML
@@ -80,11 +84,10 @@ public class DisplayPhotoController implements Initializable {
 
     //Lists
     final ObservableList<String> tags = FXCollections.observableArrayList();
-    //final ObservableList<String> tags;
+
+    final ObservableList<String> tagTypes = FXCollections.observableArrayList();
 
     Boolean editMode;
-
-
 
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
@@ -225,23 +228,59 @@ public class DisplayPhotoController implements Initializable {
 
     @FXML
     private void addTagPressed(ActionEvent e) throws IOException {
-        TextInputDialog newLabel = new TextInputDialog();
-        newLabel.setHeaderText("Enter Format: 'New Tag,Tag Type'");
-        newLabel.showAndWait();
+        if(tagTypeChoiceBox.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Must select tag type first!", ButtonType.CLOSE);
+            alert.showAndWait();
+            return;
+        }else{
+            TextInputDialog newLabel = new TextInputDialog();
+            newLabel.setHeaderText("Enter New Tag'");
+            newLabel.showAndWait();
 
-        String tag = newLabel.getResult();
+            String tag = newLabel.getResult().trim();
+            String type = tagTypeChoiceBox.getSelectionModel().getSelectedItem();
 
-        String[] tagArray = tag.split(",");
+            //check to make sure you are not adding duplicates
+            if(photo.getTags().contains(new TagNode(type,tag))){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Tag already exists!", ButtonType.CLOSE);
+                alert.showAndWait();
+                return;
+            }
+            tags.add(tag+"[" + type + "]");
 
-        String newTag = tagArray[0];
-        String tagType = tagArray[1];
+            photo.addTag(new TagNode(type, tag));
 
-        tags.add(newTag+"[" + tagType + "]");
+            tagTypeChoiceBox.getSelectionModel().clearSelection();
 
-        photo.addTag(new TagNode(tagType, newTag));
+            //Save
+            UsersList.getInstance().writeApp();
+        }
+    }
 
-        //Save
-        UsersList.getInstance().writeApp();
+    @FXML
+    public void typeSelected(ActionEvent e){
+        if(tagTypeChoiceBox.getSelectionModel().getSelectedItem()!=null) {
+            if (tagTypeChoiceBox.getSelectionModel().getSelectedItem().equals("Add New Type")) {
+                TextInputDialog newLabel = new TextInputDialog();
+                newLabel.setHeaderText("Enter New Tag Type'");
+                newLabel.showAndWait();
+
+                String type = newLabel.getResult().trim();
+                if(tagTypes.contains(type)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Type already exists!", ButtonType.CLOSE);
+                    alert.showAndWait();
+                    return;
+                }else{
+                    tagTypes.add(type);
+                    tagTypeChoiceBox.setValue(type);
+                }
+            } else {
+                return;
+            }
+        }
+        else{
+            return;
+        }
     }
 
     @FXML
@@ -286,7 +325,7 @@ public class DisplayPhotoController implements Initializable {
     public void turnOffEditing(){
         editMode = false;
        // tagsListView.setDisable(true);
-        //captionTextField.setDisable(true);
+        captionTextField.setDisable(true);
         photoChoicesChoiceBox.setDisable(true);
         photoChoicesChoiceBox.setVisible(false);
 
@@ -296,12 +335,14 @@ public class DisplayPhotoController implements Initializable {
         addTagButton.setDisable(true);
         addTagButton.setVisible(false);
 
+        tagTypeChoiceBox.setDisable(true);
+        tagTypeChoiceBox.setVisible(false);
     }
 
     public void turnOnEditing(){
         editMode = true;
         //tagsListView.setDisable(false);
-        //captionTextField.setDisable(false);
+        captionTextField.setDisable(false);
         photoChoicesChoiceBox.setDisable(false);
         photoChoicesChoiceBox.setVisible(true);
 
@@ -311,56 +352,14 @@ public class DisplayPhotoController implements Initializable {
         addTagButton.setDisable(false);
         addTagButton.setVisible(true);
 
+        tagTypeChoiceBox.setDisable(false);
+        tagTypeChoiceBox.setVisible(true);
+        tagTypeChoiceBox.setItems(tagTypes);
+
     }
 
 
-    public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
-        // System.out.println("Hello heloo");
-        this.user = user;
-        this.album = album;
-        this.photo = photo;
-        System.out.println("Setting user and album of stock photo controller: " + this.album );
-        System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
-        // System.out.println(this.album);
 
-        photoImageView.setFitHeight(250);
-        photoImageView.setFitWidth(250);
-        if(this.photo.getIsStock()){
-            System.out.println("File Path : " + this.photo.getFilePathLocal());
-            Image myImage = new Image(this.photo.getFilePathLocal());
-            photoImageView.setImage(myImage);
-        }
-        else{
-            String path = this.photo.getFilePathLocal();
-            File myFile = new File(path);
-            Image myImage = new Image(myFile.toURI().toString());
-            photoImageView.setImage(myImage);
-        }
-
-        captionTextField.setText(this.photo.getCaption());
-        //captionTextField.setDisable(true);
-        dateLabel.setText(this.photo.getDate());
-
-        //System.out.println(photo.getTags().values());
-        ArrayList<TagNode> temp = photo.getTags();
-        TagNode t = null;
-        for(int i = 0; i < temp.size();i++){
-            t = temp.get(i);
-
-            tags.add(t.getValue() + "[" + t.getTag() + "]");
-        }
-        //tags.addAll(photo.getTags());
-
-        for(String iterator : tags){
-            System.out.println(iterator);
-        }
-
-        tagsListView.setItems(tags);
-
-        photoChoicesChoiceBox.getItems().add("Delete Photo");
-        photoChoicesChoiceBox.getItems().add("Move Photo");
-        photoChoicesChoiceBox.getItems().add("Copy Photo");
-    }
 
     public void prevPhotoPressed(ActionEvent actionEvent) throws IOException {
 
@@ -386,6 +385,7 @@ public class DisplayPhotoController implements Initializable {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         }
         else{
@@ -399,7 +399,7 @@ public class DisplayPhotoController implements Initializable {
 
         int currIndex = album.getPhotos().indexOf(photo);
 
-        if(currIndex < album.getPhotos().size()){
+        if(currIndex < album.getPhotos().size()-1){
             PhotoDetail nextPhoto = album.getPhotos().get(currIndex + 1);
             System.out.println("Next Photo: " + nextPhoto.getCaption());
 
@@ -417,10 +417,69 @@ public class DisplayPhotoController implements Initializable {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setResizable(false);
             stage.show();
         }
         else{
             return;
         }
+    }
+
+    public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
+        // System.out.println("Hello heloo");
+        this.user = user;
+        this.album = album;
+        this.photo = photo;
+        System.out.println("Setting user and album of stock photo controller: " + this.album );
+        System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
+        // System.out.println(this.album);
+
+        photoImageView.setFitHeight(200);
+        photoImageView.setFitWidth(200);
+        if(this.photo.getIsStock()){
+            System.out.println("File Path : " + this.photo.getFilePathLocal());
+            Image myImage = new Image(this.photo.getFilePathLocal());
+            photoImageView.setImage(myImage);
+        }
+        else{
+            String path = this.photo.getFilePathLocal();
+            File myFile = new File(path);
+            Image myImage = new Image(myFile.toURI().toString());
+            photoImageView.setImage(myImage);
+        }
+
+        int currIndex = album.getPhotos().indexOf(photo);
+        if(currIndex == 0){
+            prevPhotoButton.setDisable(true);
+        }
+        else if(currIndex == album.getPhotos().size()-1){
+            nextPhotoButton.setDisable(true);
+        }
+        captionTextField.setText(this.photo.getCaption());
+        captionTextField.setDisable(true);
+        dateLabel.setText(this.photo.getDate());
+
+        ArrayList<TagNode> temp = photo.getTags();
+        TagNode t = null;
+        for(int i = 0; i < temp.size();i++){
+            t = temp.get(i);
+
+            tags.add(t.getValue() + "[" + t.getTag() + "]");
+        }
+        //tags.addAll(photo.getTags());
+
+        for(String iterator : tags){
+            System.out.println(iterator);
+        }
+
+        tagsListView.setItems(tags);
+
+        tagTypes.add("Person");
+        tagTypes.add("Color");
+        tagTypes.add("Add New Type");
+
+        photoChoicesChoiceBox.getItems().add("Delete Photo");
+        photoChoicesChoiceBox.getItems().add("Move Photo");
+        photoChoicesChoiceBox.getItems().add("Copy Photo");
     }
 }
