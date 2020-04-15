@@ -80,76 +80,78 @@ public class AlbumsMainController implements Initializable{
 //ONCLICK METHODS
     @FXML
     private void searchButtonPressed(ActionEvent e) throws IOException {
-//        String searchedText = searchAlbumsTextField.getText().trim();
-//
-//        //not allowing user to search for nothing, no need for alert because google does not alert
-//        if(searchedText.length() == 0){ return; }
-//
-//        ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
-//
-//        String[] part = searchedText.split("[ =]+");
-//        String tag = part[0];
-//        String value = part[1];
-//
-//
-//
-//        if(part.length > 2){
-//            String logical = part[2].toLowerCase();
-//            String tag2 = part[3];
-//            String value2 = part[4];
-//
-//            for(AlbumDetail a : user.getAlbums()){
-//                for(PhotoDetail p : a.getPhotos()){
-//                    if(logical.equals("and")) {
-//                        if (p.getTags().containsValue(value) && p.getTags().containsValue(value2)) {
-//                            temp.add(p);
-//                        }
-//                    }
-//                    else if(logical.equals("or")){
-//                        if(p.getTags().containsValue(value) || p.getTags().containsValue(value2)){
-//                            temp.add(p);
-//                        }
-//                    }
-//                }
-//            }
-//
-//
-//        }else{
-//            for(AlbumDetail a : user.getAlbums()){
-//                for(PhotoDetail p : a.getPhotos()){
-//                    if(p.getTags().containsValue(value)) {
-//                        temp.add(p);
-//                    }
-//                }
-//            }
-//        }
-//
-//
-//
-//        if(temp.size() == 0){
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION, "There are no search results", ButtonType.CLOSE);
-//            alert.showAndWait();
-//            return;
-//        }
-//
-//        AlbumDetail tempAlbum = new AlbumDetail(searchedText, temp);
-//
-//        Stage stage = null;
-//        Parent root = null;
-//        FXMLLoader loader = new FXMLLoader();
-//
-//        stage = (Stage) AlbumsListView.getScene().getWindow();
-//        loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
-//        root = loader.load();
-//        AlbumDetailController next = loader.getController();
-//        next.setAlbumAndUser(user, tempAlbum);
-//        next.setSearch();
-//
-//        Scene scene = new Scene(root);
-//        stage.setScene(scene);
-//        stage.show();
-//
-//        //make sure to disable add photo button
+        String searchedText = searchAlbumsTextField.getText().trim();
+
+        //not allowing user to search for nothing, no need for alert because google does not alert
+        if(searchedText.length() == 0){ return; }
+
+        ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
+
+        String[] part = searchedText.split("[ =]+");
+        TagNode searchTagNode = new TagNode(part[0], part[1]);
+
+
+
+
+        if(part.length > 2){
+            String logical = part[2].toLowerCase();
+            String tag2 = part[3];
+            String value2 = part[4];
+
+            TagNode searchTagNode2 = new TagNode(part[3], part[4]);
+
+            for(AlbumDetail a : user.getAlbums()){
+                for(PhotoDetail p : a.getPhotos()){
+                    if(logical.equals("and")) {
+                        if (p.getTags().contains(searchTagNode) && p.getTags().contains(searchTagNode2)) {
+                            temp.add(p);
+                        }
+                    }
+                    else if(logical.equals("or")){
+                        if(p.getTags().contains(searchTagNode) || p.getTags().contains(searchTagNode2)){
+                            temp.add(p);
+                        }
+                    }
+                }
+            }
+
+
+        }else{
+            for(AlbumDetail a : user.getAlbums()){
+                for(PhotoDetail p : a.getPhotos()){
+                    if(p.getTags().contains(searchTagNode)) {
+                        temp.add(p);
+                    }
+                }
+            }
+        }
+
+
+
+        if(temp.size() == 0){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "There are no search results", ButtonType.CLOSE);
+            alert.showAndWait();
+            return;
+        }
+
+        AlbumDetail tempAlbum = new AlbumDetail(searchedText, temp);
+
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) AlbumsListView.getScene().getWindow();
+        loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+        root = loader.load();
+        AlbumDetailController next = loader.getController();
+        next.setAlbumAndUser(user, tempAlbum);
+        next.setSearch();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+        //make sure to disable add photo button
 
     }
 
