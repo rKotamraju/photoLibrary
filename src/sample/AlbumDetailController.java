@@ -58,6 +58,11 @@ public class AlbumDetailController implements Initializable {
 
     final ObservableList<ImageDetail> albumsObservableList = observableArrayList();
 
+    /**
+     * Initializes the Table View with the photos and captions currently in the album
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -77,6 +82,12 @@ public class AlbumDetailController implements Initializable {
         //albumTableView.getColumns().addAll(column1, column2);
 
     }
+
+    /**
+     * Allows user to log out to the login screen and saves current state
+     * @param e User clicked log out
+     * @throws IOException
+     */
 
     //On Click Methods
     @FXML
@@ -100,6 +111,11 @@ public class AlbumDetailController implements Initializable {
 
     }
 
+    /**
+     * Allows user to go back to the previous screen which displays all the albums of the user
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void backPressed(ActionEvent e) throws IOException {
         System.out.println("Going back to albums main screen");
@@ -122,6 +138,11 @@ public class AlbumDetailController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Takes user to a screen which allows them to add a new photo to the album
+     * @param e User clicked add photo
+     * @throws IOException
+     */
     @FXML
     private void addPhotoPressed(ActionEvent e) throws IOException{
 
@@ -142,6 +163,10 @@ public class AlbumDetailController implements Initializable {
 
     }
 
+    /**
+     * Allows user to create a new album and takes back to albumMain screen where all the albums (including new) are displayed
+     * @throws IOException
+     */
     @FXML
     private void createAlbumPressed() throws IOException {
         //maybe change name because we have the same method in the AlbumsMainController
@@ -185,6 +210,11 @@ public class AlbumDetailController implements Initializable {
 
     }
 
+    /**
+     * Takes to the display photo screen which displays the elements of the photo selected and allows editing
+     * @param mouseEvent Picked a picture
+     * @throws IOException
+     */
     public void pictureSelected(MouseEvent mouseEvent) throws IOException {
         System.out.println("picture selected");
 
@@ -232,6 +262,12 @@ public class AlbumDetailController implements Initializable {
 //        System.out.println("Picture clicked in table view");
 //    }
 
+    /**
+     * Allows user to pass the current User and Album into this screen
+     * @param user
+     * @param album
+     */
+
     public void setAlbumAndUser(UserDetail user, AlbumDetail album){
         this.user = user;
         this.album = album;
@@ -245,6 +281,9 @@ public class AlbumDetailController implements Initializable {
 
     }
 
+    /**
+     * Allows user to set whether the page is in search mode or not
+     */
     public void setSearch(){
         if(this.search){
             this.search = false;

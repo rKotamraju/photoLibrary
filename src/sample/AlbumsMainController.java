@@ -66,6 +66,11 @@ public class AlbumsMainController implements Initializable{
     @FXML
     private ComboBox searchComboBox;
 
+    /**
+     * Initializes this screen by loading all the current albums of the user into a listview
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -90,6 +95,13 @@ public class AlbumsMainController implements Initializable{
     }
 
 //ONCLICK METHODS
+
+    /**
+     * Allows user to search by date or tags - calls respective methods
+     * @param e
+     * @throws IOException
+     * @throws ParseException
+     */
     @FXML
     private void searchButtonPressed(ActionEvent e) throws IOException, ParseException {
 
@@ -108,6 +120,12 @@ public class AlbumsMainController implements Initializable{
 
     }
 
+    /**
+     * Allows user to search by a date range specified. Returns all photos in all albums of the current user that meet the date range (inclusive)
+     * @param searchedText
+     * @throws IOException
+     * @throws ParseException
+     */
     private void searchByDate(String searchedText) throws IOException, ParseException {
 
         //Make sure they are entering the date in the correct format
@@ -166,6 +184,11 @@ public class AlbumsMainController implements Initializable{
         System.out.println("Searching By date");
     }
 
+    /**
+     * Allows user to search all albums of the current user for photos that match the tag value pairs
+     * @param searchedText
+     * @throws IOException
+     */
     private void searchByTag(String searchedText) throws IOException{
 
 
@@ -241,6 +264,10 @@ public class AlbumsMainController implements Initializable{
         stage.show();
     }
 
+    /**
+     * Takes user to the screen which displays contents of the album selected
+     * @throws IOException
+     */
     @FXML
     private void goToAlbumDetailScreen() throws IOException{
         //ERROR: For some reason cannot click on listview with ActionEvent e as parameter
@@ -268,12 +295,21 @@ public class AlbumsMainController implements Initializable{
 
     }
 
+    /**
+     * Checks if there are any albums
+     */
+
     public void isListViewEmpty(){
         if(albumsObservableList.size() == 0){
             AlbumsListView.setDisable(true);
         }
     }
 
+    /**
+     * Allows user to log out to the login screen
+     * @param e
+     * @throws IOException
+     */
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
         System.out.println("Logging out from albums main screen");
@@ -295,6 +331,10 @@ public class AlbumsMainController implements Initializable{
         stage.show();
     }
 
+    /**
+     * Allows user to select an album to delete or rename. Turns off display for album details
+     * @param e
+     */
     @FXML
     private void selectPressed(ActionEvent e){
         editMode = true;
@@ -313,6 +353,10 @@ public class AlbumsMainController implements Initializable{
 
     }
 
+    /**
+     * Allows user to exit select mode without selecting anything
+     * @param e
+     */
     @FXML
     private void cancelPressed(ActionEvent e){
         disableEditingMode();
@@ -320,6 +364,9 @@ public class AlbumsMainController implements Initializable{
     }
 
 
+    /**
+     * Allows user to create a new album and checks whether the album name already exists
+     */
     @FXML
     private void createAlbumPressed(){
 
@@ -361,6 +408,10 @@ public class AlbumsMainController implements Initializable{
 
     }
 
+    /**
+     * Allows user to rename a album
+     * @param e
+     */
     @FXML
     private void renameAlbumPressed(ActionEvent e){
         editMode = true;
@@ -390,6 +441,10 @@ public class AlbumsMainController implements Initializable{
         selectAlbumButton.setDisable(false);
     }
 
+    /**
+     * Allows user to delete an album
+     * @param e
+     */
     @FXML
     private void deleteAlbumPressed(ActionEvent e){
 
@@ -420,6 +475,10 @@ public class AlbumsMainController implements Initializable{
             selectAlbumButton.setDisable(false);
     }
 
+    /**
+     * Allows user to pass current user to this screen and set the observable list to the albums of that user
+     * @param user
+     */
     public void setUser(UserDetail user){
         this.user = user;
         albumsObservableList.addAll(user.getAlbums());
@@ -430,6 +489,9 @@ public class AlbumsMainController implements Initializable{
         }
     }
 
+    /**
+     * Disables editing mode - when user presses an album, takes to album display screen
+     */
     private void disableEditingMode(){
         renameAlbumButton.setDisable(true);
         renameAlbumButton.setVisible(false);

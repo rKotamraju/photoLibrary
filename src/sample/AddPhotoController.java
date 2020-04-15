@@ -355,7 +355,7 @@ public class AddPhotoController implements Initializable{
     }
 
     /**
-     * Saves
+     * Prompts user to add a new tag type and determines whether type already exists or not
      * @param e User chooses to add a new tag type
      *
      */
@@ -401,6 +401,11 @@ public class AddPhotoController implements Initializable{
         }
     }
 
+    /**
+     * Allows user to pass current user and album to this screen
+     * @param user Current user of application
+     * @param album Current Album
+     */
     public void setAlbumAndUser(UserDetail user, AlbumDetail album){
         this.user = user;
         this.album = album;
