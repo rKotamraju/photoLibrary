@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DisplayPhotoController implements Initializable {
+public class DisplayPhotoController extends StockPhotosController implements Initializable {
     //Fields
     private UserDetail user;
     public AlbumDetail album; //why is this public?
@@ -193,7 +193,7 @@ public class DisplayPhotoController implements Initializable {
                 AlbumDetail toAlbum = null;
                 for(AlbumDetail a : user.getAlbums()) {
 
-                    if(a.name.equals(toAlbumString)) {
+                    if(a.getName().equals(toAlbumString)) {
                         toAlbum = a;
                     }
 
@@ -250,7 +250,7 @@ public class DisplayPhotoController implements Initializable {
                 AlbumDetail toAlbum = null;
                 for(AlbumDetail a : user.getAlbums()) {
 
-                    if(a.name.equals(toAlbumString)) {
+                    if(a.getName().equals(toAlbumString)) {
                         toAlbum = a;
                     }
 
