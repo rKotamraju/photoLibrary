@@ -22,11 +22,10 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.net.MalformedURLException;
 import java.net.URL;
+//import java.sql.Time;
 import java.sql.Time;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class AddPhotoController implements Initializable{
 
@@ -160,6 +159,7 @@ public class AddPhotoController implements Initializable{
         System.out.println("About to set ImageView");
 
         isStock = false;
+        isStock = false;
         photoImageView.setImage(myImage);
 
         addPhotoButton.setDisable(false);
@@ -176,13 +176,12 @@ public class AddPhotoController implements Initializable{
         String photoPath = path;
 
         File myFile = new File(path);
+        String date = new SimpleDateFormat("MM/dd/yy").format(myFile.lastModified());
 
-        //Save Time/Date of Image
-        Time timeOfPicture = new Time(myFile.lastModified());
-        System.out.println("Date: " + timeOfPicture); //hour, minute, second format
+        System.out.println("Date (USING CAL) : " + date); //hour, minute, second format
 
         //Create photo object
-        PhotoDetail newPhoto = new PhotoDetail(caption, listOfTags, photoPath, timeOfPicture, isStock);
+        PhotoDetail newPhoto = new PhotoDetail(caption, listOfTags, photoPath, date, isStock);
         //System.out.println("Photo added : " + photo.filePathLocal + " caption : " + photo.caption + " date: " + photo.time);
         System.out.println(Arrays.asList(listOfTags));
 

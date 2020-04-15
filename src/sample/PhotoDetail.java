@@ -5,8 +5,10 @@ import javafx.scene.image.ImageView;
 
 import java.io.File;
 import java.io.Serializable;
+
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class PhotoDetail implements Serializable {
@@ -20,14 +22,14 @@ public class PhotoDetail implements Serializable {
 
     private String caption;
     private String filePathLocal;
-    private Time time;
+    private String date;
     private boolean isStock;
 
-    public PhotoDetail(String caption, ArrayList<TagNode> tags, String filePath, Time time, boolean isStock){
+    public PhotoDetail(String caption, ArrayList<TagNode> tags, String filePath, String date, boolean isStock){
         this.caption = caption;
         this.tags = tags;
         this.filePathLocal = filePath;
-        this.time = time;
+        this.date = date;
         this.isStock = isStock;
     }
 
@@ -48,8 +50,8 @@ public class PhotoDetail implements Serializable {
         return filePathLocal;
     }
 
-    public String getTime(){
-        return time.toString();
+    public String getDate(){
+        return date;
     }
 
     public boolean getIsStock(){
@@ -78,6 +80,7 @@ public class PhotoDetail implements Serializable {
     public void addTag(TagNode tag){
         tags.add(tag);
     }
+
 
 
 }
