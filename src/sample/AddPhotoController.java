@@ -1,6 +1,5 @@
 package sample;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +14,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.imageio.ImageIO;
 import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -283,27 +281,27 @@ public class AddPhotoController implements Initializable{
         String tempPath;
         if(subject.equals("cat")){
             System.out.println("Cat selected");
-            tempPath = "/Image/cat_caviar.jpg";
+            tempPath = "/data/cat_caviar.jpg";
         }
         else if(subject.equals("dog")){
             System.out.println("Dog selected");
-            tempPath = "/Image/puppy.jpeg";
+            tempPath = "/data/puppy.jpeg";
         }
         else if(subject.equals("chocolate")){
             System.out.println("Chocolate selected");
-            tempPath = "/Image/chocolate.jpg";
+            tempPath = "/data/chocolate.jpg";
         }
         else if(subject.equals("family")){
             System.out.println("Family selected");
-            tempPath= "/Image/family.jpeg";
+            tempPath= "/data/family.jpeg";
         }
         else if(subject.equals("baby")){
             System.out.println("Baby selected");
-            tempPath = "/Image/happy.jpg";
+            tempPath = "/data/happy.jpg";
         }
         else{
             System.out.println("Flower selected");
-            tempPath = "/Image/flower.jpg";
+            tempPath = "/data/flower.jpg";
         }
 
         path = tempPath;

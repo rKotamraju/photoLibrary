@@ -11,12 +11,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.io.EOFException;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -57,7 +55,13 @@ public class LoginScreenController implements Initializable {
         }
 
         if(UsersList.getInstance().getUsers().size() == 0){
-            setUpStock();
+            try {
+                setUpStock();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
             try {
                 UsersList.getInstance().writeApp();
             } catch (IOException e) {
@@ -70,19 +74,24 @@ public class LoginScreenController implements Initializable {
     /**Sets up permanent stock user with a stock album of stock photos
      * Must be in every run of application
      */
-    private void setUpStock(){
+    private void setUpStock() throws IOException, ClassNotFoundException {
 
         String str = "stock";
         String album = "Stock Album";
 
         UsersList.getInstance().addUser(new UserDetail(str));
         UsersList.getInstance().getUser(str).addAlbum(new AlbumDetail(album));
-        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 1", "/Image/cat_caviar.jpg/", true));
-        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 2", "/Image/chocolate.jpg/", true));
-        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 3", "/Image/family.jpeg/", true));
-        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 4", "/Image/flower.jpg/", true));
-        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 5", "/Image/happy.jpg/", true));
-        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 6", "/Image/puppy.jpeg/", true));
+//
+//        DirectoryChooser dc = new DirectoryChooser();
+//        dc.setInitialDirectory(new File("data"));
+
+       // File selected = dc.showDialog()
+        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 1", "../../data/puppy.jpeg/", true));
+//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 2", "/data/chocolate.jpg/", true));
+//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 3", "/data/family.jpeg/", true));
+//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 4", "/data/flower.jpg/", true));
+//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 5", "/data/happy.jpg/", true));
+//        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 6", "/data/puppy.jpeg/", true));
     }
 
     /**

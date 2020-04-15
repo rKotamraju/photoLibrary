@@ -53,7 +53,6 @@ public class UsersList implements Serializable {
                 ObjectInputStream( new FileInputStream(storeDir + File.separator + storeFile));
 
         usersList = (UsersList) ois.readObject();
-
     }
 
     public boolean checkName(String name){
