@@ -80,6 +80,9 @@ public class DisplayPhotoController implements Initializable {
     @FXML
     private ListView tagsListView;
 
+    @FXML
+    private ListView<AlbumDetail> albumsListView;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         turnOffEditing();
@@ -89,6 +92,8 @@ public class DisplayPhotoController implements Initializable {
     final ObservableList<String> tags = FXCollections.observableArrayList();
 
     final ObservableList<String> tagTypes = FXCollections.observableArrayList();
+
+    final ObservableList<AlbumDetail> albumsObservableList = FXCollections.observableArrayList();
 
     Boolean editMode;
 
@@ -132,7 +137,7 @@ public class DisplayPhotoController implements Initializable {
         stage.show();
     }
 
-
+@FXML
     private void deletePressed() throws IOException {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this photo?", ButtonType.CANCEL, ButtonType.YES);
@@ -161,58 +166,97 @@ public class DisplayPhotoController implements Initializable {
             stage.show();
         }
     }
+
+    @FXML
+    public void pickedAlbum(MouseEvent e){
+        photoChoicesChoiceBox.getSelectionModel().clearSelection();
+    }
+    @FXML
     public void photoChoiceClicked(ActionEvent e) throws IOException {
-        if(photoChoicesChoiceBox.getValue().equals("Delete Photo")){
-            deletePressed();
-        }
+        if(photoChoicesChoiceBox.getSelectionModel().getSelectedItem()!=null) {
+            if (photoChoicesChoiceBox.getValue().equals("Delete Photo")) {
+                deletePressed();
+            } else if (photoChoicesChoiceBox.getValue().equals("Move Photo")) {
+                if (albumsListView.getSelectionModel().getSelectedItem() == null) {
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "First pick an album to move the photo to!", ButtonType.CLOSE);
+                    alert.showAndWait();
+                    System.out.println("Right before return");
+                    return;
+                } else {
+                    AlbumDetail toAlbum = albumsListView.getSelectionModel().getSelectedItem();
 
-        else if(photoChoicesChoiceBox.getValue().equals("Move Photo")){
+                    if (album.equals(toAlbum)) {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cannot move to same album", ButtonType.CLOSE);
+                        alert.showAndWait();
+                        return;
+                    } else {
+                        toAlbum.addPhoto(photo);
 
-            TextInputDialog moveAlbumPrompt = new TextInputDialog();
-            moveAlbumPrompt.setHeaderText("Which album do you want to move this picture to?'");
-            moveAlbumPrompt.showAndWait();
+                        album.removePhoto(photo);
 
-            String moveAlbum = moveAlbumPrompt.getResult();
+                        Stage stage = null;
+                        Parent root = null;
+                        FXMLLoader loader = new FXMLLoader();
 
-            AlbumDetail toAlbum = user.getAlbum(moveAlbum);
+                        stage = (Stage) photoChoicesChoiceBox.getScene().getWindow();
 
-            toAlbum.addPhoto(photo);
+                        loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+                        root = loader.load();
 
-            album.removePhoto(photo);
+                        AlbumDetailController next = loader.getController();
+                        next.setAlbumAndUser(user, album);
 
-            Stage stage = null;
-            Parent root = null;
-            FXMLLoader loader = new FXMLLoader();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }
 
-            stage = (Stage) photoChoicesChoiceBox.getScene().getWindow();
 
-            loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
-            root = loader.load();
+                }
 
-            AlbumDetailController next = loader.getController();
-            next.setAlbumAndUser(user,album);
+            } else if (photoChoicesChoiceBox.getValue().equals("Copy Photo")) {
 
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }
+                if (albumsListView.getSelectionModel().getSelectedItem() == null) {
+                    //photoChoicesChoiceBox.setValue(null);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "First pick an album to copy the photo to!", ButtonType.CLOSE);
+                    alert.showAndWait();
+                    //photoChoicesChoiceBox.getSelectionModel().clearSelection();
+                    return;
+                }
+                else{
 
-        else if(photoChoicesChoiceBox.getValue().equals("Copy Photo")){
-            TextInputDialog moveAlbumPrompt = new TextInputDialog();
-            moveAlbumPrompt.setHeaderText("Which album do you want to copy this picture to?'");
-            moveAlbumPrompt.showAndWait();
+                    AlbumDetail toAlbum = albumsListView.getSelectionModel().getSelectedItem();
 
-            String moveAlbum = moveAlbumPrompt.getResult();
 
-            AlbumDetail toAlbum = user.getAlbum(moveAlbum);
+                    if (album.equals(toAlbum)) {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Cannot copy to same album", ButtonType.CLOSE);
+                        alert.showAndWait();
+                       // photoChoicesChoiceBox.setValue(null);
+                        return;
+                    }
+                    else {
+                        toAlbum.addPhoto(photo);
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Copied!", ButtonType.CLOSE);
+                        alert.showAndWait();
+                    }
 
-            toAlbum.addPhoto(photo);
+                }
+            }
+        }else{
+            return;
         }
     }
 
     @FXML
     private void editPressed(ActionEvent e){
         turnOnEditing();
+        ArrayList<AlbumDetail> albumsArrayList = user.getAlbums();
+
+        for(AlbumDetail a : albumsArrayList){
+            albumsObservableList.add(a);
+        }
+
+        albumsListView.setItems(albumsObservableList);
     }
 
     @FXML
@@ -360,6 +404,12 @@ public class DisplayPhotoController implements Initializable {
 
         tagTextField.setDisable(true);
         tagTextField.setVisible(false);
+
+        albumsListView.setDisable(true);
+        albumsListView.setVisible(false);
+
+        nextPhotoButton.setDisable(false);
+        prevPhotoButton.setDisable(false);
     }
 
     public void turnOnEditing(){
@@ -381,6 +431,12 @@ public class DisplayPhotoController implements Initializable {
 
         tagTextField.setDisable(false);
         tagTextField.setVisible(true);
+
+        albumsListView.setDisable(false);
+        albumsListView.setVisible(true);
+
+        nextPhotoButton.setDisable(true);
+        prevPhotoButton.setDisable(true);
     }
 
 
@@ -483,6 +539,8 @@ public class DisplayPhotoController implements Initializable {
         captionTextField.setText(this.photo.getCaption());
         captionTextField.setDisable(true);
         dateLabel.setText(this.photo.getDate());
+        albumsListView.setDisable(true);
+        albumsListView.setVisible(false);
         tagTextField.setDisable(true);
         tagTextField.setVisible(false);
 
