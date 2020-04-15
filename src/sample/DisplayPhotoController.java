@@ -355,4 +355,21 @@ public class DisplayPhotoController implements Initializable {
         photoChoicesChoiceBox.getItems().add("Move Photo");
         photoChoicesChoiceBox.getItems().add("Copy Photo");
     }
+
+    public void prevPhotoPressed(ActionEvent actionEvent) {
+
+        System.out.println("In prev photo");
+
+        int currIndex = album.getPhotos().indexOf(photo);
+
+        if(currIndex > 0){
+            PhotoDetail prevPhoto = album.getPhotos().get(currIndex - 1);
+            System.out.println("Prev Photo: " + prevPhoto.getCaption());
+        }
+
+    }
+
+    public void nextPhotoPressed(ActionEvent actionEvent) {
+
+    }
 }

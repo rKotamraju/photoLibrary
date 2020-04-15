@@ -250,6 +250,7 @@ public class AlbumsMainController implements Initializable{
 
         //if the user presses cancel
         if(td.getResult() == null){
+            editMode = false;
             return;
         }
 
