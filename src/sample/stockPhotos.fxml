@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
@@ -50,23 +51,22 @@
             </VBox>
          </center>
          <top>
-            <HBox prefHeight="68.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <AnchorPane BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="backButton" mnemonicParsing="false" onAction="#backButtonClicked" text="Back" styleClass="backButton">
-                     <HBox.margin>
-                        <Insets left="20.0" top="25.0" />
-                     </HBox.margin></Button>
-                  <Label text="Choose Stock Photo" textFill="#8267d3">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="198.5" layoutY="15.0" styleClass="albumsLabel" text="Choose Stock Photo" textAlignment="CENTER" textFill="#8267d3" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
                      <font>
                         <Font name="Avenir Next Condensed Bold" size="30.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets left="130.0" top="15.0" />
-                     </HBox.margin>
                   </Label>
+                  <Button fx:id="backButton" layoutX="20.0" layoutY="25.0" mnemonicParsing="false" onAction="#backButtonClicked" styleClass="backButton" text="Back" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="25.0" />
                </children>
-            </HBox>
+            </AnchorPane>
          </top>
       </BorderPane>
    </children>
+
+   <stylesheets>
+      <URL value="@buttons.css" />
+   </stylesheets>
+
 </AnchorPane>

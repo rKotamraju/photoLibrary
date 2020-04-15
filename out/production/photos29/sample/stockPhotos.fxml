@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import java.net.URL?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.StockPhotosController">
    <children>
       <BorderPane prefHeight="400.0" prefWidth="600.0">
@@ -69,4 +70,9 @@
          </top>
       </BorderPane>
    </children>
+
+   <stylesheets>
+      <URL value="@buttons.css" />
+   </stylesheets>
+
 </AnchorPane>
