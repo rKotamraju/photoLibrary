@@ -34,7 +34,7 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Button>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" text="Cancel" styleClass="backButton">
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelPressed" styleClass="backButton" text="Cancel">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -56,7 +56,7 @@
                </VBox.margin>
                <children>
                   <TextField fx:id="searchAlbumsTextField" prefHeight="33.0" prefWidth="311.0" promptText="Search Albums" styleClass="text-field" />
-                  <Button fx:id="searchButton" mnemonicParsing="false" onAction="#searchButtonPressed" text="Search" />
+                  <Button fx:id="searchButton" cache="true" cacheHint="SCALE" mnemonicParsing="false" onAction="#searchButtonPressed" prefHeight="27.0" prefWidth="93.0" styleClass="searchButton" text="Search" />
                </children>
             </HBox>
             <ListView fx:id="AlbumsListView" onMouseClicked="#goToAlbumDetailScreen" prefHeight="200.0" prefWidth="200.0">
