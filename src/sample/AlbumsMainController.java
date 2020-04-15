@@ -14,7 +14,11 @@ import javafx.fxml.Initializable;
 
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.net.URL;
 
@@ -87,7 +91,7 @@ public class AlbumsMainController implements Initializable{
 
 //ONCLICK METHODS
     @FXML
-    private void searchButtonPressed(ActionEvent e) throws IOException {
+    private void searchButtonPressed(ActionEvent e) throws IOException, ParseException {
 
         if(searchComboBox.getSelectionModel().isSelected(0)){
             searchByTag();
@@ -95,12 +99,47 @@ public class AlbumsMainController implements Initializable{
             searchByDate();
         }
 
-        //make sure to disable add photo button
-
     }
 
-    private void searchByDate() throws IOException{
+    private void searchByDate() throws IOException, ParseException {
         String searchedText = searchAlbumsTextField.getText().trim();
+
+        //Make sure they are entering the date in the correct format
+        //mm/dd/year to mm/dd/year
+        String[] dates = searchedText.split("[ to]+");
+
+        Date startDate = new SimpleDateFormat("MM/dd/yyyy").parse(dates[0]);
+
+        Date endDate = new SimpleDateFormat("MM/dd/yyyy").parse(dates[1]);
+
+        ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
+
+        for(AlbumDetail a : user.getAlbums()){
+            for(PhotoDetail p : a.getPhotos()){
+                Date photoDate = new SimpleDateFormat("MM/dd/yyyy").parse(p.getDate());
+                if(photoDate.after(startDate) && photoDate.before(endDate)) {
+                    temp.add(p);
+                }
+            }
+        }
+
+
+        AlbumDetail tempAlbum = new AlbumDetail(searchedText, temp);
+
+        Stage stage = null;
+        Parent root = null;
+        FXMLLoader loader = new FXMLLoader();
+
+        stage = (Stage) AlbumsListView.getScene().getWindow();
+        loader.setLocation(getClass().getResource("albumDetailScreen.fxml"));
+        root = loader.load();
+        AlbumDetailController next = loader.getController();
+        next.setAlbumAndUser(user, tempAlbum);
+        next.setSearch();
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
         System.out.println("Searching By date");
     }
