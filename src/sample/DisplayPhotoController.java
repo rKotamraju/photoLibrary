@@ -546,7 +546,7 @@ public class DisplayPhotoController implements Initializable {
 
         ArrayList<TagNode> temp = photo.getTags();
         TagNode t = null;
-        for(int i = 0; i < temp.size();i++){
+        for(int i = 0; i < temp.size(); i++){
             t = temp.get(i);
 
             tags.add(t.getValue() + "[" + t.getTag() + "]");

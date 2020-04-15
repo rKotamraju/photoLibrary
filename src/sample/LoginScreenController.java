@@ -59,14 +59,18 @@ public class LoginScreenController implements Initializable {
     }
 
     private void setUpStock(){
-        UsersList.getInstance().addUser(new UserDetail("Stock"));
-        UsersList.getInstance().getUser("Stock").addAlbum(new AlbumDetail("Stock Album"));
-        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 1", "/Image/cat_caviar.jpg/", true));
-        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 2", "/Image/chocolate.jpg/", true));
-        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 3", "/Image/family.jpeg/", true));
-        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 4", "/Image/flower.jpg/", true));
-        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 5", "/Image/happy.jpg/", true));
-        UsersList.getInstance().getUser("Stock").getAlbum("Stock Album").addPhoto(new PhotoDetail("StockImage 6", "/Image/puppy.jpeg/", true));
+
+        String str = "stock";
+        String album = "Stock Album";
+
+        UsersList.getInstance().addUser(new UserDetail(str));
+        UsersList.getInstance().getUser(str).addAlbum(new AlbumDetail(album));
+        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 1", "/Image/cat_caviar.jpg/", true));
+        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 2", "/Image/chocolate.jpg/", true));
+        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 3", "/Image/family.jpeg/", true));
+        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 4", "/Image/flower.jpg/", true));
+        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 5", "/Image/happy.jpg/", true));
+        UsersList.getInstance().getUser(str).getAlbum(album).addPhoto(new PhotoDetail("StockImage 6", "/Image/puppy.jpeg/", true));
     }
 
     @FXML

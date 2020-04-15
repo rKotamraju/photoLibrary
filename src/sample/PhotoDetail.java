@@ -3,10 +3,12 @@ package sample;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import javax.swing.text.html.HTML;
 import java.io.File;
 import java.io.Serializable;
 
 import java.sql.Time;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -37,6 +39,8 @@ public class PhotoDetail implements Serializable {
         this.caption = caption;
         this.filePathLocal = filePathLocal;
         this.isStock = isStock;
+        this.tags = new ArrayList<TagNode>();
+        this.date = new SimpleDateFormat("MM/dd/yyyy").format(new Date());
 
     }
 
