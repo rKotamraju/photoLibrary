@@ -93,24 +93,44 @@ public class AlbumsMainController implements Initializable{
     @FXML
     private void searchButtonPressed(ActionEvent e) throws IOException, ParseException {
 
+        ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
+        String searchedText = searchAlbumsTextField.getText().trim();
+        //not allowing user to search for nothing, no need for alert because google does not alert
+        if(searchedText.length() == 0){ return; }
+
         if(searchComboBox.getSelectionModel().isSelected(0)){
-            searchByTag();
+            searchByTag(searchedText);
         }else{
-            searchByDate();
+            searchByDate(searchedText);
         }
+
+
 
     }
 
-    private void searchByDate() throws IOException, ParseException {
-        String searchedText = searchAlbumsTextField.getText().trim();
+    private void searchByDate(String searchedText) throws IOException, ParseException {
 
         //Make sure they are entering the date in the correct format
         //mm/dd/year to mm/dd/year
         String[] dates = searchedText.split("[ to]+");
 
-        Date startDate = new SimpleDateFormat("MM/dd/yyyy").parse(dates[0]);
+        Date startDate;
+        Date endDate;
 
-        Date endDate = new SimpleDateFormat("MM/dd/yyyy").parse(dates[1]);
+        if(dates.length < 2 || searchedText.indexOf("to") == -1){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Search date in format: mm/dd/yyyy to mm/dd/yyyy", ButtonType.CLOSE);
+            alert.showAndWait();
+            return;
+        }
+
+        try {
+            startDate = new SimpleDateFormat("MM/dd/yyyy").parse(dates[0]);
+            endDate = new SimpleDateFormat("MM/dd/yyyy").parse(dates[1]);
+        }catch (ParseException e){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Search date in format: mm/dd/yyyy to mm/dd/yyyy", ButtonType.CLOSE);
+            alert.showAndWait();
+            return;
+        }
 
         ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
 
@@ -144,17 +164,14 @@ public class AlbumsMainController implements Initializable{
         System.out.println("Searching By date");
     }
 
-    private void searchByTag() throws IOException{
-        String searchedText = searchAlbumsTextField.getText().trim();
+    private void searchByTag(String searchedText) throws IOException{
 
-        //not allowing user to search for nothing, no need for alert because google does not alert
-        if(searchedText.length() == 0){ return; }
 
         ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
 
         String[] part = searchedText.split("[ =]+");
 
-        if(part.length < 2){
+        if(part.length < 2 || searchedText.indexOf('=') == -1){
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please Enter a search in the format: Tag=Value", ButtonType.CLOSE);
             alert.showAndWait();
             return;
