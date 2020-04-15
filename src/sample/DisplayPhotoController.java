@@ -320,6 +320,7 @@ public class DisplayPhotoController implements Initializable {
                     String type = selectedCell.substring(selectedCell.indexOf('[')+1, selectedCell.indexOf(']'));
                     TagNode deleteTag = new TagNode(type, tag);
                     photo.removeTag(deleteTag);
+                    tagsListView.setItems(tags);
 
                 }
 
