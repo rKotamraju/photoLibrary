@@ -176,7 +176,7 @@ public class AddPhotoController implements Initializable{
         String photoPath = path;
 
         File myFile = new File(path);
-        String date = new SimpleDateFormat("MM/dd/yy").format(myFile.lastModified());
+        String date = new SimpleDateFormat("MM/dd/yyyy").format(myFile.lastModified());
 
         System.out.println("Date (USING CAL) : " + date); //hour, minute, second format
 

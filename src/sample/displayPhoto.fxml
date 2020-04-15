@@ -41,13 +41,20 @@
                               <Insets left="50.0" right="20.0" />
                            </HBox.margin>
                         </ListView>
-                        <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTagPressed" prefWidth="59.0" styleClass="createButton" text="+Tag">
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font size="11.0" />
-                           </font></Button>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Button fx:id="addTagButton" mnemonicParsing="false" onAction="#addTagPressed" prefWidth="59.0" styleClass="createButton" text="+Tag">
+                                 <font>
+                                    <Font size="11.0" />
+                                 </font>
+                              </Button>
+                              <ComboBox fx:id="tagTypeChoiceBox" onAction="#typeSelected" prefWidth="150.0" styleClass="text-field">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </ComboBox>
+                           </children>
+                        </VBox>
                      </children>
                   </HBox>
                </children>
