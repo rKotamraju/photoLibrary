@@ -203,6 +203,9 @@ public class AlbumDetailController implements Initializable {
 
         DisplayPhotoController next = loader.getController();
         next.setAlbumAndUserandPhoto(user,album,photoPicked.retrievePhoto());
+        if(search){
+            next.setFromSearch();
+        }
 
         Scene scene = new Scene(root);
         stage.setScene(scene);

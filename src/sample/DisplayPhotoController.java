@@ -25,8 +25,9 @@ import java.util.ResourceBundle;
 public class DisplayPhotoController implements Initializable {
     //Fields
     private UserDetail user;
-    public AlbumDetail album;
+    public AlbumDetail album; //why is this public?
     private PhotoDetail photo;
+    private boolean fromSearch;
 
     //Buttons
     @FXML
@@ -97,6 +98,7 @@ public class DisplayPhotoController implements Initializable {
 
     Boolean editMode;
 
+
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
         editMode = false;
@@ -131,6 +133,9 @@ public class DisplayPhotoController implements Initializable {
 
         AlbumDetailController next = loader.getController();
         next.setAlbumAndUser(user,album);
+        if(fromSearch){
+            next.setSearch();
+        }
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -160,6 +165,9 @@ public class DisplayPhotoController implements Initializable {
 
             AlbumDetailController next = loader.getController();
             next.setAlbumAndUser(user,album);
+            if(fromSearch){
+                next.setSearch();
+            }
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -205,6 +213,9 @@ public class DisplayPhotoController implements Initializable {
 
                         AlbumDetailController next = loader.getController();
                         next.setAlbumAndUser(user, album);
+                        if(fromSearch){
+                            next.setSearch();
+                        }
 
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
@@ -463,6 +474,9 @@ public class DisplayPhotoController implements Initializable {
 
             DisplayPhotoController next = loader.getController();
             next.setAlbumAndUserandPhoto(user,album, prevPhoto);
+            if(fromSearch){
+                next.setFromSearch();
+            }
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -495,6 +509,9 @@ public class DisplayPhotoController implements Initializable {
 
             DisplayPhotoController next = loader.getController();
             next.setAlbumAndUserandPhoto(user,album, nextPhoto);
+            if(fromSearch){
+                next.setFromSearch();
+            }
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -567,4 +584,9 @@ public class DisplayPhotoController implements Initializable {
         photoChoicesChoiceBox.getItems().add("Move Photo");
         photoChoicesChoiceBox.getItems().add("Copy Photo");
     }
+
+    public void setFromSearch(){
+        this.fromSearch = true;
+    }
+
 }
