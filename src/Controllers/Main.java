@@ -1,5 +1,6 @@
-package sample;
+package Controllers;
 
+import Model.UsersList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

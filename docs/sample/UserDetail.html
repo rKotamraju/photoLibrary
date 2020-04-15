@@ -6,7 +6,7 @@
 <title>UserDetail</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="dc.created" content="2020-04-15">
-<meta name="description" content="declaration: package: sample, class: UserDetail">
+<meta name="description" content="declaration: package: Controllers, class: UserDetail">
 <meta name="generator" content="javadoc/ClassWriterImpl">
 <link rel="stylesheet" type="text/css" href="../stylesheet.css" title="Style">
 <link rel="stylesheet" type="text/css" href="../script-dir/jquery-ui.css" title="Style">
@@ -88,12 +88,12 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <!-- ======== START OF CLASS DATA ======== -->
 <main role="main">
 <div class="header">
-<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">sample</a></div>
+<div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">Controllers</a></div>
 <h1 title="Class UserDetail" class="title">Class UserDetail</h1>
 </div>
 <div class="contentContainer">
 <div class="inheritance" title="Inheritance Tree">java.lang.Object
-<div class="inheritance">sample.UserDetail</div>
+<div class="inheritance">Model.UserDetail</div>
 </div>
 <section class="description">
 <dl>
@@ -158,20 +158,20 @@ implements java.io.Serializable</pre>
 <tbody>
 <tr class="altColor" id="i0">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAlbum(sample.AlbumDetail)">addAlbum</a></span>&#8203;(<a href="AlbumDetail.html" title="class in sample">AlbumDetail</a>&nbsp;newAlbum)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addAlbum(sample.AlbumDetail)">addAlbum</a></span>&#8203;(<a href="AlbumDetail.html" title="class in Controllers">AlbumDetail</a>&nbsp;newAlbum)</code></th>
 <td class="colLast">
 <div class="block">Functionality to add an album to the user</div>
 </td>
 </tr>
 <tr class="rowColor" id="i1">
-<td class="colFirst"><code><a href="AlbumDetail.html" title="class in sample">AlbumDetail</a></code></td>
+<td class="colFirst"><code><a href="AlbumDetail.html" title="class in Controllers">AlbumDetail</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAlbum(java.lang.String)">getAlbum</a></span>&#8203;(java.lang.String&nbsp;name)</code></th>
 <td class="colLast">
 <div class="block">Returns album you are looking for</div>
 </td>
 </tr>
 <tr class="altColor" id="i2">
-<td class="colFirst"><code>java.util.ArrayList&lt;<a href="AlbumDetail.html" title="class in sample">AlbumDetail</a>&gt;</code></td>
+<td class="colFirst"><code>java.util.ArrayList&lt;<a href="AlbumDetail.html" title="class in Controllers">AlbumDetail</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getAlbums()">getAlbums</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
@@ -182,7 +182,7 @@ implements java.io.Serializable</pre>
 </tr>
 <tr class="altColor" id="i4">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAlbum(sample.AlbumDetail)">removeAlbum</a></span>&#8203;(<a href="AlbumDetail.html" title="class in sample">AlbumDetail</a>&nbsp;removedAlbum)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeAlbum(sample.AlbumDetail)">removeAlbum</a></span>&#8203;(<a href="AlbumDetail.html" title="class in Controllers">AlbumDetail</a>&nbsp;removedAlbum)</code></th>
 <td class="colLast">
 <div class="block">Functionality to remove an album from the user</div>
 </td>
@@ -262,7 +262,7 @@ implements java.io.Serializable</pre>
 <li class="blockList">
 <section class="detail">
 <h3><a id="addAlbum(sample.AlbumDetail)">addAlbum</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">addAlbum</span>&#8203;(<span class="arguments"><a href="AlbumDetail.html" title="class in sample">AlbumDetail</a>&nbsp;newAlbum)</span></div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">addAlbum</span>&#8203;(<span class="arguments"><a href="AlbumDetail.html" title="class in Controllers">AlbumDetail</a>&nbsp;newAlbum)</span></div>
 <div class="block">Functionality to add an album to the user</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -273,7 +273,7 @@ implements java.io.Serializable</pre>
 <li class="blockList">
 <section class="detail">
 <h3><a id="removeAlbum(sample.AlbumDetail)">removeAlbum</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">removeAlbum</span>&#8203;(<span class="arguments"><a href="AlbumDetail.html" title="class in sample">AlbumDetail</a>&nbsp;removedAlbum)</span></div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">void</span>&nbsp;<span class="memberName">removeAlbum</span>&#8203;(<span class="arguments"><a href="AlbumDetail.html" title="class in Controllers">AlbumDetail</a>&nbsp;removedAlbum)</span></div>
 <div class="block">Functionality to remove an album from the user</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -284,7 +284,7 @@ implements java.io.Serializable</pre>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getAlbums()">getAlbums</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">java.util.ArrayList&lt;<a href="AlbumDetail.html" title="class in sample">AlbumDetail</a>&gt;</span>&nbsp;<span class="memberName">getAlbums</span>()</div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType">java.util.ArrayList&lt;<a href="AlbumDetail.html" title="class in Controllers">AlbumDetail</a>&gt;</span>&nbsp;<span class="memberName">getAlbums</span>()</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>all albums of the user</dd>
@@ -294,7 +294,7 @@ implements java.io.Serializable</pre>
 <li class="blockList">
 <section class="detail">
 <h3><a id="getAlbum(java.lang.String)">getAlbum</a></h3>
-<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType"><a href="AlbumDetail.html" title="class in sample">AlbumDetail</a></span>&nbsp;<span class="memberName">getAlbum</span>&#8203;(<span class="arguments">java.lang.String&nbsp;name)</span></div>
+<div class="memberSignature"><span class="modifiers">public</span>&nbsp;<span class="returnType"><a href="AlbumDetail.html" title="class in Controllers">AlbumDetail</a></span>&nbsp;<span class="memberName">getAlbum</span>&#8203;(<span class="arguments">java.lang.String&nbsp;name)</span></div>
 <div class="block">Returns album you are looking for</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

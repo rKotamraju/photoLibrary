@@ -1,5 +1,7 @@
-package sample;
+package Controllers;
 
+import Model.UserDetail;
+import Model.UsersList;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,15 +10,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.EOFException;
 import java.io.IOException;
-import java.io.Serializable;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static javafx.collections.FXCollections.observableArrayList;

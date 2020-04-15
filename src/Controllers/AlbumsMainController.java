@@ -1,5 +1,6 @@
-package sample;
+package Controllers;
 
+import Model.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -14,7 +15,6 @@ import javafx.fxml.Initializable;
 
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -435,7 +435,7 @@ public class AlbumsMainController implements Initializable{
         AlbumDetail selectedAlbum =AlbumsListView.getSelectionModel().getSelectedItem();
         System.out.println("Current Name: " +selectedAlbum);
         System.out.println("New Name: "+newName);
-        AlbumsListView.getSelectionModel().getSelectedItem().name = newName; //changes name behind the scenes but doesn't show up
+        AlbumsListView.getSelectionModel().getSelectedItem().setName(newName); //changes name behind the scenes but doesn't show up
         AlbumsListView.getItems().set(AlbumsListView.getSelectionModel().getSelectedIndex(), selectedAlbum); //shows up
         AlbumsListView.setItems(albumsObservableList); //Added to fix rename problem on April 14th
 

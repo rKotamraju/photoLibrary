@@ -1,5 +1,9 @@
-package sample;
+package Controllers;
 
+import Model.AlbumDetail;
+import Model.PhotoDetail;
+import Model.UserDetail;
+import Model.UsersList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +14,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import java.io.*;
