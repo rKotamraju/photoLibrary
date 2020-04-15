@@ -55,8 +55,12 @@
                   <Insets left="20.0" right="200.0" />
                </VBox.margin>
                <children>
+<<<<<<< HEAD
                   <ComboBox fx:id="searchComboBox" prefHeight="33.0" prefWidth="119.0" styleClass="text-field" />
                   <TextField fx:id="searchAlbumsTextField" prefHeight="33.0" prefWidth="236.0" promptText="Search Albums" styleClass="text-field" />
+=======
+                  <TextField fx:id="searchAlbumsTextField" prefHeight="33.0" prefWidth="311.0" promptText="Search Albums" styleClass="text-field" />
+>>>>>>> a655a45f0f6f4f041b18497994221d91a4c65899
                   <Button fx:id="searchButton" cache="true" mnemonicParsing="false" onAction="#searchButtonPressed" prefHeight="27.0" prefWidth="93.0" styleClass="searchButton" text="Search" />
                </children>
             </HBox>

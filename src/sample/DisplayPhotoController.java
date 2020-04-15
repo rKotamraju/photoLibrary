@@ -218,7 +218,7 @@ public class DisplayPhotoController implements Initializable {
 
 
     @FXML
-    private void addTagPressed(ActionEvent e){
+    private void addTagPressed(ActionEvent e) throws IOException {
         TextInputDialog newLabel = new TextInputDialog();
         newLabel.setHeaderText("Enter Format: 'New Tag,Tag Type'");
         newLabel.showAndWait();
@@ -230,43 +230,57 @@ public class DisplayPhotoController implements Initializable {
         String newTag = tagArray[0];
         String tagType = tagArray[1];
 
-       //ADD TO HASHMAP WHEN HAVE ACCESS TO PHOTODETAIL photo.
+        tags.add(newTag+"[" + tagType + "]");
 
-        tags.add(newTag);
-        //photo.getTags().put(tagType,newTag);
         photo.addTag(new TagNode(tagType, newTag));
-       // int indexOfPhoto = album.getPhotos().indexOf(photo);
 
-
+        //Save
+        UsersList.getInstance().writeApp();
     }
 
     @FXML
     public void captionChanged(ActionEvent actionEvent) {
-        System.out.println("Caption Being Edited");
-        String newCaption = captionTextField.getText();
-        photo.setCaption(captionTextField.getText());
+        if(editMode == true){
+            System.out.println("Caption Being Edited");
+            String newCaption = captionTextField.getText();
+            photo.setCaption(captionTextField.getText());
+        }
+
     }
 
     @FXML
-    private void tagSelectedToDelete(){
+    private void tagSelectedToDelete() throws IOException {
         if(editMode == true){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this tag?", ButtonType.CANCEL, ButtonType.YES);
             alert.showAndWait();
 
             if(alert.getResult() == ButtonType.YES) {
                 System.out.println("Tag to be removed : " +tagsListView.getSelectionModel().getSelectedItem().toString());
-                tags.remove(tagsListView.getSelectionModel().getSelectedItem());
-                //photo.removeTag(tagsListView.getSelectionModel().getSelectedItem().toString());
+                tags.remove(tagsListView.getSelectionModel().getSelectedItem()); //setting observable list
+
+                String selectedCell = tagsListView.getSelectionModel().getSelectedItem().toString();
+                String tag = selectedCell.substring(0, selectedCell.indexOf('['));
+                String type = selectedCell.substring(selectedCell.indexOf('[')+1, selectedCell.indexOf(']'));
+                TagNode deleteTag = new TagNode(type, tag);
+                photo.removeTag(deleteTag);
+//
+//                int indexPicked = tagsListView.getSelectionModel().getSelectedIndex();
+//                TagNode node = photo.getTags().get(indexPicked);
+//                //TagNode node = new TagNode(tagType,tag)
+//                photo.removeTag(node); // setting actual photo tags
+               // photo.removeTag(tagsListView.getSelectionModel().getSelectedItem().toString());
+
+                //Saving
+                UsersList.getInstance().writeApp();
             }
         }
-        //Delete from HASHMAP WHEN HAVE ACCESS TO PHOTODETAIL photo.
     }
 
 
     public void turnOffEditing(){
         editMode = false;
        // tagsListView.setDisable(true);
-        captionTextField.setDisable(true);
+        //captionTextField.setDisable(true);
         photoChoicesChoiceBox.setDisable(true);
         photoChoicesChoiceBox.setVisible(false);
 
@@ -281,7 +295,7 @@ public class DisplayPhotoController implements Initializable {
     public void turnOnEditing(){
         editMode = true;
         //tagsListView.setDisable(false);
-        captionTextField.setDisable(false);
+        //captionTextField.setDisable(false);
         photoChoicesChoiceBox.setDisable(false);
         photoChoicesChoiceBox.setVisible(true);
 
@@ -318,8 +332,8 @@ public class DisplayPhotoController implements Initializable {
         }
 
         captionTextField.setText(this.photo.getCaption());
-        captionTextField.setDisable(true);
-        dateLabel.setText(this.photo.getTime());
+        //captionTextField.setDisable(true);
+        dateLabel.setText(this.photo.getDate());
 
         //System.out.println(photo.getTags().values());
         ArrayList<TagNode> temp = photo.getTags();
@@ -327,7 +341,7 @@ public class DisplayPhotoController implements Initializable {
         for(int i = 0; i < temp.size();i++){
             t = temp.get(i);
 
-            tags.add(t.getTag());
+            tags.add(t.getValue() + "[" + t.getTag() + "]");
         }
         //tags.addAll(photo.getTags());
 
