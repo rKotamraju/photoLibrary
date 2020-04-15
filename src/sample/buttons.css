@@ -17,7 +17,7 @@
 .albumsLabel{
     -fx-text-fill: black;
     -fx-font-family: "Avenir";
-    -fx-font-size: 36px;
+    -fx-font-size: 32px;
 }
 
 .searchButton{
