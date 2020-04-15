@@ -20,6 +20,14 @@
     -fx-font-size: 36px;
 }
 
+.searchButton{
+    -fx-background-color: #f2f2f2;
+    -fx-font-family: "Avenir Next";
+    -fx-border-color: mediumSpringGreen;
+    -fx-border-width: 2;
+
+}
+
 .secondaryButton1{
     -fx-background-color: lightSalmon;
     -fx-text-fill: white;

@@ -88,9 +88,14 @@ public class AlbumsMainController implements Initializable{
         ArrayList<PhotoDetail> temp = new ArrayList<PhotoDetail>();
 
         String[] part = searchedText.split("[ =]+");
+
+        if(part.length < 2){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Please Enter a search in the format: Tag=Value", ButtonType.CLOSE);
+            alert.showAndWait();
+            return;
+        }
+
         TagNode searchTagNode = new TagNode(part[0], part[1]);
-
-
 
 
         if(part.length > 2){
