@@ -286,7 +286,7 @@ public class DisplayPhotoController implements Initializable {
     public void turnOffEditing(){
         editMode = false;
        // tagsListView.setDisable(true);
-        //captionTextField.setDisable(true);
+        captionTextField.setDisable(true);
         photoChoicesChoiceBox.setDisable(true);
         photoChoicesChoiceBox.setVisible(false);
 
@@ -301,7 +301,7 @@ public class DisplayPhotoController implements Initializable {
     public void turnOnEditing(){
         editMode = true;
         //tagsListView.setDisable(false);
-        //captionTextField.setDisable(false);
+        captionTextField.setDisable(false);
         photoChoicesChoiceBox.setDisable(false);
         photoChoicesChoiceBox.setVisible(true);
 
@@ -314,53 +314,7 @@ public class DisplayPhotoController implements Initializable {
     }
 
 
-    public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
-        // System.out.println("Hello heloo");
-        this.user = user;
-        this.album = album;
-        this.photo = photo;
-        System.out.println("Setting user and album of stock photo controller: " + this.album );
-        System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
-        // System.out.println(this.album);
 
-        photoImageView.setFitHeight(250);
-        photoImageView.setFitWidth(250);
-        if(this.photo.getIsStock()){
-            System.out.println("File Path : " + this.photo.getFilePathLocal());
-            Image myImage = new Image(this.photo.getFilePathLocal());
-            photoImageView.setImage(myImage);
-        }
-        else{
-            String path = this.photo.getFilePathLocal();
-            File myFile = new File(path);
-            Image myImage = new Image(myFile.toURI().toString());
-            photoImageView.setImage(myImage);
-        }
-
-        captionTextField.setText(this.photo.getCaption());
-        //captionTextField.setDisable(true);
-        dateLabel.setText(this.photo.getDate());
-
-        //System.out.println(photo.getTags().values());
-        ArrayList<TagNode> temp = photo.getTags();
-        TagNode t = null;
-        for(int i = 0; i < temp.size();i++){
-            t = temp.get(i);
-
-            tags.add(t.getValue() + "[" + t.getTag() + "]");
-        }
-        //tags.addAll(photo.getTags());
-
-        for(String iterator : tags){
-            System.out.println(iterator);
-        }
-
-        tagsListView.setItems(tags);
-
-        photoChoicesChoiceBox.getItems().add("Delete Photo");
-        photoChoicesChoiceBox.getItems().add("Move Photo");
-        photoChoicesChoiceBox.getItems().add("Copy Photo");
-    }
 
     public void prevPhotoPressed(ActionEvent actionEvent) throws IOException {
 
@@ -399,7 +353,7 @@ public class DisplayPhotoController implements Initializable {
 
         int currIndex = album.getPhotos().indexOf(photo);
 
-        if(currIndex < album.getPhotos().size()){
+        if(currIndex < album.getPhotos().size()-1){
             PhotoDetail nextPhoto = album.getPhotos().get(currIndex + 1);
             System.out.println("Next Photo: " + nextPhoto.getCaption());
 
@@ -422,5 +376,59 @@ public class DisplayPhotoController implements Initializable {
         else{
             return;
         }
+    }
+
+    public void setAlbumAndUserandPhoto(UserDetail user, AlbumDetail album, PhotoDetail photo){
+        // System.out.println("Hello heloo");
+        this.user = user;
+        this.album = album;
+        this.photo = photo;
+        System.out.println("Setting user and album of stock photo controller: " + this.album );
+        System.out.println("Photo: " + this.photo.getFilePathLocal() + ", " + this.photo.getIsStock() + ", " + this.photo.getCaption());
+        // System.out.println(this.album);
+
+        photoImageView.setFitHeight(250);
+        photoImageView.setFitWidth(250);
+        if(this.photo.getIsStock()){
+            System.out.println("File Path : " + this.photo.getFilePathLocal());
+            Image myImage = new Image(this.photo.getFilePathLocal());
+            photoImageView.setImage(myImage);
+        }
+        else{
+            String path = this.photo.getFilePathLocal();
+            File myFile = new File(path);
+            Image myImage = new Image(myFile.toURI().toString());
+            photoImageView.setImage(myImage);
+        }
+
+        int currIndex = album.getPhotos().indexOf(photo);
+        if(currIndex == 0){
+            prevPhotoButton.setDisable(true);
+        }
+        else if(currIndex == album.getPhotos().size()-1){
+            nextPhotoButton.setDisable(true);
+        }
+        captionTextField.setText(this.photo.getCaption());
+        captionTextField.setDisable(true);
+        dateLabel.setText(this.photo.getDate());
+
+        ArrayList<TagNode> temp = photo.getTags();
+        TagNode t = null;
+        for(int i = 0; i < temp.size();i++){
+            t = temp.get(i);
+
+            tags.add(t.getValue() + "[" + t.getTag() + "]");
+        }
+        //tags.addAll(photo.getTags());
+
+        for(String iterator : tags){
+            System.out.println(iterator);
+        }
+
+        tagsListView.setItems(tags);
+
+        photoChoicesChoiceBox.getItems().add("Delete Photo");
+        photoChoicesChoiceBox.getItems().add("Move Photo");
+        photoChoicesChoiceBox.getItems().add("Copy Photo");
     }
 }
