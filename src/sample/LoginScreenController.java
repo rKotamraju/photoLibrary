@@ -40,6 +40,7 @@ public class LoginScreenController implements Initializable {
             UsersList.getInstance().readApp();
         } catch (EOFException e){
             System.out.println("No users");
+            UsersList.getInstance().addUser(new UserDetail("Stock"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
