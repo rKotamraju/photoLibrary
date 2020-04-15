@@ -79,7 +79,11 @@ public class AddPhotoController implements Initializable{
     //isStock Boolean
     Boolean isStock = false;
 
-
+    /**
+     * Initializes the add photo screen by adding tag types to choose from and disables/enabling certain elements
+     * @param url
+     * @param resourceBundle
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -98,6 +102,11 @@ public class AddPhotoController implements Initializable{
     }
 
 
+    /**
+     * Logs the user out from this screen to the login screen
+     * @param e User clicks on log out
+     * @throws IOException
+     */
     @FXML
     private void logOutPressed(ActionEvent e) throws IOException {
         System.out.println("Logging out from add Photo screen");
@@ -118,6 +127,12 @@ public class AddPhotoController implements Initializable{
         stage.show();
 
     }
+
+    /**
+     * Takes the user back to the previous screen - albumDetail
+     * @param e User clicked on back button
+     * @throws IOException
+     */
 
     @FXML
     private void backPressed(ActionEvent e) throws IOException {
@@ -140,6 +155,13 @@ public class AddPhotoController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Allows user to choose a photo to upload from their local machine and sets the image view to that photo
+     * Save the local file path for the photo
+     * @param e User clicks Choose from Computer
+     * @throws IOException
+     */
 
     @FXML
     private void pickComputerPressed(ActionEvent e) throws IOException {
@@ -173,6 +195,13 @@ public class AddPhotoController implements Initializable{
         tagsTextField.setDisable(false);
         captionsTextField.setDisable(false);
     }
+
+    /**
+     * Adds the photo selected to the album by converting all the tags, caption, date, and file path to a PhotoDetail object
+     * Once added, takes back to album display of all photos
+     * @param e User presses add photo
+     * @throws IOException
+     */
 
     @FXML
     private void addPhotoPressed(ActionEvent e) throws IOException {
@@ -218,6 +247,12 @@ public class AddPhotoController implements Initializable{
 
     }
 
+    /**
+     * Allows user to choose a preloaded stock image to add to the album
+     * Takes to a different screen which displays stock photos
+     * @param e User presses "Choose Stock"
+     * @throws IOException
+     */
     @FXML
     private void pickStockPressed(ActionEvent e) throws IOException {
 
@@ -237,6 +272,14 @@ public class AddPhotoController implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Allows user to pass the current user and album from the StockPhotoController back to this screen
+     * Saves which stock photo was chosen to add to the album and sets the imageview to that photo
+     * @param subject The stock photo chosen
+     * @param user Current User of Application
+     * @param album Current Album
+     */
 
     public void setStockPhoto(String subject, UserDetail user, AlbumDetail album){
         this.user = user;
@@ -282,6 +325,11 @@ public class AddPhotoController implements Initializable{
         tagsTextField.setDisable(false);
         captionsTextField.setDisable(false);
     }
+
+    /**
+     * Adds the chosen tag and tag type to the photo
+     * @param e User pressed add tag
+     */
     @FXML
     private void addTagPressed(ActionEvent e){
         if(tagsTextField.getText()==null || tagTypeComboBox.getSelectionModel().getSelectedItem()==null || tagsTextField.getText().equals("")){
@@ -311,6 +359,12 @@ public class AddPhotoController implements Initializable{
         tagTypeComboBox.getSelectionModel().clearSelection();
 
     }
+
+    /**
+     * Saves
+     * @param e User chooses to add a new tag type
+     *
+     */
 
     @FXML
     private void tagTypeSelected(ActionEvent e){
