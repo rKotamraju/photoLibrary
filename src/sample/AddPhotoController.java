@@ -287,6 +287,8 @@ public class AddPhotoController implements Initializable{
             );
         }
 
+        tagsTextField.setText("");
+
     }
 
     @FXML
@@ -299,8 +301,7 @@ public class AddPhotoController implements Initializable{
             //listOfTags.put(newTag.getResult(),tagsTextField.getText());
 
             listOfTags.add(new TagNode(newTag.getResult(), tagsTextField.getText()));
-
-
+            tagsTextField.setText("");
 
         }
     }
