@@ -41,6 +41,12 @@ public class AdminController implements Initializable {
 
     ObservableList<UserDetail> usersObservableList = observableArrayList();
 
+    /**
+     * Initializes this screen by reading in all the current users of the application and setting it to the listview
+     * This is the admin screen
+     * @param url
+     * @param resourceBundle
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,8 +65,13 @@ public class AdminController implements Initializable {
         usersObservableList.addAll(UsersList.getInstance().getUsers());
         usersListView.setItems(usersObservableList);
 
-
     }
+
+    /**
+     * Logs out admin to login screen
+     * @param e User presses log out button
+     * @throws IOException
+     */
 
      @FXML
         private void logOutPressed(ActionEvent e) throws IOException {
@@ -82,6 +93,10 @@ public class AdminController implements Initializable {
          stage.show();
      }
 
+    /**
+     * Allows admin to create a new user
+     * @param e User presses create user
+     */
      @FXML
     private void createUserPressed(ActionEvent e){
          TextInputDialog td = new TextInputDialog();
@@ -111,6 +126,11 @@ public class AdminController implements Initializable {
          deleteUserButton.setDisable(false);
      }
 
+    /**
+     * Checks if username added by the admin to create new user already exists
+     * @param username New UserName
+     * @return true if already exists, false otherwise
+     */
      private boolean invalidUsername(String username){
 
         for(UserDetail u : UsersList.getInstance().getUsers()){
@@ -122,6 +142,10 @@ public class AdminController implements Initializable {
         return false;
      }
 
+    /**
+     * Allows admin to delete any user except for the stock user. Reloads user list view to updated list
+     * @param e Pressed Delete user
+     */
      @FXML
     private void deleteUserPressed(ActionEvent e) {
          if(usersListView.getSelectionModel().getSelectedItem() == null){

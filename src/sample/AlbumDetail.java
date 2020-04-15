@@ -6,11 +6,21 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Album object
+ */
 public class AlbumDetail implements Serializable {
-    private String name;
+    /**
+     * Each album has a name and a list containing all of the photos in the album
+     */
+    String name;
     private ArrayList<PhotoDetail> photos;
     static final long serialVersionUID = 1L;
 
+    /**
+     * Constructors for album detail
+     * @param name
+     */
     public AlbumDetail(String name){
         this.name = name;
         this.photos = new ArrayList<PhotoDetail>();
@@ -21,14 +31,28 @@ public class AlbumDetail implements Serializable {
         this.photos = searchedPhotos;
     }
 
+    /**
+     * Returns name of the album
+     * @return
+     */
     public String getName(){
         return name;
     }
+
+    /**
+     * Allows user to set a new name to the album
+     * @param newName
+     */
 
     public void setName(String newName){
         this.name = newName;
     }
 
+    /**
+     * Prints out album details such as getting the date of the first and last photo to provide a date range as well as the number of photos in an album
+     * Used to set the details of each album in the AlbumMain screen which displays all the albums of a user
+     * @return
+     */
     public String toString(){
 
         if(photos.size() == 0){
@@ -55,6 +79,12 @@ public class AlbumDetail implements Serializable {
         return name+" • "+photos.size()+ " • "+startDate+" to "+endDate;
     }
 
+    /**
+     * Allows user to get date of first photo in the album
+     * @return
+     * @throws ParseException
+     */
+
     private String getFirstPhoto() throws ParseException {
 
         Date min = new SimpleDateFormat("MM/dd/yyyy").parse(photos.get(0).getDate());
@@ -71,6 +101,12 @@ public class AlbumDetail implements Serializable {
         return date;
     }
 
+    /**
+     * Allows user to get date of last photo in the album
+     * @return
+     * @throws ParseException
+     */
+
     private String getLastPhoto() throws ParseException {
         Date max = new SimpleDateFormat("MM/dd/yyyy").parse(photos.get(0).getDate());
         Date temp;
@@ -86,17 +122,29 @@ public class AlbumDetail implements Serializable {
         return date;
     }
 
+    /**
+     * Allows user to add a new photo to the album
+     * @param photo
+     */
     public void addPhoto(PhotoDetail photo){
         photos.add(photo);
     }
 
 
+    /**
+     * Return the lists of photos in the album
+     * @return
+     */
     public ArrayList<PhotoDetail> getPhotos(){
 
         return this.photos;
     }
 
 
+    /**
+     * Allows user to delete a photo from the album
+     * @param removedPhoto
+     */
     public void removePhoto(PhotoDetail removedPhoto){
 
         photos.remove(removedPhoto);
