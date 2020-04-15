@@ -4,18 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-import java.awt.*;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,12 +55,12 @@ public class StockPhotosController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Image dog = new Image("/Image/puppy.jpeg");
-        Image happyBaby = new Image("/Image/happy.jpg");
-        Image flower = new Image("/Image/flower.jpg");
-        Image cat = new Image("Image/cat_caviar.jpg");
-        Image chocolate = new Image("Image/chocolate.jpg");
-        Image family = new Image("/Image/family.jpeg");
+        Image dog = new Image("../data/puppy.jpg");
+        Image happyBaby = new Image("/data/happy.jpg");
+        Image flower = new Image("/data/flower.jpg");
+        Image cat = new Image("/data/cat_caviar.jpg");
+        Image chocolate = new Image("/data/chocolate.jpg");
+        Image family = new Image("/data/family.jpeg");
 
 
         dogImageView.setImage(dog);
