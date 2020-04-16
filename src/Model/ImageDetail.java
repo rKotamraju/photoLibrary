@@ -4,6 +4,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.File;
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 
 public class ImageDetail {
     /**

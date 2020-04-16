@@ -19,7 +19,9 @@ import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 public class LoginScreenController implements Initializable {
 
     //private UsersList usersList = UsersList.getInstance();

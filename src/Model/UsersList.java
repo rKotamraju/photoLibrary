@@ -5,10 +5,15 @@ import java.util.ArrayList;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
+
 public class UsersList implements Serializable {
 
     /**
-     * Uses serializable to implements a users list containing the current state of the program
+     * Uses serializable to implements a users list containing the current state of the program.
+     * Uses the singleton design patter
      */
 
     private static UsersList usersList = new UsersList();

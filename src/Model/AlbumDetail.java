@@ -8,6 +8,8 @@ import java.util.Date;
 
 /**
  * Album object
+ * By Sujit Molleti and Rachana Kotamraju
+ *
  */
 public class AlbumDetail implements Serializable {
     /**

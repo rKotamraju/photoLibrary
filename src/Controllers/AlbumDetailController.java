@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import static javafx.collections.FXCollections.observableArrayList;
-
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 public class AlbumDetailController implements Initializable {
 
     //Fields

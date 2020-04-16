@@ -20,7 +20,9 @@ import java.io.*;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 public class AddPhotoController implements Initializable{
 
 //Fields

@@ -18,7 +18,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static javafx.collections.FXCollections.observableArrayList;
-
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 public class AdminController implements Initializable {
 
     static final long serialVersionUID = 1L;

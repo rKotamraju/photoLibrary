@@ -2,7 +2,9 @@ package Model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 public class UserDetail implements Serializable{
 
     /**

@@ -10,7 +10,9 @@ import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 public class Main extends Application {
 
     private static Stage window;

@@ -23,7 +23,9 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 import static javafx.collections.FXCollections.observableArrayList;
-
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 public class AlbumsMainController implements Initializable{
 
 //Fields

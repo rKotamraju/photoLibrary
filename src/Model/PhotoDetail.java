@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 
 public class PhotoDetail implements Serializable {
     //private ImageView photo;

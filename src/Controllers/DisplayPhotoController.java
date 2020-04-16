@@ -19,7 +19,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 public class DisplayPhotoController implements Initializable {
     //Fields
     private UserDetail user;

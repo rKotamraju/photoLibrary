@@ -1,6 +1,9 @@
 package Model;
 
 import java.io.Serializable;
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 
 public class TagNode implements Serializable {
 

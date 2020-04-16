@@ -18,7 +18,9 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**
+ * By Sujit Molleti and Rachana Kotamraju
+ */
 public class StockPhotosController implements Initializable {
     //Fields
     private UserDetail user;
