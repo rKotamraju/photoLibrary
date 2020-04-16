@@ -215,6 +215,8 @@ public class DisplayPhotoController implements Initializable {
                 td.showAndWait();
 
                 if(td.getResult() == null){
+                    System.out.println("Pressed cancel");
+                   // tagTypeChoiceBox.valueProperty().set(null);
                     return;
                 }
 
@@ -397,6 +399,7 @@ public class DisplayPhotoController implements Initializable {
                     return;
                 }else{
                     tagTypes.add(type);
+                    user.addUserTag(type);
                     tagTypeChoiceBox.setValue(type);
                 }
             } else {
@@ -670,7 +673,6 @@ public class DisplayPhotoController implements Initializable {
 
             tags.add(t.getValue() + "[" + t.getTag() + "]");
         }
-        //tags.addAll(photo.getTags());
 
         for(String iterator : tags){
             System.out.println(iterator);
@@ -678,9 +680,14 @@ public class DisplayPhotoController implements Initializable {
 
         tagsListView.setItems(tags);
 
-        tagTypes.add("Person");
-        tagTypes.add("Color");
-        tagTypes.add("Add New Type");
+//        tagTypes.add("Person");
+//        tagTypes.add("Color");
+//
+//        tagTypes.add("Add New Type");
+
+        for(String s : user.getUserTags()){
+            tagTypes.add(s);
+        }
 
         photoChoicesChoiceBox.getItems().add("Delete Photo");
         photoChoicesChoiceBox.getItems().add("Move Photo");
