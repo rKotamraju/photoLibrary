@@ -431,6 +431,12 @@ public class AlbumsMainController implements Initializable{
         }
 
         String newName = inputName.getResult().trim();
+
+        if(user.getAlbum(newName)!=null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "An album with the same name already exists!!", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
         
         AlbumDetail selectedAlbum =AlbumsListView.getSelectionModel().getSelectedItem();
         System.out.println("Current Name: " +selectedAlbum);

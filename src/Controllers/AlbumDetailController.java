@@ -180,6 +180,13 @@ public class AlbumDetailController implements Initializable {
             return;
         }
         String albumName = td.getResult().trim();
+
+        if(user.getAlbum(albumName)!=null){
+            Alert alert = new Alert(Alert.AlertType.ERROR, "An album already exists with this name!", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
         //if User tries to add an empty album
         if(albumName.length() == 0){
             Alert alert = new Alert(Alert.AlertType.ERROR, "You must enter an album name!", ButtonType.OK);
