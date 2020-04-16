@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -63,6 +64,7 @@ public class AddPhotoController implements Initializable{
 
     //Observable List
     ObservableList<String> tagTypeOptions = FXCollections.observableArrayList();
+    ArrayList<String> tagTypesArrayList = new ArrayList<String>();
 
     //add tags
     //HashMap<String,String> listOfTags = new HashMap<String,String>();
@@ -85,12 +87,14 @@ public class AddPhotoController implements Initializable{
        tagTypeComboBox.setDisable(true);
        captionsTextField.setDisable(true);
 
-        tagTypeOptions.add("Location");
-        tagTypeOptions.add("Person");
-        tagTypeOptions.add("Color");
-        tagTypeOptions.add("Add New Type");
-
-        tagTypeComboBox.setItems(tagTypeOptions);
+//        tagTypeOptions.add("Location");
+//        tagTypeOptions.add("Person");
+//        tagTypeOptions.add("Color");
+//        tagTypeOptions.add("Add New Type");
+//
+//
+//       tagTypeComboBox.setItems(tagTypeOptions);
+       // tagTypeComboBox.getItems().setAll(tagTypesArrayList);
 
 
     }
@@ -371,6 +375,8 @@ public class AddPhotoController implements Initializable{
 
     @FXML
     private void tagTypeSelected(ActionEvent e){
+
+        tagTypeComboBox.setItems(tagTypeOptions);
         if (tagTypeComboBox.getSelectionModel().getSelectedItem() != null) {
             if(tagTypeComboBox.getSelectionModel().getSelectedItem().equals("Add New Type")){
                 TextInputDialog newTag = new TextInputDialog();
@@ -387,22 +393,11 @@ public class AddPhotoController implements Initializable{
                 String newTagText = newTag.getResult().trim();
                 tagTypeOptions.add(newTagText);
                 user.addUserTag(newTagText);
+                //user.addUserTag(tagTypeComboBox.getSelectionModel().getSelectedItem().trim());
+                for(String a : user.getUserTags()){
+                    System.out.println("Tag types: " + a);
+                }
                 tagTypeComboBox.getSelectionModel().select(newTag.getResult().trim());
-
-                //add tag
-//                if(!(listOfTags.contains(new TagNode(newTag.getResult().trim(),tagsTextField.getText().trim())))){
-//
-//                    listOfTags.add(new TagNode(newTag.getResult().trim(), tagsTextField.getText().trim()));
-//                    System.out.println("Adding from tag selected : " + tagsTextField.getText());
-//                    System.out.println("Adding from tag selected : " + tagTypeComboBox.getSelectionModel().getSelectedItem());
-//                }
-
-                //already exists
-//                else{
-//                    Alert alert = new Alert(Alert.AlertType.ERROR, "Tag Already Exists!");
-//                    alert.showAndWait();
-//                    return;
-//                }
 
             }
         }
@@ -421,9 +416,38 @@ public class AddPhotoController implements Initializable{
         this.album = album;
 
 
-        System.out.println("Setting user and album of add photo controller");
-        System.out.println(this.album);
+        tagTypesArrayList = user.getUserTags();
+
+//        for(String a : tagTypesArrayList){
+//            System.out.println("Tag types (set): " + a);
+//        }
+
+
+
+        //tagTypeOptions.setAll(tagTypesArrayList);
+
+//        for(String a: tagTypeOptions){
+//            System.out.println("Tag type options:" + a);
+//        }
+
+        tagTypeComboBox.setItems(tagTypeOptions);
     }
 
 
+    public void addTagsCombo(MouseEvent mouseEvent) {
+       // System.out.println("IN TAG");
+        tagTypesArrayList = user.getUserTags();
+
+//        for(String a : tagTypesArrayList){
+//            System.out.println("Tag types (prive): " + a);
+//        }
+
+        tagTypeOptions.setAll(tagTypesArrayList);
+
+//        for(String a: tagTypeOptions){
+//            System.out.println("Tag type options (prive):" + a);
+//        }
+
+        tagTypeComboBox.setItems(tagTypeOptions);
+    }
 }
