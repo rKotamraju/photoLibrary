@@ -84,13 +84,14 @@ public class AddPhotoController implements Initializable{
        tagsTextField.setDisable(true);
        tagTypeComboBox.setDisable(true);
        captionsTextField.setDisable(true);
-       tagTypeOptions.add("Location");
-       tagTypeOptions.add("Person");
-       tagTypeOptions.add("Color");
-       tagTypeOptions.add("Add New Type");
 
+        tagTypeOptions.add("Location");
+        tagTypeOptions.add("Person");
+        tagTypeOptions.add("Color");
+        tagTypeOptions.add("Add New Type");
 
-       tagTypeComboBox.setItems(tagTypeOptions);
+        tagTypeComboBox.setItems(tagTypeOptions);
+
 
     }
 
@@ -281,6 +282,7 @@ public class AddPhotoController implements Initializable{
         isStock = true;
         String tempPath;
 
+
         String[] stockImages = {"./data/cat_caviar.jpg/", "./data/puppy.jpeg/", "./data/chocolate.jpg/", "./data/family.jpeg/", "./data/happy.jpg/", "./data/flower.jpg/"};
 
         if(subject.equals("cat")){
@@ -382,8 +384,9 @@ public class AddPhotoController implements Initializable{
                 }
 
 
-
-                tagTypeOptions.add(newTag.getResult().trim());
+                String newTagText = newTag.getResult().trim();
+                tagTypeOptions.add(newTagText);
+                user.addUserTag(newTagText);
                 tagTypeComboBox.getSelectionModel().select(newTag.getResult().trim());
 
                 //add tag
@@ -416,6 +419,8 @@ public class AddPhotoController implements Initializable{
     public void setAlbumAndUser(UserDetail user, AlbumDetail album){
         this.user = user;
         this.album = album;
+
+
         System.out.println("Setting user and album of add photo controller");
         System.out.println(this.album);
     }

@@ -13,6 +13,8 @@ public class UserDetail implements Serializable{
 
     private ArrayList<AlbumDetail> albums;
 
+    private ArrayList<String> tags;
+
     /**
      * Constructor for UserDetail
      * @param name
@@ -21,6 +23,11 @@ public class UserDetail implements Serializable{
     public UserDetail(String name){
         this.username = name;
         this.albums = new ArrayList<AlbumDetail>();
+        this.tags = new ArrayList<String>();
+        tags.add("Location");
+        tags.add("Person");
+        tags.add("Color");
+        tags.add("Add New Type");
     }
 
     /**
@@ -78,6 +85,14 @@ public class UserDetail implements Serializable{
             }
         }
         return null;
+    }
+
+    public void addUserTag(String newTag){
+        tags.add(newTag);
+    }
+
+    public ArrayList<String> getUserTags(){
+        return this.tags;
     }
     /*public void addAlbum(AlbumDetail album){
         albums.add(album);
